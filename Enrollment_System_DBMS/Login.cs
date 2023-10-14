@@ -16,5 +16,10 @@ namespace Enrollment_System_DBMS
         {
             InitializeComponent();
         }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

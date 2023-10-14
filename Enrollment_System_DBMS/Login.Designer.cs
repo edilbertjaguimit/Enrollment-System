@@ -98,7 +98,7 @@ namespace Enrollment_System_DBMS
             this.txtPassword.Location = new System.Drawing.Point(21, 198);
             this.txtPassword.MinimumSize = new System.Drawing.Size(300, 30);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(300, 30);
+            this.txtPassword.Size = new System.Drawing.Size(300, 29);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -118,7 +118,7 @@ namespace Enrollment_System_DBMS
             this.txtUsername.Location = new System.Drawing.Point(21, 125);
             this.txtUsername.MinimumSize = new System.Drawing.Size(300, 30);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(300, 30);
+            this.txtUsername.Size = new System.Drawing.Size(300, 29);
             this.txtUsername.TabIndex = 0;
             // 
             // panel1
@@ -145,6 +145,7 @@ namespace Enrollment_System_DBMS
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::Enrollment_System_DBMS.Properties.Resources.CTU_new_logo_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(100, 31);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(138, 142);
@@ -162,15 +163,16 @@ namespace Enrollment_System_DBMS
             this.label1.TabIndex = 0;
             this.label1.Text = "Enrollment System";
             // 
-            // Form1
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 450);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Login";
+            this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
