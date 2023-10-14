@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Enrollment_System_DBMS
 {
-    public partial class Login : Form
+    public partial class Dashboard : Form
     {
-        public Login()
+        public Dashboard()
         {
             InitializeComponent();
-        }
-
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }

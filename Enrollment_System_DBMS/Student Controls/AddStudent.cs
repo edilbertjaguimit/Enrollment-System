@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Enrollment_System_DBMS
+namespace Enrollment_System_DBMS.Student_Controls
 {
-    public partial class Login : Form
+    public partial class AddStudent : UserControl
     {
-        public Login()
+        public AddStudent()
         {
             InitializeComponent();
-        }
-
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }
