@@ -16,5 +16,25 @@ namespace Enrollment_System_DBMS
         {
             InitializeComponent();
         }
+
+        private void BtnDashboard_Click(object sender, EventArgs e)
+        {
+            homeDashboard1.BringToFront();
+        }
+
+        private void BtnAddStudent_Click(object sender, EventArgs e)
+        {
+            addStudent1.BringToFront();
+        }
+
+        private void BtnStudentRecords_Click(object sender, EventArgs e)
+        {
+            studentRecords1.BringToFront();
+        }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            homeDashboard1.BringToFront();
+        }
     }
 }

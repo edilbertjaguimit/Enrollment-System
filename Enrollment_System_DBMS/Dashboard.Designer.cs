@@ -32,11 +32,13 @@ namespace Enrollment_System_DBMS
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnStudentRecords = new System.Windows.Forms.Button();
+            this.BtnAddStudent = new System.Windows.Forms.Button();
+            this.BtnDashboard = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.addStudent1 = new Enrollment_System_DBMS.Student_Controls.AddStudent();
+            this.homeDashboard1 = new Enrollment_System_DBMS.Student_Controls.HomeDashboard();
+            this.studentRecords1 = new Enrollment_System_DBMS.Student_Controls.StudentRecords();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -65,50 +67,55 @@ namespace Enrollment_System_DBMS
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gold;
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.BtnStudentRecords);
+            this.panel2.Controls.Add(this.BtnAddStudent);
+            this.panel2.Controls.Add(this.BtnDashboard);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 52);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 476);
             this.panel2.TabIndex = 1;
             // 
-            // button3
+            // BtnStudentRecords
             // 
-            this.button3.BackColor = System.Drawing.Color.Gold;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(0, 108);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 48);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Student Records";
-            this.button3.UseVisualStyleBackColor = false;
+            this.BtnStudentRecords.BackColor = System.Drawing.Color.Gold;
+            this.BtnStudentRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnStudentRecords.Location = new System.Drawing.Point(0, 108);
+            this.BtnStudentRecords.Name = "BtnStudentRecords";
+            this.BtnStudentRecords.Size = new System.Drawing.Size(200, 48);
+            this.BtnStudentRecords.TabIndex = 2;
+            this.BtnStudentRecords.Text = "Student Records";
+            this.BtnStudentRecords.UseVisualStyleBackColor = false;
+            this.BtnStudentRecords.Click += new System.EventHandler(this.BtnStudentRecords_Click);
             // 
-            // button2
+            // BtnAddStudent
             // 
-            this.button2.BackColor = System.Drawing.Color.Gold;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(0, 54);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 48);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Add Student";
-            this.button2.UseVisualStyleBackColor = false;
+            this.BtnAddStudent.BackColor = System.Drawing.Color.Gold;
+            this.BtnAddStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAddStudent.Location = new System.Drawing.Point(0, 54);
+            this.BtnAddStudent.Name = "BtnAddStudent";
+            this.BtnAddStudent.Size = new System.Drawing.Size(200, 48);
+            this.BtnAddStudent.TabIndex = 1;
+            this.BtnAddStudent.Text = "Add Student";
+            this.BtnAddStudent.UseVisualStyleBackColor = false;
+            this.BtnAddStudent.Click += new System.EventHandler(this.BtnAddStudent_Click);
             // 
-            // button1
+            // BtnDashboard
             // 
-            this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 48);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Dashboard";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnDashboard.BackColor = System.Drawing.Color.Gold;
+            this.BtnDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDashboard.Location = new System.Drawing.Point(0, 0);
+            this.BtnDashboard.Name = "BtnDashboard";
+            this.BtnDashboard.Size = new System.Drawing.Size(200, 48);
+            this.BtnDashboard.TabIndex = 0;
+            this.BtnDashboard.Text = "Dashboard";
+            this.BtnDashboard.UseVisualStyleBackColor = false;
+            this.BtnDashboard.Click += new System.EventHandler(this.BtnDashboard_Click);
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.studentRecords1);
+            this.panel3.Controls.Add(this.homeDashboard1);
             this.panel3.Controls.Add(this.addStudent1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(200, 52);
@@ -125,6 +132,24 @@ namespace Enrollment_System_DBMS
             this.addStudent1.Size = new System.Drawing.Size(760, 476);
             this.addStudent1.TabIndex = 0;
             // 
+            // homeDashboard1
+            // 
+            this.homeDashboard1.BackColor = System.Drawing.Color.White;
+            this.homeDashboard1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.homeDashboard1.Location = new System.Drawing.Point(0, 0);
+            this.homeDashboard1.Name = "homeDashboard1";
+            this.homeDashboard1.Size = new System.Drawing.Size(760, 476);
+            this.homeDashboard1.TabIndex = 1;
+            // 
+            // studentRecords1
+            // 
+            this.studentRecords1.BackColor = System.Drawing.Color.White;
+            this.studentRecords1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.studentRecords1.Location = new System.Drawing.Point(0, 0);
+            this.studentRecords1.Name = "studentRecords1";
+            this.studentRecords1.Size = new System.Drawing.Size(760, 476);
+            this.studentRecords1.TabIndex = 2;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,6 +161,7 @@ namespace Enrollment_System_DBMS
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Enrollment System";
+            this.Load += new System.EventHandler(this.Dashboard_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -148,11 +174,13 @@ namespace Enrollment_System_DBMS
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnDashboard;
+        private System.Windows.Forms.Button BtnStudentRecords;
+        private System.Windows.Forms.Button BtnAddStudent;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
         private Student_Controls.AddStudent addStudent1;
+        private Student_Controls.StudentRecords studentRecords1;
+        private Student_Controls.HomeDashboard homeDashboard1;
     }
 }

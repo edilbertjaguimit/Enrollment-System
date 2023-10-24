@@ -72,6 +72,18 @@
     <Compile Include="Student Controls\AddStudent.Designer.cs">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Student Controls\HomeDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student Controls\HomeDashboard.Designer.cs">
+      <DependentUpon>HomeDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student Controls\StudentRecords.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student Controls\StudentRecords.Designer.cs">
+      <DependentUpon>StudentRecords.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +102,12 @@
     </Compile>
     <EmbeddedResource Include="Student Controls\AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student Controls\HomeDashboard.resx">
+      <DependentUpon>HomeDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student Controls\StudentRecords.resx">
+      <DependentUpon>StudentRecords.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="EnrollmentDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

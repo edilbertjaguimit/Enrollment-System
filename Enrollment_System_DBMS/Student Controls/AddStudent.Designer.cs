@@ -36,7 +36,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label3 = new System.Windows.Forms.Label();
             this.TxtMiddlename = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.TxtLastname = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TxtAddress = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,6 +51,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtMobile = new System.Windows.Forms.TextBox();
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnRegister = new System.Windows.Forms.Button();
+            this.TxtLastname = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.LblPhoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,14 +123,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label4.Size = new System.Drawing.Size(73, 16);
             this.label4.TabIndex = 9;
             this.label4.Text = "Last Name";
-            // 
-            // TxtLastname
-            // 
-            this.TxtLastname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtLastname.Location = new System.Drawing.Point(232, 209);
-            this.TxtLastname.Name = "TxtLastname";
-            this.TxtLastname.Size = new System.Drawing.Size(217, 22);
-            this.TxtLastname.TabIndex = 3;
             // 
             // label6
             // 
@@ -280,6 +272,14 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnRegister.UseVisualStyleBackColor = false;
             this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
             // 
+            // TxtLastname
+            // 
+            this.TxtLastname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtLastname.Location = new System.Drawing.Point(232, 209);
+            this.TxtLastname.Name = "TxtLastname";
+            this.TxtLastname.Size = new System.Drawing.Size(217, 22);
+            this.TxtLastname.TabIndex = 3;
+            // 
             // AddStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,7 +325,6 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtMiddlename;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox TxtLastname;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TxtAddress;
         private System.Windows.Forms.Label label7;
@@ -340,5 +339,6 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.TextBox TxtMobile;
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Button BtnRegister;
+        private System.Windows.Forms.TextBox TxtLastname;
     }
 }
