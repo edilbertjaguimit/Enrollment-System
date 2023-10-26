@@ -185,6 +185,20 @@ namespace Enrollment_System_DBMS
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), yEAR_NAME);
 			return ((ISingleResult<SP_YEAR_LEVEL_IDResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_STUDENT_RECORDS")]
+		public ISingleResult<SP_DISPLAY_STUDENT_RECORDSResult> SP_DISPLAY_STUDENT_RECORDS()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_DISPLAY_STUDENT_RECORDSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX")]
+		public ISingleResult<SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOXResult> SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="VarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOXResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COLLEGE")]
@@ -1501,6 +1515,274 @@ namespace Enrollment_System_DBMS
 				if ((this._YEAR_ID != value))
 				{
 					this._YEAR_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_DISPLAY_STUDENT_RECORDSResult
+	{
+		
+		private string _Id;
+		
+		private string _Name;
+		
+		private string _Age;
+		
+		private string _Status;
+		
+		private int _Year_level;
+		
+		private string _Program;
+		
+		private string _College;
+		
+		public SP_DISPLAY_STUDENT_RECORDSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(5)")]
+		public string Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(167) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="NVarChar(2) NOT NULL", CanBeNull=false)]
+		public string Age
+		{
+			get
+			{
+				return this._Age;
+			}
+			set
+			{
+				if ((this._Age != value))
+				{
+					this._Age = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Year level]", Storage="_Year_level", DbType="Int NOT NULL")]
+		public int Year_level
+		{
+			get
+			{
+				return this._Year_level;
+			}
+			set
+			{
+				if ((this._Year_level != value))
+				{
+					this._Year_level = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Program", DbType="NVarChar(255)")]
+		public string Program
+		{
+			get
+			{
+				return this._Program;
+			}
+			set
+			{
+				if ((this._Program != value))
+				{
+					this._Program = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_College", DbType="NVarChar(500)")]
+		public string College
+		{
+			get
+			{
+				return this._College;
+			}
+			set
+			{
+				if ((this._College != value))
+				{
+					this._College = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOXResult
+	{
+		
+		private string _Id;
+		
+		private string _Name;
+		
+		private string _Age;
+		
+		private string _Status;
+		
+		private int _Year_level;
+		
+		private string _Program;
+		
+		private string _College;
+		
+		public SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOXResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(5)")]
+		public string Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(167) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="NVarChar(2) NOT NULL", CanBeNull=false)]
+		public string Age
+		{
+			get
+			{
+				return this._Age;
+			}
+			set
+			{
+				if ((this._Age != value))
+				{
+					this._Age = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Year level]", Storage="_Year_level", DbType="Int NOT NULL")]
+		public int Year_level
+		{
+			get
+			{
+				return this._Year_level;
+			}
+			set
+			{
+				if ((this._Year_level != value))
+				{
+					this._Year_level = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Program", DbType="NVarChar(255)")]
+		public string Program
+		{
+			get
+			{
+				return this._Program;
+			}
+			set
+			{
+				if ((this._Program != value))
+				{
+					this._Program = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_College", DbType="NVarChar(500)")]
+		public string College
+		{
+			get
+			{
+				return this._College;
+			}
+			set
+			{
+				if ((this._College != value))
+				{
+					this._College = value;
 				}
 			}
 		}

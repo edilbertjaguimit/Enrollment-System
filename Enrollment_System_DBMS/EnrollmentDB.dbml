@@ -122,4 +122,27 @@
       <Column Name="YEAR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_DISPLAY_STUDENT_RECORDS" Method="SP_DISPLAY_STUDENT_RECORDS">
+    <ElementType Name="SP_DISPLAY_STUDENT_RECORDSResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[Year level]" Member="Year_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX" Method="SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOXResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[Year level]" Member="Year_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
