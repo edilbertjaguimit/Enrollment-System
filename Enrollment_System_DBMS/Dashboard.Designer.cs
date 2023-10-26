@@ -32,16 +32,14 @@ namespace Enrollment_System_DBMS
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.BtnStudentRecords = new System.Windows.Forms.Button();
             this.BtnAddStudent = new System.Windows.Forms.Button();
             this.BtnDashboard = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.addStudent1 = new Enrollment_System_DBMS.Student_Controls.AddStudent();
-            this.homeDashboard1 = new Enrollment_System_DBMS.Student_Controls.HomeDashboard();
-            this.studentRecords1 = new Enrollment_System_DBMS.Student_Controls.StudentRecords();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -67,6 +65,8 @@ namespace Enrollment_System_DBMS
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gold;
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.BtnStudentRecords);
             this.panel2.Controls.Add(this.BtnAddStudent);
             this.panel2.Controls.Add(this.BtnDashboard);
@@ -75,6 +75,28 @@ namespace Enrollment_System_DBMS
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 476);
             this.panel2.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Gold;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(0, 214);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(200, 48);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Subjects";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gold;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 162);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(200, 48);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Colleges";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // BtnStudentRecords
             // 
@@ -114,41 +136,11 @@ namespace Enrollment_System_DBMS
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.studentRecords1);
-            this.panel3.Controls.Add(this.homeDashboard1);
-            this.panel3.Controls.Add(this.addStudent1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(200, 52);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(760, 476);
             this.panel3.TabIndex = 2;
-            // 
-            // addStudent1
-            // 
-            this.addStudent1.BackColor = System.Drawing.Color.White;
-            this.addStudent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addStudent1.Location = new System.Drawing.Point(0, 0);
-            this.addStudent1.Name = "addStudent1";
-            this.addStudent1.Size = new System.Drawing.Size(760, 476);
-            this.addStudent1.TabIndex = 0;
-            // 
-            // homeDashboard1
-            // 
-            this.homeDashboard1.BackColor = System.Drawing.Color.White;
-            this.homeDashboard1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.homeDashboard1.Location = new System.Drawing.Point(0, 0);
-            this.homeDashboard1.Name = "homeDashboard1";
-            this.homeDashboard1.Size = new System.Drawing.Size(760, 476);
-            this.homeDashboard1.TabIndex = 1;
-            // 
-            // studentRecords1
-            // 
-            this.studentRecords1.BackColor = System.Drawing.Color.White;
-            this.studentRecords1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentRecords1.Location = new System.Drawing.Point(0, 0);
-            this.studentRecords1.Name = "studentRecords1";
-            this.studentRecords1.Size = new System.Drawing.Size(760, 476);
-            this.studentRecords1.TabIndex = 2;
             // 
             // Dashboard
             // 
@@ -165,7 +157,6 @@ namespace Enrollment_System_DBMS
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -177,10 +168,9 @@ namespace Enrollment_System_DBMS
         private System.Windows.Forms.Button BtnDashboard;
         private System.Windows.Forms.Button BtnStudentRecords;
         private System.Windows.Forms.Button BtnAddStudent;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
-        private Student_Controls.AddStudent addStudent1;
-        private Student_Controls.StudentRecords studentRecords1;
-        private Student_Controls.HomeDashboard homeDashboard1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

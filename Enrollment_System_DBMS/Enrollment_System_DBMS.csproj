@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCollege.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCollege.Designer.cs">
+      <DependentUpon>AddCollege.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddProgram.Designer.cs">
+      <DependentUpon>AddProgram.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,11 +84,23 @@
     <Compile Include="Student Controls\AddStudent.Designer.cs">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Student Controls\Colleges.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student Controls\Colleges.Designer.cs">
+      <DependentUpon>Colleges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Student Controls\HomeDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Student Controls\HomeDashboard.Designer.cs">
       <DependentUpon>HomeDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student Controls\StudentInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student Controls\StudentInformation.Designer.cs">
+      <DependentUpon>StudentInformation.cs</DependentUpon>
     </Compile>
     <Compile Include="Student Controls\StudentRecords.cs">
       <SubType>UserControl</SubType>
@@ -84,6 +108,18 @@
     <Compile Include="Student Controls\StudentRecords.Designer.cs">
       <DependentUpon>StudentRecords.cs</DependentUpon>
     </Compile>
+    <Compile Include="Student Controls\Subjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student Controls\Subjects.Designer.cs">
+      <DependentUpon>Subjects.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddCollege.resx">
+      <DependentUpon>AddCollege.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddProgram.resx">
+      <DependentUpon>AddProgram.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,11 +139,20 @@
     <EmbeddedResource Include="Student Controls\AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Student Controls\Colleges.resx">
+      <DependentUpon>Colleges.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Student Controls\HomeDashboard.resx">
       <DependentUpon>HomeDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Student Controls\StudentInformation.resx">
+      <DependentUpon>StudentInformation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Student Controls\StudentRecords.resx">
       <DependentUpon>StudentRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student Controls\Subjects.resx">
+      <DependentUpon>Subjects.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="EnrollmentDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -135,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\CTU_new_logo-removebg-preview.png" />
+    <Content Include="Images\person.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
