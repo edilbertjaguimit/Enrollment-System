@@ -21,5 +21,10 @@ namespace Enrollment_System_DBMS
         {
             Application.Exit();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

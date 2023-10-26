@@ -37,7 +37,6 @@ namespace Enrollment_System_DBMS
             this.label3 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
@@ -57,7 +56,7 @@ namespace Enrollment_System_DBMS
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(337, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(339, 450);
+            this.panel2.Size = new System.Drawing.Size(339, 355);
             this.panel2.TabIndex = 3;
             // 
             // label5
@@ -91,6 +90,7 @@ namespace Enrollment_System_DBMS
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtPassword
             // 
@@ -124,31 +124,20 @@ namespace Enrollment_System_DBMS
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Gold;
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(339, 450);
+            this.panel1.Size = new System.Drawing.Size(339, 355);
             this.panel1.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 194);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(306, 25);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Cebu Technological University";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Enrollment_System_DBMS.Properties.Resources.CTU_new_logo_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(100, 31);
+            this.pictureBox1.Location = new System.Drawing.Point(100, 81);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(138, 142);
+            this.pictureBox1.Size = new System.Drawing.Size(138, 141);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -167,7 +156,7 @@ namespace Enrollment_System_DBMS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 450);
+            this.ClientSize = new System.Drawing.Size(676, 355);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Login";
@@ -193,7 +182,6 @@ namespace Enrollment_System_DBMS
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
     }
