@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Enrollment_System_DBMS.Student_Controls;
 
 namespace Enrollment_System_DBMS
 {
@@ -41,6 +42,8 @@ namespace Enrollment_System_DBMS
         private void Dashboard_Load(object sender, EventArgs e)
         {
             //homeDashboard1.BringToFront();
+            //new StudentInformation();
+            
         }
 
         //private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

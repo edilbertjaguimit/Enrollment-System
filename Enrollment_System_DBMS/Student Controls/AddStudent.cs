@@ -133,7 +133,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
         }
 
-        private void CbGender_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void CbGender_SelectedIndexChanged(object sender, EventArgs e)
         {
             Gender = CbGender.Text;
             //if (!emptyGender)

@@ -1,7 +1,7 @@
 ﻿
 namespace Enrollment_System_DBMS.Student_Controls
 {
-    partial class AddStudent
+    partial class UpdateStudentInformation
     {
         /// <summary> 
         /// Required designer variable.
@@ -38,7 +38,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label11 = new System.Windows.Forms.Label();
             this.CbCollege = new System.Windows.Forms.ComboBox();
             this.BtnRegister = new System.Windows.Forms.Button();
-            this.BtnClear = new System.Windows.Forms.Button();
+            this.BtnBack = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtMobile = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -69,12 +69,13 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "New Student Form";
+            this.label1.Size = new System.Drawing.Size(175, 25);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Update Student";
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.CbProgram);
@@ -83,7 +84,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.CbCollege);
             this.panel1.Controls.Add(this.BtnRegister);
-            this.panel1.Controls.Add(this.BtnClear);
+            this.panel1.Controls.Add(this.BtnBack);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.TxtMobile);
             this.panel1.Controls.Add(this.label10);
@@ -107,7 +108,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel1.Location = new System.Drawing.Point(3, 31);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(754, 442);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 5;
             // 
             // label13
             // 
@@ -128,7 +129,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbProgram.Name = "CbProgram";
             this.CbProgram.Size = new System.Drawing.Size(217, 23);
             this.CbProgram.TabIndex = 58;
-            this.CbProgram.SelectedIndexChanged += new System.EventHandler(this.CbProgram_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -149,7 +149,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbYearLevel.Name = "CbYearLevel";
             this.CbYearLevel.Size = new System.Drawing.Size(217, 23);
             this.CbYearLevel.TabIndex = 56;
-            this.CbYearLevel.SelectedIndexChanged += new System.EventHandler(this.CbYearLevel_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -170,7 +169,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbCollege.Name = "CbCollege";
             this.CbCollege.Size = new System.Drawing.Size(217, 23);
             this.CbCollege.TabIndex = 54;
-            this.CbCollege.SelectedIndexChanged += new System.EventHandler(this.CbCollege_SelectedIndexChanged);
             // 
             // BtnRegister
             // 
@@ -183,20 +181,18 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnRegister.TabIndex = 46;
             this.BtnRegister.Text = "REGISTER";
             this.BtnRegister.UseVisualStyleBackColor = false;
-            this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
             // 
-            // BtnClear
+            // BtnBack
             // 
-            this.BtnClear.BackColor = System.Drawing.Color.Gold;
-            this.BtnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnClear.ForeColor = System.Drawing.Color.Red;
-            this.BtnClear.Location = new System.Drawing.Point(570, 388);
-            this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(132, 42);
-            this.BtnClear.TabIndex = 47;
-            this.BtnClear.Text = "RESET";
-            this.BtnClear.UseVisualStyleBackColor = false;
-            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            this.BtnBack.BackColor = System.Drawing.Color.White;
+            this.BtnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBack.ForeColor = System.Drawing.Color.Black;
+            this.BtnBack.Location = new System.Drawing.Point(570, 388);
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(132, 42);
+            this.BtnBack.TabIndex = 47;
+            this.BtnBack.Text = "BACK";
+            this.BtnBack.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -238,7 +234,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbGender.Name = "CbGender";
             this.CbGender.Size = new System.Drawing.Size(217, 23);
             this.CbGender.TabIndex = 45;
-            this.CbGender.SelectedIndexChanged += new System.EventHandler(this.CbGender_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -370,7 +365,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnUploadPhoto.TabIndex = 32;
             this.BtnUploadPhoto.Text = "UPLOAD PHOTO";
             this.BtnUploadPhoto.UseVisualStyleBackColor = false;
-            this.BtnUploadPhoto.Click += new System.EventHandler(this.BtnUploadPhoto_Click);
             // 
             // LblPhoto
             // 
@@ -391,14 +385,14 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtFirstname.Size = new System.Drawing.Size(217, 22);
             this.TxtFirstname.TabIndex = 33;
             // 
-            // AddStudent
+            // UpdateStudentInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Name = "AddStudent";
+            this.Name = "UpdateStudentInformation";
             this.Size = new System.Drawing.Size(760, 476);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -409,6 +403,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         }
 
         #endregion
+
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label13;
@@ -418,7 +413,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox CbCollege;
         private System.Windows.Forms.Button BtnRegister;
-        private System.Windows.Forms.Button BtnClear;
+        private System.Windows.Forms.Button BtnBack;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TxtMobile;
         private System.Windows.Forms.Label label10;

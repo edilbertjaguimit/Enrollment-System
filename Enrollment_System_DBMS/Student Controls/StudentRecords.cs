@@ -65,5 +65,16 @@ namespace Enrollment_System_DBMS.Student_Controls
                 TblStudentRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
         }
+
+        private void BtnStudentDetails_Click(object sender, EventArgs e)
+        {
+            //if(TblStudentRecords.Rows. > 0)
+            //{
+            //    StudentInformation info = new StudentInformation();
+            //    //info.BringToFront();
+            //    info.Show();
+            //    this.Hide();
+            //}
+        }
     }
 }
