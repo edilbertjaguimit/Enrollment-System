@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Enrollment_System_DBMS.Student_Controls
 {
-    public partial class AddStudent : UserControl
+    public partial class UpdateStudentInformation : UserControl
     {
         public string _conn = @"Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True";
         private string Photo { get; set; }
@@ -26,33 +26,32 @@ namespace Enrollment_System_DBMS.Student_Controls
 
         EnrollmentDBDataContext db = new EnrollmentDBDataContext();
 
-        public AddStudent()
+        public UpdateStudentInformation()
         {
             InitializeComponent();
             YearLevelList();
             CollegeList();
             ProgramList();
+            StudentDetails();
         }
 
-        private void BtnUploadPhoto_Click(object sender, EventArgs e)
+        private void BtnBackToStudentInformation_Click(object sender, EventArgs e)
         {
-            try
+            Dashboard dashboard = this.ParentForm as Dashboard;
+            if (dashboard != null)
             {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All files(*.*)|*.*";
-                if(dialog.ShowDialog() == DialogResult.OK)
-                {
-                    Photo = dialog.FileName;
-                    LblPhoto.ImageLocation = Photo;
-                }
+                StudentInformation studentInformation = new StudentInformation();
+                studentInformation.Dock = DockStyle.Fill;
+                dashboard.mainContent.Controls.Clear();
+                dashboard.mainContent.Controls.Add(studentInformation);
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("An error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Dashboard not found. Make sure your Dashboard form is open.");
             }
         }
 
-        private void BtnRegister_Click(object sender, EventArgs e)
+        private void BtnUpdateStudentInformation_Click(object sender, EventArgs e)
         {
             if (!isTextEmpty())
             {
@@ -67,7 +66,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                 {
                     if (isEmail)
                     {
-                        if(currentAge >= 18)
+                        if (currentAge >= 18)
                         {
                             try
                             {
@@ -84,12 +83,12 @@ namespace Enrollment_System_DBMS.Student_Controls
                                         return; // Exit the method to prevent further execution
                                     }
                                 }
-                                db.SP_INSERT_STUDENT_INFORMATION(photoBytes, TxtFirstname.Text, TxtMiddlename.Text, TxtLastname.Text, currentAge.ToString(), birthDate, TxtPlaceBirth.Text, TxtAddress.Text, email, mobile, Gender, "Pending", DateTime.Now, DateTime.Now, CollegeID, ProgramID, YearLevelID);
-                                ClearText();
-                                MessageBox.Show("Successfully Added!", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                db.SP_UPDATE_STUDENT_INFORMATION(GetStudentID(), photoBytes, TxtFirstname.Text, TxtMiddlename.Text, TxtLastname.Text, currentAge.ToString(), birthDate, TxtPlaceBirth.Text, TxtAddress.Text, email, mobile, Gender, DateTime.Now, CollegeID, ProgramID, YearLevelID);
+                                MessageBox.Show("Updated Successfully!", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //btlViewData.DataSource = db.sp_view();
                                 StudentRecords records = new StudentRecords();
                                 records.DisplayStudentRecords();
+                                StudentDetails();
                             }
                             catch (Exception ex)
                             {
@@ -117,37 +116,60 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
         }
 
+        public string GetStudentID()
+        {
+            string studID = "";
+            try
+            {
+                using (var dbYearLevel = new SqlConnection(_conn))
+                {
+                    dbYearLevel.Open();
+                    using (var cmd = dbYearLevel.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT ID FROM ID_STORAGE";
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                studID = reader["ID"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return studID;
+        }
+
+        private void BtnReUploadPhoto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All files(*.*)|*.*";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    Photo = dialog.FileName;
+                    LblPhoto.ImageLocation = Photo;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void CbGender_SelectedIndexChanged(object sender, EventArgs e)
         {
             Gender = CbGender.Text;
-            //if (!emptyGender)
-            //{
-            //}
-            //else
-            //    CbGender.Text = "";
         }
 
-        // Year Level Combobox
         private void CbYearLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //switch (CbYearLevel.Text)
-            //{
-            //    case "First Year":
-            //        YearLevelID = 1;
-            //        break;
-            //    case "Second Year":
-            //        YearLevelID = 2;
-            //        break;
-            //    case "Third Year":
-            //        YearLevelID = 3;
-            //        break;
-            //    case "Fourth Year":
-            //        YearLevelID = 4;
-            //        break;
-            //    case "Fifth Year":
-            //        YearLevelID = 5;
-            //        break;
-            //}
             try
             {
                 using (var dbYearLevel = new SqlConnection(_conn))
@@ -175,7 +197,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
         }
 
-        // College Combobox
         private void CbCollege_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -191,7 +212,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                         cmd.Parameters.AddWithValue("COLL_NAME", CbCollege.Text);
                         using (var reader = cmd.ExecuteReader())
                         {
-                            if(reader.Read())
+                            if (reader.Read())
                             {
                                 CollegeID = Convert.ToInt32(reader["COLL_ID"]);
                             }
@@ -205,7 +226,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
         }
 
-        // Program Combobox
         private void CbProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -322,22 +342,73 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
         }
 
-        // Clear Text
-        private void ClearText()
+        public void StudentDetails()
         {
-            TxtFirstname.Text = "";
-            TxtMiddlename.Text = "";
-            TxtLastname.Text = "";
-            DpBirthDate.Value = DateTime.Now;
-            TxtAddress.Text = "";
-            TxtMobile.Text = "";
-            TxtEmail.Text = "";
-            TxtPlaceBirth.Text = "";
-            //CbGender.Text = "";
-            CbGender.SelectedIndex = -1;
-            CbYearLevel.SelectedIndex = -1;
-            CbProgram.SelectedIndex = -1;
-            CbCollege.SelectedIndex = -1;
+            try
+            {
+                using (var db = new SqlConnection(_conn))
+                {
+                    db.Open();
+                    using (var cmd = db.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_DISPLAY_STUDENT_INFORMATION";
+                        cmd.Parameters.AddWithValue("KEY", GetStudentID());
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                if (reader["STUD_PHOTO"] != DBNull.Value)
+                                {
+                                    byte[] imageData = (byte[])reader["STUD_PHOTO"];
+
+                                    if (imageData.Length > 2)
+                                    {
+                                        Image image;
+                                        using (MemoryStream ms = new MemoryStream(imageData))
+                                        {
+                                            image = Image.FromStream(ms);
+                                        }
+                                        LblPhoto.Image = image;
+                                    }
+                                    else
+                                    {
+                                        this.LblPhoto.SizeMode = PictureBoxSizeMode.Zoom;
+                                        LblPhoto.Image = Image.FromFile("C:/Users/Sir/source/repos/Enrollment_System_DBMS/Enrollment_System_DBMS/Images/person.png");
+                                    }
+                                }
+                                else
+                                {
+                                    this.LblPhoto.SizeMode = PictureBoxSizeMode.Zoom;
+                                    LblPhoto.Image = Image.FromFile("C:/Users/Sir/source/repos/Enrollment_System_DBMS/Enrollment_System_DBMS/Images/person.png");
+                                }
+                                lblStudentNumber.Text = reader["STUD_NUMBER"].ToString();
+                                lblStudentID.Text = reader["STUD_ID"].ToString();
+                                TxtFirstname.Text = reader["STUD_FIRSTNAME"].ToString();
+                                TxtMiddlename.Text = reader["STUD_MIDDLENAME"].ToString();
+                                TxtLastname.Text = reader["STUD_LASTNAME"].ToString();
+                                DateTime birthDate = (DateTime)reader["STUD_BIRTH_DATE"];
+                                DpBirthDate.Value = birthDate;
+                                TxtPlaceBirth.Text = reader["STUD_PLACE_OF_BIRTH"].ToString();
+                                TxtAddress.Text = reader["STUD_ADDRESS"].ToString();
+                                TxtEmail.Text = reader["STUD_EMAIL"].ToString();
+                                TxtMobile.Text = reader["STUD_MOBILE"].ToString();
+                                CbGender.SelectedItem = reader["STUD_GENDER"].ToString();
+                                CbYearLevel.SelectedItem = reader["YEAR_NAME"].ToString();
+                                CbProgram.SelectedItem = reader["PROG_NAME"].ToString();
+                                CbCollege.SelectedItem = reader["COLL_NAME"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //lblStudentID.Text = GetStudentID();
+
         }
 
         // Check the field if it is empty
@@ -358,11 +429,5 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
             return false;
         }
-
-        private void BtnClear_Click(object sender, EventArgs e)
-        {
-            ClearText();
-        }
     }
 }
-

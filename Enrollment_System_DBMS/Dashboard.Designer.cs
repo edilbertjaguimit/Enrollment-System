@@ -32,12 +32,12 @@ namespace Enrollment_System_DBMS
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnSubjects = new System.Windows.Forms.Button();
+            this.BtnColleges = new System.Windows.Forms.Button();
             this.BtnStudentRecords = new System.Windows.Forms.Button();
             this.BtnAddStudent = new System.Windows.Forms.Button();
             this.BtnDashboard = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.mainContent = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -65,8 +65,8 @@ namespace Enrollment_System_DBMS
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gold;
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.BtnSubjects);
+            this.panel2.Controls.Add(this.BtnColleges);
             this.panel2.Controls.Add(this.BtnStudentRecords);
             this.panel2.Controls.Add(this.BtnAddStudent);
             this.panel2.Controls.Add(this.BtnDashboard);
@@ -76,27 +76,29 @@ namespace Enrollment_System_DBMS
             this.panel2.Size = new System.Drawing.Size(200, 476);
             this.panel2.TabIndex = 1;
             // 
-            // button2
+            // BtnSubjects
             // 
-            this.button2.BackColor = System.Drawing.Color.Gold;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(0, 214);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 48);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Subjects";
-            this.button2.UseVisualStyleBackColor = false;
+            this.BtnSubjects.BackColor = System.Drawing.Color.Gold;
+            this.BtnSubjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSubjects.Location = new System.Drawing.Point(0, 214);
+            this.BtnSubjects.Name = "BtnSubjects";
+            this.BtnSubjects.Size = new System.Drawing.Size(200, 48);
+            this.BtnSubjects.TabIndex = 4;
+            this.BtnSubjects.Text = "Subjects";
+            this.BtnSubjects.UseVisualStyleBackColor = false;
+            this.BtnSubjects.Click += new System.EventHandler(this.BtnSubjects_Click);
             // 
-            // button1
+            // BtnColleges
             // 
-            this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 162);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 48);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Colleges";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnColleges.BackColor = System.Drawing.Color.Gold;
+            this.BtnColleges.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnColleges.Location = new System.Drawing.Point(0, 162);
+            this.BtnColleges.Name = "BtnColleges";
+            this.BtnColleges.Size = new System.Drawing.Size(200, 48);
+            this.BtnColleges.TabIndex = 3;
+            this.BtnColleges.Text = "Colleges";
+            this.BtnColleges.UseVisualStyleBackColor = false;
+            this.BtnColleges.Click += new System.EventHandler(this.BtnColleges_Click);
             // 
             // BtnStudentRecords
             // 
@@ -134,22 +136,23 @@ namespace Enrollment_System_DBMS
             this.BtnDashboard.UseVisualStyleBackColor = false;
             this.BtnDashboard.Click += new System.EventHandler(this.BtnDashboard_Click);
             // 
-            // panel3
+            // mainContent
             // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(200, 52);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(760, 476);
-            this.panel3.TabIndex = 2;
+            this.mainContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainContent.Location = new System.Drawing.Point(200, 52);
+            this.mainContent.Name = "mainContent";
+            this.mainContent.Size = new System.Drawing.Size(760, 476);
+            this.mainContent.TabIndex = 2;
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 528);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.mainContent);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Enrollment System";
@@ -169,8 +172,8 @@ namespace Enrollment_System_DBMS
         private System.Windows.Forms.Button BtnStudentRecords;
         private System.Windows.Forms.Button BtnAddStudent;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button BtnColleges;
+        private System.Windows.Forms.Button BtnSubjects;
+        public System.Windows.Forms.Panel mainContent;
     }
 }

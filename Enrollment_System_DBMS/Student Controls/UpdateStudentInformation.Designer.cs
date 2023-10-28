@@ -1,7 +1,7 @@
 ﻿
 namespace Enrollment_System_DBMS.Student_Controls
 {
-    partial class AddStudent
+    partial class UpdateStudentInformation
     {
         /// <summary> 
         /// Required designer variable.
@@ -37,8 +37,8 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbYearLevel = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.CbCollege = new System.Windows.Forms.ComboBox();
-            this.BtnRegister = new System.Windows.Forms.Button();
-            this.BtnClear = new System.Windows.Forms.Button();
+            this.BtnUpdateStudentInformation = new System.Windows.Forms.Button();
+            this.BtnBackToStudentInformation = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtMobile = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -56,9 +56,13 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label3 = new System.Windows.Forms.Label();
             this.TxtMiddlename = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.BtnUploadPhoto = new System.Windows.Forms.Button();
+            this.BtnReUploadPhoto = new System.Windows.Forms.Button();
             this.LblPhoto = new System.Windows.Forms.PictureBox();
             this.TxtFirstname = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblStudentID = new System.Windows.Forms.Label();
+            this.lblStudentNumber = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LblPhoto)).BeginInit();
             this.SuspendLayout();
@@ -69,21 +73,26 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "New Student Form";
+            this.label1.Size = new System.Drawing.Size(175, 25);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Update Student";
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.lblStudentNumber);
+            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.lblStudentID);
+            this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.CbProgram);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.CbYearLevel);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.CbCollege);
-            this.panel1.Controls.Add(this.BtnRegister);
-            this.panel1.Controls.Add(this.BtnClear);
+            this.panel1.Controls.Add(this.BtnUpdateStudentInformation);
+            this.panel1.Controls.Add(this.BtnBackToStudentInformation);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.TxtMobile);
             this.panel1.Controls.Add(this.label10);
@@ -101,13 +110,13 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.TxtMiddlename);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.BtnUploadPhoto);
+            this.panel1.Controls.Add(this.BtnReUploadPhoto);
             this.panel1.Controls.Add(this.LblPhoto);
             this.panel1.Controls.Add(this.TxtFirstname);
             this.panel1.Location = new System.Drawing.Point(3, 31);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(754, 442);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 5;
             // 
             // label13
             // 
@@ -172,31 +181,31 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbCollege.TabIndex = 54;
             this.CbCollege.SelectedIndexChanged += new System.EventHandler(this.CbCollege_SelectedIndexChanged);
             // 
-            // BtnRegister
+            // BtnUpdateStudentInformation
             // 
-            this.BtnRegister.BackColor = System.Drawing.Color.Gold;
-            this.BtnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegister.ForeColor = System.Drawing.Color.White;
-            this.BtnRegister.Location = new System.Drawing.Point(431, 388);
-            this.BtnRegister.Name = "BtnRegister";
-            this.BtnRegister.Size = new System.Drawing.Size(132, 42);
-            this.BtnRegister.TabIndex = 46;
-            this.BtnRegister.Text = "REGISTER";
-            this.BtnRegister.UseVisualStyleBackColor = false;
-            this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
+            this.BtnUpdateStudentInformation.BackColor = System.Drawing.Color.Gold;
+            this.BtnUpdateStudentInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnUpdateStudentInformation.ForeColor = System.Drawing.Color.White;
+            this.BtnUpdateStudentInformation.Location = new System.Drawing.Point(431, 388);
+            this.BtnUpdateStudentInformation.Name = "BtnUpdateStudentInformation";
+            this.BtnUpdateStudentInformation.Size = new System.Drawing.Size(132, 42);
+            this.BtnUpdateStudentInformation.TabIndex = 46;
+            this.BtnUpdateStudentInformation.Text = "UPDATE";
+            this.BtnUpdateStudentInformation.UseVisualStyleBackColor = false;
+            this.BtnUpdateStudentInformation.Click += new System.EventHandler(this.BtnUpdateStudentInformation_Click);
             // 
-            // BtnClear
+            // BtnBackToStudentInformation
             // 
-            this.BtnClear.BackColor = System.Drawing.Color.Gold;
-            this.BtnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnClear.ForeColor = System.Drawing.Color.Red;
-            this.BtnClear.Location = new System.Drawing.Point(570, 388);
-            this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(132, 42);
-            this.BtnClear.TabIndex = 47;
-            this.BtnClear.Text = "RESET";
-            this.BtnClear.UseVisualStyleBackColor = false;
-            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            this.BtnBackToStudentInformation.BackColor = System.Drawing.Color.White;
+            this.BtnBackToStudentInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBackToStudentInformation.ForeColor = System.Drawing.Color.Black;
+            this.BtnBackToStudentInformation.Location = new System.Drawing.Point(570, 388);
+            this.BtnBackToStudentInformation.Name = "BtnBackToStudentInformation";
+            this.BtnBackToStudentInformation.Size = new System.Drawing.Size(132, 42);
+            this.BtnBackToStudentInformation.TabIndex = 47;
+            this.BtnBackToStudentInformation.Text = "BACK";
+            this.BtnBackToStudentInformation.UseVisualStyleBackColor = false;
+            this.BtnBackToStudentInformation.Click += new System.EventHandler(this.BtnBackToStudentInformation_Click);
             // 
             // label5
             // 
@@ -359,18 +368,18 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label2.TabIndex = 38;
             this.label2.Text = "First Name";
             // 
-            // BtnUploadPhoto
+            // BtnReUploadPhoto
             // 
-            this.BtnUploadPhoto.BackColor = System.Drawing.Color.Gold;
-            this.BtnUploadPhoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUploadPhoto.ForeColor = System.Drawing.Color.White;
-            this.BtnUploadPhoto.Location = new System.Drawing.Point(49, 247);
-            this.BtnUploadPhoto.Name = "BtnUploadPhoto";
-            this.BtnUploadPhoto.Size = new System.Drawing.Size(141, 42);
-            this.BtnUploadPhoto.TabIndex = 32;
-            this.BtnUploadPhoto.Text = "UPLOAD PHOTO";
-            this.BtnUploadPhoto.UseVisualStyleBackColor = false;
-            this.BtnUploadPhoto.Click += new System.EventHandler(this.BtnUploadPhoto_Click);
+            this.BtnReUploadPhoto.BackColor = System.Drawing.Color.Gold;
+            this.BtnReUploadPhoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReUploadPhoto.ForeColor = System.Drawing.Color.White;
+            this.BtnReUploadPhoto.Location = new System.Drawing.Point(49, 247);
+            this.BtnReUploadPhoto.Name = "BtnReUploadPhoto";
+            this.BtnReUploadPhoto.Size = new System.Drawing.Size(141, 42);
+            this.BtnReUploadPhoto.TabIndex = 32;
+            this.BtnReUploadPhoto.Text = "EDIT PHOTO";
+            this.BtnReUploadPhoto.UseVisualStyleBackColor = false;
+            this.BtnReUploadPhoto.Click += new System.EventHandler(this.BtnReUploadPhoto_Click);
             // 
             // LblPhoto
             // 
@@ -391,14 +400,54 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtFirstname.Size = new System.Drawing.Size(217, 22);
             this.TxtFirstname.TabIndex = 33;
             // 
-            // AddStudent
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(46, 217);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(24, 16);
+            this.label14.TabIndex = 60;
+            this.label14.Text = "ID:";
+            // 
+            // lblStudentID
+            // 
+            this.lblStudentID.AutoSize = true;
+            this.lblStudentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStudentID.Location = new System.Drawing.Point(76, 218);
+            this.lblStudentID.Name = "lblStudentID";
+            this.lblStudentID.Size = new System.Drawing.Size(48, 16);
+            this.lblStudentID.TabIndex = 61;
+            this.lblStudentID.Text = "00002";
+            // 
+            // lblStudentNumber
+            // 
+            this.lblStudentNumber.AutoSize = true;
+            this.lblStudentNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStudentNumber.Location = new System.Drawing.Point(129, 4);
+            this.lblStudentNumber.Name = "lblStudentNumber";
+            this.lblStudentNumber.Size = new System.Drawing.Size(16, 16);
+            this.lblStudentNumber.TabIndex = 63;
+            this.lblStudentNumber.Text = "2";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(16, 4);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(107, 16);
+            this.label16.TabIndex = 62;
+            this.label16.Text = "Student Number:";
+            // 
+            // UpdateStudentInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Name = "AddStudent";
+            this.Name = "UpdateStudentInformation";
             this.Size = new System.Drawing.Size(760, 476);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -409,6 +458,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         }
 
         #endregion
+
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label13;
@@ -417,8 +467,8 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.ComboBox CbYearLevel;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox CbCollege;
-        private System.Windows.Forms.Button BtnRegister;
-        private System.Windows.Forms.Button BtnClear;
+        private System.Windows.Forms.Button BtnUpdateStudentInformation;
+        private System.Windows.Forms.Button BtnBackToStudentInformation;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TxtMobile;
         private System.Windows.Forms.Label label10;
@@ -436,8 +486,12 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtMiddlename;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button BtnUploadPhoto;
+        private System.Windows.Forms.Button BtnReUploadPhoto;
         private System.Windows.Forms.PictureBox LblPhoto;
         private System.Windows.Forms.TextBox TxtFirstname;
+        private System.Windows.Forms.Label lblStudentID;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblStudentNumber;
+        private System.Windows.Forms.Label label16;
     }
 }
