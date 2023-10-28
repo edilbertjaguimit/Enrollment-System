@@ -16,29 +16,13 @@ namespace Enrollment_System_DBMS.Student_Controls
     public partial class AddStudent : UserControl
     {
         public string _conn = @"Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True";
-        //public int ID { get; set; }
-        public string StudentID { get; set; }
-        public string Photo { get; set; }
-        public string Firstname { get; set; }
-        public string Middlename { get; set; }
-        public string Lastname { get; set; }
-        public string Age { get; set; }
-        public string BirthDate { get; set; }
-        public string PlaceBirth { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Mobile { get; set; }
-        public string Gender { get; set; }
+        private string Photo { get; set; }
+        private string Gender { get; set; }
 
-        public int ProgramID { get; set; }
-        //string ProgramName { get; set; }
-        public int CollegeID { get; set; }
-        //string CollegeName { get; set; }
+        private int ProgramID { get; set; }
+        private int CollegeID { get; set; }
 
-        public int YearLevelID { get; set; }
-
-        public int AcademicID { get; set; }
-        public int SubjectID { get; set; }
+        private int YearLevelID { get; set; }
 
         EnrollmentDBDataContext db = new EnrollmentDBDataContext();
 

@@ -96,6 +96,7 @@
     <Compile Include="Student Controls\HomeDashboard.Designer.cs">
       <DependentUpon>HomeDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Student Controls\Student.cs" />
     <Compile Include="Student Controls\StudentInformation.cs">
       <SubType>UserControl</SubType>
     </Compile>

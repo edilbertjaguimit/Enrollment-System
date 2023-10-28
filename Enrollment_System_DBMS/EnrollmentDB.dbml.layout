@@ -26,7 +26,7 @@
         <elementListCompartment Id="e7d1ca71-a1e2-4b34-9522-fc3dd9541d01" absoluteBounds="0.765, 3.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 1.91429768880208); (3.5 : 1.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 1.91429768880208); (3.5 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/EnrollmentDBDataContext/COLLEGE/COLLEGE_STUDENT" />
       <nodes>
         <classShapeMoniker Id="2eee3d64-7eaa-4cad-8b5a-79784d5f5a7e" />
@@ -47,5 +47,11 @@
         <classShapeMoniker Id="6060fa96-a9db-4091-acfa-2d1720a552d5" />
       </nodes>
     </associationConnector>
+    <classShape Id="60fa8ad5-90cd-4480-a0da-a9367da678cf" absoluteBounds="3.5, 0.5, 2, 1.0016910807291668">
+      <DataClassMoniker Name="/EnrollmentDBDataContext/ID_STORAGE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="61b196ec-6db2-4d05-8f20-90a867849624" absoluteBounds="3.515, 0.96, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
