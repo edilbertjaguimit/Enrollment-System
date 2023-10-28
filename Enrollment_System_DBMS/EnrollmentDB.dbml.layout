@@ -26,7 +26,7 @@
         <elementListCompartment Id="e7d1ca71-a1e2-4b34-9522-fc3dd9541d01" absoluteBounds="0.765, 3.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 1.91429768880208); (3.5 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 1.91429768880208); (3.5 : 1.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EnrollmentDBDataContext/COLLEGE/COLLEGE_STUDENT" />
       <nodes>
         <classShapeMoniker Id="2eee3d64-7eaa-4cad-8b5a-79784d5f5a7e" />

@@ -215,13 +215,6 @@ namespace Enrollment_System_DBMS
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_STUDENT_INFORMATION")]
-		public ISingleResult<SP_DISPLAY_STUDENT_INFORMATIONResult> SP_DISPLAY_STUDENT_INFORMATION([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="VarChar(MAX)")] string kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_DISPLAY_STUDENT_INFORMATIONResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_UPDATE_STUDENT_INFORMATION")]
 		public int SP_UPDATE_STUDENT_INFORMATION(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY, 
@@ -243,6 +236,20 @@ namespace Enrollment_System_DBMS
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY, sTUD_PHOTO, sTUD_FIRSTNAME, sTUD_MIDDLENAME, sTUD_LASTNAME, sTUD_AGE, sTUD_BIRTH_DATE, sTUD_PLACE_OF_BIRTH, sTUD_ADDRESS, sTUD_EMAIL, sTUD_MOBILE, sTUD_GENDER, sTUD_UPDATED_AT, cOLL_ID, pROG_ID, yEAR_ID);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DELETE_STUDENT")]
+		public int SP_DELETE_STUDENT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="VarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_STUDENT_INFORMATION")]
+		public ISingleResult<SP_DISPLAY_STUDENT_INFORMATIONResult> SP_DISPLAY_STUDENT_INFORMATION([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="VarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_DISPLAY_STUDENT_INFORMATIONResult>)(result.ReturnValue));
 		}
 	}
 	
