@@ -52,7 +52,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             try
             {
                 db.SP_ID_STORAGE(studentRecord.Cells[0].Value.ToString());
-                MessageBox.Show(studentRecord.Cells[0].Value.ToString());
 
             }catch(Exception ex)
             {

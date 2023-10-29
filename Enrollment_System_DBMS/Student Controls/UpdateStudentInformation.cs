@@ -23,7 +23,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         private int CollegeID { get; set; }
 
         private int YearLevelID { get; set; }
-        private Image currentImage { get; set; }
+        private byte[] currentImage { get; set; }
 
         EnrollmentDBDataContext db = new EnrollmentDBDataContext();
 
@@ -86,22 +86,23 @@ namespace Enrollment_System_DBMS.Student_Controls
                                 }
                                 else
                                 {
-                                    //Image.FromFile("C:/Users/Sir/source/repos/Enrollment_System_DBMS/Enrollment_System_DBMS/Images/person.png");
-                                    //if (currentImage != null)
-                                    //{
-                                    //    // Convert the currentImage to a byte array
-                                    //    using (MemoryStream ms = new MemoryStream())
-                                    //    {
-                                    //        // Serialize the image to a byte array
-                                    //        currentImage.Save(ms, currentImage.RawFormat);
-                                    //        photoBytes = ms.ToArray();
-                                    //    }
-                                    //}
-                                    //else
-                                    //{
-                                    //    MessageBox.Show("No photo provided or available.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    //    return; // Exit the method to prevent further execution
-                                    //}
+                                    if (currentImage != null)
+                                    {
+                                        try
+                                        {
+                                            photoBytes = currentImage;
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show($"An Image Error Occured: {ex}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No photo provided or available.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        return; // Exit the method to prevent further execution
+                                    }
                                 }
                                 db.SP_UPDATE_STUDENT_INFORMATION(GetStudentID(), photoBytes, TxtFirstname.Text, TxtMiddlename.Text, TxtLastname.Text, currentAge.ToString(), birthDate, TxtPlaceBirth.Text, TxtAddress.Text, email, mobile, Gender, DateTime.Now, CollegeID, ProgramID, YearLevelID);
                                 MessageBox.Show("Updated Successfully!", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -381,6 +382,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                                 if (reader["STUD_PHOTO"] != DBNull.Value)
                                 {
                                     byte[] imageData = (byte[])reader["STUD_PHOTO"];
+                                    currentImage = imageData;
 
                                     if (imageData.Length > 2)
                                     {
@@ -390,7 +392,6 @@ namespace Enrollment_System_DBMS.Student_Controls
                                             image = Image.FromStream(ms);
                                         }
                                         LblPhoto.Image = image;
-                                        currentImage = image;
                                     }
                                     else
                                     {
@@ -403,7 +404,6 @@ namespace Enrollment_System_DBMS.Student_Controls
                                     this.LblPhoto.SizeMode = PictureBoxSizeMode.Zoom;
                                     LblPhoto.Image = Image.FromFile("C:/Users/Sir/source/repos/Enrollment_System_DBMS/Enrollment_System_DBMS/Images/person.png");
                                 }
-                                MessageBox.Show($"{currentImage}");
                                 lblStudentNumber.Text = reader["STUD_NUMBER"].ToString();
                                 lblStudentID.Text = reader["STUD_ID"].ToString();
                                 TxtFirstname.Text = reader["STUD_FIRSTNAME"].ToString();
