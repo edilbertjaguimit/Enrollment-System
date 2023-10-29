@@ -36,12 +36,12 @@ namespace Enrollment_System_DBMS
     partial void InsertSTUDENT(STUDENT instance);
     partial void UpdateSTUDENT(STUDENT instance);
     partial void DeleteSTUDENT(STUDENT instance);
-    partial void InsertPROGRAM(PROGRAM instance);
-    partial void UpdatePROGRAM(PROGRAM instance);
-    partial void DeletePROGRAM(PROGRAM instance);
     partial void InsertYEAR_LEVEL(YEAR_LEVEL instance);
     partial void UpdateYEAR_LEVEL(YEAR_LEVEL instance);
     partial void DeleteYEAR_LEVEL(YEAR_LEVEL instance);
+    partial void InsertPROGRAM(PROGRAM instance);
+    partial void UpdatePROGRAM(PROGRAM instance);
+    partial void DeletePROGRAM(PROGRAM instance);
     #endregion
 		
 		public EnrollmentDBDataContext() : 
@@ -90,14 +90,6 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
-		public System.Data.Linq.Table<PROGRAM> PROGRAMs
-		{
-			get
-			{
-				return this.GetTable<PROGRAM>();
-			}
-		}
-		
 		public System.Data.Linq.Table<YEAR_LEVEL> YEAR_LEVELs
 		{
 			get
@@ -111,6 +103,14 @@ namespace Enrollment_System_DBMS
 			get
 			{
 				return this.GetTable<ID_STORAGE>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PROGRAM> PROGRAMs
+		{
+			get
+			{
+				return this.GetTable<PROGRAM>();
 			}
 		}
 		
@@ -251,6 +251,13 @@ namespace Enrollment_System_DBMS
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
 			return ((ISingleResult<SP_DISPLAY_STUDENT_INFORMATIONResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SPECIFIC_PROGRAM_FROM_COLLEGE")]
+		public ISingleResult<SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult> SP_SPECIFIC_PROGRAM_FROM_COLLEGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="Int")] System.Nullable<int> kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COLLEGE")]
@@ -269,6 +276,8 @@ namespace Enrollment_System_DBMS
 		
 		private EntitySet<STUDENT> _STUDENTs;
 		
+		private EntitySet<PROGRAM> _PROGRAMs;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -286,6 +295,7 @@ namespace Enrollment_System_DBMS
 		public COLLEGE()
 		{
 			this._STUDENTs = new EntitySet<STUDENT>(new Action<STUDENT>(this.attach_STUDENTs), new Action<STUDENT>(this.detach_STUDENTs));
+			this._PROGRAMs = new EntitySet<PROGRAM>(new Action<PROGRAM>(this.attach_PROGRAMs), new Action<PROGRAM>(this.detach_PROGRAMs));
 			OnCreated();
 		}
 		
@@ -382,6 +392,19 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="COLLEGE_PROGRAM", Storage="_PROGRAMs", ThisKey="COLL_ID", OtherKey="COLL_ID")]
+		public EntitySet<PROGRAM> PROGRAMs
+		{
+			get
+			{
+				return this._PROGRAMs;
+			}
+			set
+			{
+				this._PROGRAMs.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -409,6 +432,18 @@ namespace Enrollment_System_DBMS
 		}
 		
 		private void detach_STUDENTs(STUDENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.COLLEGE = null;
+		}
+		
+		private void attach_PROGRAMs(PROGRAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.COLLEGE = this;
+		}
+		
+		private void detach_PROGRAMs(PROGRAM entity)
 		{
 			this.SendPropertyChanging();
 			entity.COLLEGE = null;
@@ -461,9 +496,9 @@ namespace Enrollment_System_DBMS
 		
 		private EntityRef<COLLEGE> _COLLEGE;
 		
-		private EntityRef<PROGRAM> _PROGRAM;
-		
 		private EntityRef<YEAR_LEVEL> _YEAR_LEVEL;
+		
+		private EntityRef<PROGRAM> _PROGRAM;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -512,8 +547,8 @@ namespace Enrollment_System_DBMS
 		public STUDENT()
 		{
 			this._COLLEGE = default(EntityRef<COLLEGE>);
-			this._PROGRAM = default(EntityRef<PROGRAM>);
 			this._YEAR_LEVEL = default(EntityRef<YEAR_LEVEL>);
+			this._PROGRAM = default(EntityRef<PROGRAM>);
 			OnCreated();
 		}
 		
@@ -943,40 +978,6 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PROGRAM_STUDENT", Storage="_PROGRAM", ThisKey="PROG_ID", OtherKey="PROG_ID", IsForeignKey=true)]
-		public PROGRAM PROGRAM
-		{
-			get
-			{
-				return this._PROGRAM.Entity;
-			}
-			set
-			{
-				PROGRAM previousValue = this._PROGRAM.Entity;
-				if (((previousValue != value) 
-							|| (this._PROGRAM.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PROGRAM.Entity = null;
-						previousValue.STUDENTs.Remove(this);
-					}
-					this._PROGRAM.Entity = value;
-					if ((value != null))
-					{
-						value.STUDENTs.Add(this);
-						this._PROG_ID = value.PROG_ID;
-					}
-					else
-					{
-						this._PROG_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("PROGRAM");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="YEAR_LEVEL_STUDENT", Storage="_YEAR_LEVEL", ThisKey="YEAR_ID", OtherKey="YEAR_ID", IsForeignKey=true)]
 		public YEAR_LEVEL YEAR_LEVEL
 		{
@@ -1011,153 +1012,37 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PROGRAM")]
-	public partial class PROGRAM : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PROG_ID;
-		
-		private string _PROG_NAME;
-		
-		private System.Nullable<System.DateTime> _PROG_CREATED_AT;
-		
-		private System.Nullable<System.DateTime> _PROG_UPDATED_AT;
-		
-		private EntitySet<STUDENT> _STUDENTs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPROG_IDChanging(int value);
-    partial void OnPROG_IDChanged();
-    partial void OnPROG_NAMEChanging(string value);
-    partial void OnPROG_NAMEChanged();
-    partial void OnPROG_CREATED_ATChanging(System.Nullable<System.DateTime> value);
-    partial void OnPROG_CREATED_ATChanged();
-    partial void OnPROG_UPDATED_ATChanging(System.Nullable<System.DateTime> value);
-    partial void OnPROG_UPDATED_ATChanged();
-    #endregion
-		
-		public PROGRAM()
-		{
-			this._STUDENTs = new EntitySet<STUDENT>(new Action<STUDENT>(this.attach_STUDENTs), new Action<STUDENT>(this.detach_STUDENTs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PROG_ID
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PROGRAM_STUDENT", Storage="_PROGRAM", ThisKey="PROG_ID", OtherKey="PROG_ID", IsForeignKey=true)]
+		public PROGRAM PROGRAM
 		{
 			get
 			{
-				return this._PROG_ID;
+				return this._PROGRAM.Entity;
 			}
 			set
 			{
-				if ((this._PROG_ID != value))
+				PROGRAM previousValue = this._PROGRAM.Entity;
+				if (((previousValue != value) 
+							|| (this._PROGRAM.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnPROG_IDChanging(value);
 					this.SendPropertyChanging();
-					this._PROG_ID = value;
-					this.SendPropertyChanged("PROG_ID");
-					this.OnPROG_IDChanged();
+					if ((previousValue != null))
+					{
+						this._PROGRAM.Entity = null;
+						previousValue.STUDENTs.Remove(this);
+					}
+					this._PROGRAM.Entity = value;
+					if ((value != null))
+					{
+						value.STUDENTs.Add(this);
+						this._PROG_ID = value.PROG_ID;
+					}
+					else
+					{
+						this._PROG_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PROGRAM");
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_NAME", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string PROG_NAME
-		{
-			get
-			{
-				return this._PROG_NAME;
-			}
-			set
-			{
-				if ((this._PROG_NAME != value))
-				{
-					this.OnPROG_NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._PROG_NAME = value;
-					this.SendPropertyChanged("PROG_NAME");
-					this.OnPROG_NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_CREATED_AT", DbType="Date")]
-		public System.Nullable<System.DateTime> PROG_CREATED_AT
-		{
-			get
-			{
-				return this._PROG_CREATED_AT;
-			}
-			set
-			{
-				if ((this._PROG_CREATED_AT != value))
-				{
-					this.OnPROG_CREATED_ATChanging(value);
-					this.SendPropertyChanging();
-					this._PROG_CREATED_AT = value;
-					this.SendPropertyChanged("PROG_CREATED_AT");
-					this.OnPROG_CREATED_ATChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_UPDATED_AT", DbType="Date")]
-		public System.Nullable<System.DateTime> PROG_UPDATED_AT
-		{
-			get
-			{
-				return this._PROG_UPDATED_AT;
-			}
-			set
-			{
-				if ((this._PROG_UPDATED_AT != value))
-				{
-					this.OnPROG_UPDATED_ATChanging(value);
-					this.SendPropertyChanging();
-					this._PROG_UPDATED_AT = value;
-					this.SendPropertyChanged("PROG_UPDATED_AT");
-					this.OnPROG_UPDATED_ATChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PROGRAM_STUDENT", Storage="_STUDENTs", ThisKey="PROG_ID", OtherKey="PROG_ID")]
-		public EntitySet<STUDENT> STUDENTs
-		{
-			get
-			{
-				return this._STUDENTs;
-			}
-			set
-			{
-				this._STUDENTs.Assign(value);
 			}
 		}
 		
@@ -1179,18 +1064,6 @@ namespace Enrollment_System_DBMS
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_STUDENTs(STUDENT entity)
-		{
-			this.SendPropertyChanging();
-			entity.PROGRAM = this;
-		}
-		
-		private void detach_STUDENTs(STUDENT entity)
-		{
-			this.SendPropertyChanging();
-			entity.PROGRAM = null;
 		}
 	}
 	
@@ -1332,6 +1205,233 @@ namespace Enrollment_System_DBMS
 					this._ID = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PROGRAM")]
+	public partial class PROGRAM : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PROG_ID;
+		
+		private string _PROG_NAME;
+		
+		private System.Nullable<System.DateTime> _PROG_CREATED_AT;
+		
+		private System.Nullable<System.DateTime> _PROG_UPDATED_AT;
+		
+		private System.Nullable<int> _COLL_ID;
+		
+		private EntitySet<STUDENT> _STUDENTs;
+		
+		private EntityRef<COLLEGE> _COLLEGE;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPROG_IDChanging(int value);
+    partial void OnPROG_IDChanged();
+    partial void OnPROG_NAMEChanging(string value);
+    partial void OnPROG_NAMEChanged();
+    partial void OnPROG_CREATED_ATChanging(System.Nullable<System.DateTime> value);
+    partial void OnPROG_CREATED_ATChanged();
+    partial void OnPROG_UPDATED_ATChanging(System.Nullable<System.DateTime> value);
+    partial void OnPROG_UPDATED_ATChanged();
+    partial void OnCOLL_IDChanging(System.Nullable<int> value);
+    partial void OnCOLL_IDChanged();
+    #endregion
+		
+		public PROGRAM()
+		{
+			this._STUDENTs = new EntitySet<STUDENT>(new Action<STUDENT>(this.attach_STUDENTs), new Action<STUDENT>(this.detach_STUDENTs));
+			this._COLLEGE = default(EntityRef<COLLEGE>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PROG_ID
+		{
+			get
+			{
+				return this._PROG_ID;
+			}
+			set
+			{
+				if ((this._PROG_ID != value))
+				{
+					this.OnPROG_IDChanging(value);
+					this.SendPropertyChanging();
+					this._PROG_ID = value;
+					this.SendPropertyChanged("PROG_ID");
+					this.OnPROG_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_NAME", DbType="NVarChar(255)")]
+		public string PROG_NAME
+		{
+			get
+			{
+				return this._PROG_NAME;
+			}
+			set
+			{
+				if ((this._PROG_NAME != value))
+				{
+					this.OnPROG_NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._PROG_NAME = value;
+					this.SendPropertyChanged("PROG_NAME");
+					this.OnPROG_NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_CREATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> PROG_CREATED_AT
+		{
+			get
+			{
+				return this._PROG_CREATED_AT;
+			}
+			set
+			{
+				if ((this._PROG_CREATED_AT != value))
+				{
+					this.OnPROG_CREATED_ATChanging(value);
+					this.SendPropertyChanging();
+					this._PROG_CREATED_AT = value;
+					this.SendPropertyChanged("PROG_CREATED_AT");
+					this.OnPROG_CREATED_ATChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_UPDATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> PROG_UPDATED_AT
+		{
+			get
+			{
+				return this._PROG_UPDATED_AT;
+			}
+			set
+			{
+				if ((this._PROG_UPDATED_AT != value))
+				{
+					this.OnPROG_UPDATED_ATChanging(value);
+					this.SendPropertyChanging();
+					this._PROG_UPDATED_AT = value;
+					this.SendPropertyChanged("PROG_UPDATED_AT");
+					this.OnPROG_UPDATED_ATChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COLL_ID", DbType="Int")]
+		public System.Nullable<int> COLL_ID
+		{
+			get
+			{
+				return this._COLL_ID;
+			}
+			set
+			{
+				if ((this._COLL_ID != value))
+				{
+					if (this._COLLEGE.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCOLL_IDChanging(value);
+					this.SendPropertyChanging();
+					this._COLL_ID = value;
+					this.SendPropertyChanged("COLL_ID");
+					this.OnCOLL_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PROGRAM_STUDENT", Storage="_STUDENTs", ThisKey="PROG_ID", OtherKey="PROG_ID")]
+		public EntitySet<STUDENT> STUDENTs
+		{
+			get
+			{
+				return this._STUDENTs;
+			}
+			set
+			{
+				this._STUDENTs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="COLLEGE_PROGRAM", Storage="_COLLEGE", ThisKey="COLL_ID", OtherKey="COLL_ID", IsForeignKey=true)]
+		public COLLEGE COLLEGE
+		{
+			get
+			{
+				return this._COLLEGE.Entity;
+			}
+			set
+			{
+				COLLEGE previousValue = this._COLLEGE.Entity;
+				if (((previousValue != value) 
+							|| (this._COLLEGE.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._COLLEGE.Entity = null;
+						previousValue.PROGRAMs.Remove(this);
+					}
+					this._COLLEGE.Entity = value;
+					if ((value != null))
+					{
+						value.PROGRAMs.Add(this);
+						this._COLL_ID = value.COLL_ID;
+					}
+					else
+					{
+						this._COLL_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("COLLEGE");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_STUDENTs(STUDENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.PROGRAM = this;
+		}
+		
+		private void detach_STUDENTs(STUDENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.PROGRAM = null;
 		}
 	}
 	
@@ -2410,6 +2510,104 @@ namespace Enrollment_System_DBMS
 				if ((this._Name != value))
 				{
 					this._Name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult
+	{
+		
+		private int _PROG_ID;
+		
+		private string _PROG_NAME;
+		
+		private System.Nullable<System.DateTime> _PROG_CREATED_AT;
+		
+		private System.Nullable<System.DateTime> _PROG_UPDATED_AT;
+		
+		private System.Nullable<int> _COLL_ID;
+		
+		public SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_ID", DbType="Int NOT NULL")]
+		public int PROG_ID
+		{
+			get
+			{
+				return this._PROG_ID;
+			}
+			set
+			{
+				if ((this._PROG_ID != value))
+				{
+					this._PROG_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_NAME", DbType="NVarChar(255)")]
+		public string PROG_NAME
+		{
+			get
+			{
+				return this._PROG_NAME;
+			}
+			set
+			{
+				if ((this._PROG_NAME != value))
+				{
+					this._PROG_NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_CREATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> PROG_CREATED_AT
+		{
+			get
+			{
+				return this._PROG_CREATED_AT;
+			}
+			set
+			{
+				if ((this._PROG_CREATED_AT != value))
+				{
+					this._PROG_CREATED_AT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_UPDATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> PROG_UPDATED_AT
+		{
+			get
+			{
+				return this._PROG_UPDATED_AT;
+			}
+			set
+			{
+				if ((this._PROG_UPDATED_AT != value))
+				{
+					this._PROG_UPDATED_AT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COLL_ID", DbType="Int")]
+		public System.Nullable<int> COLL_ID
+		{
+			get
+			{
+				return this._COLL_ID;
+			}
+			set
+			{
+				if ((this._COLL_ID != value))
+				{
+					this._COLL_ID = value;
 				}
 			}
 		}

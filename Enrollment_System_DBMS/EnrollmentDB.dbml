@@ -7,6 +7,7 @@
       <Column Name="COLL_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="COLL_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="COLLEGE_STUDENT" Member="STUDENTs" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="STUDENT" />
+      <Association Name="COLLEGE_PROGRAM" Member="PROGRAMs" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="PROGRAM" />
     </Type>
   </Table>
   <Table Name="dbo.STUDENT" Member="STUDENTs">
@@ -31,17 +32,8 @@
       <Column Name="PROG_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="YEAR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="COLLEGE_STUDENT" Member="COLLEGE" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="COLLEGE" IsForeignKey="true" />
-      <Association Name="PROGRAM_STUDENT" Member="PROGRAM" ThisKey="PROG_ID" OtherKey="PROG_ID" Type="PROGRAM" IsForeignKey="true" />
       <Association Name="YEAR_LEVEL_STUDENT" Member="YEAR_LEVEL" ThisKey="YEAR_ID" OtherKey="YEAR_ID" Type="YEAR_LEVEL" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PROGRAM" Member="PROGRAMs">
-    <Type Name="PROGRAM">
-      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Association Name="PROGRAM_STUDENT" Member="STUDENTs" ThisKey="PROG_ID" OtherKey="PROG_ID" Type="STUDENT" />
+      <Association Name="PROGRAM_STUDENT" Member="PROGRAM" ThisKey="PROG_ID" OtherKey="PROG_ID" Type="PROGRAM" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.YEAR_LEVEL" Member="YEAR_LEVELs">
@@ -54,6 +46,17 @@
   <Table Name="dbo.ID_STORAGE" Member="ID_STORAGEs">
     <Type Name="ID_STORAGE">
       <Column Name="ID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PROGRAM" Member="PROGRAMs">
+    <Type Name="PROGRAM">
+      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PROGRAM_STUDENT" Member="STUDENTs" ThisKey="PROG_ID" OtherKey="PROG_ID" Type="STUDENT" />
+      <Association Name="COLLEGE_PROGRAM" Member="COLLEGE" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="COLLEGE" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.SP_YEAR_LEVEL" Method="SP_YEAR_LEVEL">
@@ -210,6 +213,16 @@
       <Column Name="COLL_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="COLL_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SPECIFIC_PROGRAM_FROM_COLLEGE" Method="SP_SPECIFIC_PROGRAM_FROM_COLLEGE">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult">
+      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

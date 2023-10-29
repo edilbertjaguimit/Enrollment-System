@@ -42,5 +42,10 @@ namespace Enrollment_System_DBMS
                 MessageBox.Show("Program Field is Empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void CbCollege_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
