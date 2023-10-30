@@ -59,6 +59,30 @@
       <Association Name="COLLEGE_PROGRAM" Member="COLLEGE" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="COLLEGE" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ACADEMIC_YEAR" Member="ACADEMIC_YEARs">
+    <Type Name="ACADEMIC_YEAR">
+      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ACAD_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SEMESTER" Member="SEMESTERs">
+    <Type Name="SEMESTER">
+      <Column Name="SEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SEM_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Association Name="SEMESTER_SUBJECT" Member="SUBJECTs" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SUBJECT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SUBJECTS" Member="SUBJECTs">
+    <Type Name="SUBJECT">
+      <Column Name="SUB_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SUB_SECTION_CODE" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="SUB_CODE" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="SUB_DESCRIPTION" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SUB_UNITS" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SEM_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SEMESTER_SUBJECT" Member="SEMESTER" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SEMESTER" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.SP_YEAR_LEVEL" Method="SP_YEAR_LEVEL">
     <ElementType Name="SP_YEAR_LEVELResult">
       <Column Name="YEAR_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
@@ -276,5 +300,25 @@
     <ElementType Name="SP_COUNT_COLLEGESResult">
       <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ACADEMIC_YEAR" Method="SP_ACADEMIC_YEAR">
+    <ElementType Name="SP_ACADEMIC_YEARResult">
+      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ACAD_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEMESTER" Method="SP_SEMESTER">
+    <ElementType Name="SP_SEMESTERResult">
+      <Column Name="SEM_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SEM_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_INSERT_SUBJECT" Method="SP_INSERT_SUBJECT">
+    <Parameter Name="SUB_SECTION_CODE" Parameter="sUB_SECTION_CODE" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="SUB_CODE" Parameter="sUB_CODE" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="SUB_DESCRIPTION" Parameter="sUB_DESCRIPTION" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="SUB_UNITS" Parameter="sUB_UNITS" Type="System.Double" DbType="Float" />
+    <Parameter Name="SEM_ID" Parameter="sEM_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

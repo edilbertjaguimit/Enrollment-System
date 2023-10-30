@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="EnrollmentDB">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.375, 8.5" name="EnrollmentDB">
   <DataContextMoniker Name="/EnrollmentDBDataContext" />
   <nestedChildShapes>
     <classShape Id="2eee3d64-7eaa-4cad-8b5a-79784d5f5a7e" absoluteBounds="0.75, 0.75, 2, 1.5785953776041666">
@@ -20,7 +20,7 @@
         <elementListCompartment Id="e7d1ca71-a1e2-4b34-9522-fc3dd9541d01" absoluteBounds="0.765, 3.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 1.91429768880208); (3.5 : 1.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 1.91429768880208); (3.5 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/EnrollmentDBDataContext/COLLEGE/COLLEGE_STUDENT" />
       <nodes>
         <classShapeMoniker Id="2eee3d64-7eaa-4cad-8b5a-79784d5f5a7e" />
@@ -53,11 +53,36 @@
         <classShapeMoniker Id="6060fa96-a9db-4091-acfa-2d1720a552d5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(0.75 : 1.53929768880208); (0.5 : 1.53929768880208); (0.5 : 5); (2 : 5); (2 : 5.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(0.75 : 1.53929768880208); (0.5 : 1.53929768880208); (0.5 : 5); (2 : 5); (2 : 5.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/EnrollmentDBDataContext/COLLEGE/COLLEGE_PROGRAM" />
       <nodes>
         <classShapeMoniker Id="2eee3d64-7eaa-4cad-8b5a-79784d5f5a7e" />
         <classShapeMoniker Id="269afaa1-54f6-40a6-b9e0-b399fd021fc2" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0d918b5a-ef9e-4a68-974e-a165dd52f3f3" absoluteBounds="6.375, 3.75, 2, 1.193992513020834">
+      <DataClassMoniker Name="/EnrollmentDBDataContext/ACADEMIC_YEAR" />
+      <nestedChildShapes>
+        <elementListCompartment Id="686992b6-77d0-4f31-92f5-7324d4bb8c6f" absoluteBounds="6.39, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="59a619bf-f9f3-406f-a905-3157eb367845" absoluteBounds="6.375, 1.25, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/EnrollmentDBDataContext/SEMESTER" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a4484373-1dba-4d0a-a9b1-3548c4263f1c" absoluteBounds="6.39, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e5dca51f-aa3e-4c5d-a4fd-36411fc74ae8" absoluteBounds="9.125, 0.875, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/EnrollmentDBDataContext/SUBJECT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05f40b72-bee0-46b8-951a-d2777831d085" absoluteBounds="9.14, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.375 : 1.84699625651042); (9.125 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/EnrollmentDBDataContext/SEMESTER/SEMESTER_SUBJECT" />
+      <nodes>
+        <classShapeMoniker Id="59a619bf-f9f3-406f-a905-3157eb367845" />
+        <classShapeMoniker Id="e5dca51f-aa3e-4c5d-a4fd-36411fc74ae8" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

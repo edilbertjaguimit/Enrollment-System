@@ -68,11 +68,20 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPhoto = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.CbAcademicYear = new System.Windows.Forms.Label();
+            this.CbSemester = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblNoSubject = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtSearchSubject = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TblStudentSubjects)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblPhoto)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -154,6 +163,10 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.TxtSearchSubject);
+            this.panel3.Controls.Add(this.lblNoSubject);
+            this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.TblStudentSubjects);
             this.panel3.Controls.Add(this.label26);
             this.panel3.Location = new System.Drawing.Point(0, 209);
@@ -163,10 +176,11 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             // TblStudentSubjects
             // 
+            this.TblStudentSubjects.BackgroundColor = System.Drawing.Color.White;
             this.TblStudentSubjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TblStudentSubjects.Location = new System.Drawing.Point(3, 31);
+            this.TblStudentSubjects.Location = new System.Drawing.Point(277, 31);
             this.TblStudentSubjects.Name = "TblStudentSubjects";
-            this.TblStudentSubjects.Size = new System.Drawing.Size(742, 144);
+            this.TblStudentSubjects.Size = new System.Drawing.Size(468, 144);
             this.TblStudentSubjects.TabIndex = 4;
             // 
             // label26
@@ -506,6 +520,86 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblPhoto.TabIndex = 37;
             this.lblPhoto.TabStop = false;
             // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.comboBox1);
+            this.panel4.Controls.Add(this.CbAcademicYear);
+            this.panel4.Controls.Add(this.CbSemester);
+            this.panel4.Location = new System.Drawing.Point(3, 31);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(268, 144);
+            this.panel4.TabIndex = 5;
+            // 
+            // CbAcademicYear
+            // 
+            this.CbAcademicYear.AutoSize = true;
+            this.CbAcademicYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbAcademicYear.Location = new System.Drawing.Point(8, 8);
+            this.CbAcademicYear.Name = "CbAcademicYear";
+            this.CbAcademicYear.Size = new System.Drawing.Size(101, 16);
+            this.CbAcademicYear.TabIndex = 63;
+            this.CbAcademicYear.Text = "Academic Year";
+            // 
+            // CbSemester
+            // 
+            this.CbSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbSemester.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbSemester.FormattingEnabled = true;
+            this.CbSemester.Location = new System.Drawing.Point(11, 35);
+            this.CbSemester.Name = "CbSemester";
+            this.CbSemester.Size = new System.Drawing.Size(236, 23);
+            this.CbSemester.TabIndex = 62;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(8, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 16);
+            this.label3.TabIndex = 65;
+            this.label3.Text = "Subjects";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(11, 98);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(236, 23);
+            this.comboBox1.TabIndex = 64;
+            // 
+            // lblNoSubject
+            // 
+            this.lblNoSubject.AutoSize = true;
+            this.lblNoSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoSubject.Location = new System.Drawing.Point(421, 86);
+            this.lblNoSubject.Name = "lblNoSubject";
+            this.lblNoSubject.Size = new System.Drawing.Size(182, 25);
+            this.lblNoSubject.TabIndex = 6;
+            this.lblNoSubject.Text = "No Subjects Yet";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(480, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 16);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Search";
+            // 
+            // TxtSearchSubject
+            // 
+            this.TxtSearchSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSearchSubject.Location = new System.Drawing.Point(537, 7);
+            this.TxtSearchSubject.Name = "TxtSearchSubject";
+            this.TxtSearchSubject.Size = new System.Drawing.Size(208, 22);
+            this.TxtSearchSubject.TabIndex = 17;
+            // 
             // StudentInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -523,6 +617,8 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblPhoto)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,5 +665,13 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblStudentNumber;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblNoSubject;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label CbAcademicYear;
+        private System.Windows.Forms.ComboBox CbSemester;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TxtSearchSubject;
     }
 }
