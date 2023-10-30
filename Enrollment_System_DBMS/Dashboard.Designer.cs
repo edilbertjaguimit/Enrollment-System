@@ -80,7 +80,7 @@ namespace Enrollment_System_DBMS
             // 
             this.BtnSubjects.BackColor = System.Drawing.Color.Gold;
             this.BtnSubjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSubjects.Location = new System.Drawing.Point(0, 214);
+            this.BtnSubjects.Location = new System.Drawing.Point(0, 216);
             this.BtnSubjects.Name = "BtnSubjects";
             this.BtnSubjects.Size = new System.Drawing.Size(200, 48);
             this.BtnSubjects.TabIndex = 4;

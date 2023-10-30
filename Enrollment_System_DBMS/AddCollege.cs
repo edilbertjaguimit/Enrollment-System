@@ -33,8 +33,6 @@ namespace Enrollment_System_DBMS
                     db.SP_INSERT_COLLEGE(txtCollegeName.Text, DateTime.Now, DateTime.Now);
                     MessageBox.Show("College Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtCollegeName.Text = "";
-                    //var college = new CollegeAndProgram();
-                    //college.DisplayCollege();
                 }
                 catch (Exception ex)
                 {

@@ -79,6 +79,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.BtnDeleteStudent.BackColor = System.Drawing.Color.Gold;
             this.BtnDeleteStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDeleteStudent.ForeColor = System.Drawing.Color.Red;
             this.BtnDeleteStudent.Location = new System.Drawing.Point(123, 2);
             this.BtnDeleteStudent.Name = "BtnDeleteStudent";
             this.BtnDeleteStudent.Size = new System.Drawing.Size(114, 33);

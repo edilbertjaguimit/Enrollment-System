@@ -30,13 +30,13 @@ namespace Enrollment_System_DBMS
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.CbCollege = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtProgramName = new System.Windows.Forms.TextBox();
             this.BtnCancelProgram = new System.Windows.Forms.Button();
             this.BtnAddProgram = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.CbCollege = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +56,27 @@ namespace Enrollment_System_DBMS
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(245, 209);
             this.panel1.TabIndex = 0;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(7, 34);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(129, 16);
+            this.label11.TabIndex = 57;
+            this.label11.Text = "College/Department";
+            // 
+            // CbCollege
+            // 
+            this.CbCollege.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbCollege.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbCollege.FormattingEnabled = true;
+            this.CbCollege.Location = new System.Drawing.Point(10, 61);
+            this.CbCollege.Name = "CbCollege";
+            this.CbCollege.Size = new System.Drawing.Size(222, 23);
+            this.CbCollege.TabIndex = 56;
+            this.CbCollege.SelectedIndexChanged += new System.EventHandler(this.CbCollege_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -87,14 +108,14 @@ namespace Enrollment_System_DBMS
             // 
             // BtnCancelProgram
             // 
-            this.BtnCancelProgram.BackColor = System.Drawing.Color.Gold;
+            this.BtnCancelProgram.BackColor = System.Drawing.Color.White;
             this.BtnCancelProgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelProgram.ForeColor = System.Drawing.Color.Red;
+            this.BtnCancelProgram.ForeColor = System.Drawing.Color.Black;
             this.BtnCancelProgram.Location = new System.Drawing.Point(134, 171);
             this.BtnCancelProgram.Name = "BtnCancelProgram";
             this.BtnCancelProgram.Size = new System.Drawing.Size(98, 23);
             this.BtnCancelProgram.TabIndex = 11;
-            this.BtnCancelProgram.Text = "Cancel";
+            this.BtnCancelProgram.Text = "BACK";
             this.BtnCancelProgram.UseVisualStyleBackColor = false;
             this.BtnCancelProgram.Click += new System.EventHandler(this.BtnCancelProgram_Click);
             // 
@@ -106,30 +127,9 @@ namespace Enrollment_System_DBMS
             this.BtnAddProgram.Name = "BtnAddProgram";
             this.BtnAddProgram.Size = new System.Drawing.Size(98, 23);
             this.BtnAddProgram.TabIndex = 10;
-            this.BtnAddProgram.Text = "Add";
+            this.BtnAddProgram.Text = "ADD";
             this.BtnAddProgram.UseVisualStyleBackColor = false;
             this.BtnAddProgram.Click += new System.EventHandler(this.BtnAddProgram_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(7, 34);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(129, 16);
-            this.label11.TabIndex = 57;
-            this.label11.Text = "College/Department";
-            // 
-            // CbCollege
-            // 
-            this.CbCollege.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbCollege.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbCollege.FormattingEnabled = true;
-            this.CbCollege.Location = new System.Drawing.Point(10, 61);
-            this.CbCollege.Name = "CbCollege";
-            this.CbCollege.Size = new System.Drawing.Size(222, 23);
-            this.CbCollege.TabIndex = 56;
-            this.CbCollege.SelectedIndexChanged += new System.EventHandler(this.CbCollege_SelectedIndexChanged);
             // 
             // AddProgram
             // 

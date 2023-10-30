@@ -243,4 +243,38 @@
       <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_SEARCH_PROGRAM" Method="SP_SEARCH_PROGRAM">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="SP_SEARCH_PROGRAMResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[College Belong]" Member="College_Belong" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEARCH_COLLEGE" Method="SP_SEARCH_COLLEGE">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="SP_SEARCH_COLLEGEResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_COUNT_PROGRAMS" Method="SP_COUNT_PROGRAMS">
+    <ElementType Name="SP_COUNT_PROGRAMSResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_COUNT_ALL_STUDENTS" Method="SP_COUNT_ALL_STUDENTS">
+    <ElementType Name="SP_COUNT_ALL_STUDENTSResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_COUNT_COLLEGES" Method="SP_COUNT_COLLEGES">
+    <ElementType Name="SP_COUNT_COLLEGESResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -272,6 +272,41 @@ namespace Enrollment_System_DBMS
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_DISPLAY_COLLEGEResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_PROGRAM")]
+		public ISingleResult<SP_SEARCH_PROGRAMResult> SP_SEARCH_PROGRAM([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="VarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SEARCH_PROGRAMResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_COLLEGE")]
+		public ISingleResult<SP_SEARCH_COLLEGEResult> SP_SEARCH_COLLEGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="VarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SEARCH_COLLEGEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_COUNT_PROGRAMS")]
+		public ISingleResult<SP_COUNT_PROGRAMSResult> SP_COUNT_PROGRAMS()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_COUNT_PROGRAMSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_COUNT_ALL_STUDENTS")]
+		public ISingleResult<SP_COUNT_ALL_STUDENTSResult> SP_COUNT_ALL_STUDENTS()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_COUNT_ALL_STUDENTSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_COUNT_COLLEGES")]
+		public ISingleResult<SP_COUNT_COLLEGESResult> SP_COUNT_COLLEGES()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_COUNT_COLLEGESResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COLLEGE")]
@@ -2800,6 +2835,262 @@ namespace Enrollment_System_DBMS
 				if ((this._Updated_at != value))
 				{
 					this._Updated_at = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEARCH_PROGRAMResult
+	{
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private string _College_Belong;
+		
+		private System.Nullable<System.DateTime> _Created_at;
+		
+		private System.Nullable<System.DateTime> _Updated_at;
+		
+		public SP_SEARCH_PROGRAMResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[College Belong]", Storage="_College_Belong", DbType="NVarChar(500)")]
+		public string College_Belong
+		{
+			get
+			{
+				return this._College_Belong;
+			}
+			set
+			{
+				if ((this._College_Belong != value))
+				{
+					this._College_Belong = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Created at]", Storage="_Created_at", DbType="Date")]
+		public System.Nullable<System.DateTime> Created_at
+		{
+			get
+			{
+				return this._Created_at;
+			}
+			set
+			{
+				if ((this._Created_at != value))
+				{
+					this._Created_at = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Updated at]", Storage="_Updated_at", DbType="Date")]
+		public System.Nullable<System.DateTime> Updated_at
+		{
+			get
+			{
+				return this._Updated_at;
+			}
+			set
+			{
+				if ((this._Updated_at != value))
+				{
+					this._Updated_at = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEARCH_COLLEGEResult
+	{
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private System.Nullable<System.DateTime> _Created_at;
+		
+		private System.Nullable<System.DateTime> _Updated_at;
+		
+		public SP_SEARCH_COLLEGEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Created at]", Storage="_Created_at", DbType="Date")]
+		public System.Nullable<System.DateTime> Created_at
+		{
+			get
+			{
+				return this._Created_at;
+			}
+			set
+			{
+				if ((this._Created_at != value))
+				{
+					this._Created_at = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Updated at]", Storage="_Updated_at", DbType="Date")]
+		public System.Nullable<System.DateTime> Updated_at
+		{
+			get
+			{
+				return this._Updated_at;
+			}
+			set
+			{
+				if ((this._Updated_at != value))
+				{
+					this._Updated_at = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_COUNT_PROGRAMSResult
+	{
+		
+		private System.Nullable<int> _Column1;
+		
+		public SP_COUNT_PROGRAMSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
+		public System.Nullable<int> Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_COUNT_ALL_STUDENTSResult
+	{
+		
+		private System.Nullable<int> _Column1;
+		
+		public SP_COUNT_ALL_STUDENTSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
+		public System.Nullable<int> Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_COUNT_COLLEGESResult
+	{
+		
+		private System.Nullable<int> _Column1;
+		
+		public SP_COUNT_COLLEGESResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Int")]
+		public System.Nullable<int> Column1
+		{
+			get
+			{
+				return this._Column1;
+			}
+			set
+			{
+				if ((this._Column1 != value))
+				{
+					this._Column1 = value;
 				}
 			}
 		}

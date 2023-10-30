@@ -57,8 +57,8 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtMiddlename = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnUploadPhoto = new System.Windows.Forms.Button();
-            this.LblPhoto = new System.Windows.Forms.PictureBox();
             this.TxtFirstname = new System.Windows.Forms.TextBox();
+            this.LblPhoto = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LblPhoto)).BeginInit();
             this.SuspendLayout();
@@ -176,7 +176,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.BtnRegister.BackColor = System.Drawing.Color.Gold;
             this.BtnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegister.ForeColor = System.Drawing.Color.White;
+            this.BtnRegister.ForeColor = System.Drawing.Color.Black;
             this.BtnRegister.Location = new System.Drawing.Point(431, 388);
             this.BtnRegister.Name = "BtnRegister";
             this.BtnRegister.Size = new System.Drawing.Size(132, 42);
@@ -187,9 +187,9 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             // BtnClear
             // 
-            this.BtnClear.BackColor = System.Drawing.Color.Gold;
+            this.BtnClear.BackColor = System.Drawing.Color.White;
             this.BtnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnClear.ForeColor = System.Drawing.Color.Red;
+            this.BtnClear.ForeColor = System.Drawing.Color.Black;
             this.BtnClear.Location = new System.Drawing.Point(570, 388);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(132, 42);
@@ -363,7 +363,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.BtnUploadPhoto.BackColor = System.Drawing.Color.Gold;
             this.BtnUploadPhoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUploadPhoto.ForeColor = System.Drawing.Color.White;
+            this.BtnUploadPhoto.ForeColor = System.Drawing.Color.Black;
             this.BtnUploadPhoto.Location = new System.Drawing.Point(49, 247);
             this.BtnUploadPhoto.Name = "BtnUploadPhoto";
             this.BtnUploadPhoto.Size = new System.Drawing.Size(141, 42);
@@ -371,6 +371,14 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnUploadPhoto.Text = "UPLOAD PHOTO";
             this.BtnUploadPhoto.UseVisualStyleBackColor = false;
             this.BtnUploadPhoto.Click += new System.EventHandler(this.BtnUploadPhoto_Click);
+            // 
+            // TxtFirstname
+            // 
+            this.TxtFirstname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFirstname.Location = new System.Drawing.Point(231, 33);
+            this.TxtFirstname.Name = "TxtFirstname";
+            this.TxtFirstname.Size = new System.Drawing.Size(217, 22);
+            this.TxtFirstname.TabIndex = 33;
             // 
             // LblPhoto
             // 
@@ -382,14 +390,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.LblPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LblPhoto.TabIndex = 36;
             this.LblPhoto.TabStop = false;
-            // 
-            // TxtFirstname
-            // 
-            this.TxtFirstname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFirstname.Location = new System.Drawing.Point(231, 33);
-            this.TxtFirstname.Name = "TxtFirstname";
-            this.TxtFirstname.Size = new System.Drawing.Size(217, 22);
-            this.TxtFirstname.TabIndex = 33;
             // 
             // AddStudent
             // 

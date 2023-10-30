@@ -61,8 +61,8 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtMiddlename = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnReUploadPhoto = new System.Windows.Forms.Button();
-            this.LblPhoto = new System.Windows.Forms.PictureBox();
             this.TxtFirstname = new System.Windows.Forms.TextBox();
+            this.LblPhoto = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LblPhoto)).BeginInit();
             this.SuspendLayout();
@@ -225,7 +225,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.BtnUpdateStudentInformation.BackColor = System.Drawing.Color.Gold;
             this.BtnUpdateStudentInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUpdateStudentInformation.ForeColor = System.Drawing.Color.White;
+            this.BtnUpdateStudentInformation.ForeColor = System.Drawing.Color.Black;
             this.BtnUpdateStudentInformation.Location = new System.Drawing.Point(431, 388);
             this.BtnUpdateStudentInformation.Name = "BtnUpdateStudentInformation";
             this.BtnUpdateStudentInformation.Size = new System.Drawing.Size(132, 42);
@@ -412,7 +412,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.BtnReUploadPhoto.BackColor = System.Drawing.Color.Gold;
             this.BtnReUploadPhoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReUploadPhoto.ForeColor = System.Drawing.Color.White;
+            this.BtnReUploadPhoto.ForeColor = System.Drawing.Color.Black;
             this.BtnReUploadPhoto.Location = new System.Drawing.Point(49, 247);
             this.BtnReUploadPhoto.Name = "BtnReUploadPhoto";
             this.BtnReUploadPhoto.Size = new System.Drawing.Size(141, 42);
@@ -420,6 +420,14 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnReUploadPhoto.Text = "EDIT PHOTO";
             this.BtnReUploadPhoto.UseVisualStyleBackColor = false;
             this.BtnReUploadPhoto.Click += new System.EventHandler(this.BtnReUploadPhoto_Click);
+            // 
+            // TxtFirstname
+            // 
+            this.TxtFirstname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFirstname.Location = new System.Drawing.Point(231, 33);
+            this.TxtFirstname.Name = "TxtFirstname";
+            this.TxtFirstname.Size = new System.Drawing.Size(217, 22);
+            this.TxtFirstname.TabIndex = 33;
             // 
             // LblPhoto
             // 
@@ -431,14 +439,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.LblPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LblPhoto.TabIndex = 36;
             this.LblPhoto.TabStop = false;
-            // 
-            // TxtFirstname
-            // 
-            this.TxtFirstname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFirstname.Location = new System.Drawing.Point(231, 33);
-            this.TxtFirstname.Name = "TxtFirstname";
-            this.TxtFirstname.Size = new System.Drawing.Size(217, 22);
-            this.TxtFirstname.TabIndex = 33;
             // 
             // UpdateStudentInformation
             // 

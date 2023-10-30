@@ -38,7 +38,6 @@ namespace Enrollment_System_DBMS
                     MessageBox.Show("Program Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtProgramName.Text = "";
                     CbCollege.SelectedIndex = -1;
-                    //new CollegeAndProgram();
                 }
                 catch (Exception ex)
                 {

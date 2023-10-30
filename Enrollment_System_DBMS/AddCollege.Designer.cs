@@ -83,14 +83,14 @@ namespace Enrollment_System_DBMS
             // 
             // BtnCancelCollege
             // 
-            this.BtnCancelCollege.BackColor = System.Drawing.Color.Gold;
+            this.BtnCancelCollege.BackColor = System.Drawing.Color.White;
             this.BtnCancelCollege.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelCollege.ForeColor = System.Drawing.Color.Red;
+            this.BtnCancelCollege.ForeColor = System.Drawing.Color.Black;
             this.BtnCancelCollege.Location = new System.Drawing.Point(139, 103);
             this.BtnCancelCollege.Name = "BtnCancelCollege";
             this.BtnCancelCollege.Size = new System.Drawing.Size(98, 23);
             this.BtnCancelCollege.TabIndex = 6;
-            this.BtnCancelCollege.Text = "Cancel";
+            this.BtnCancelCollege.Text = "BACK";
             this.BtnCancelCollege.UseVisualStyleBackColor = false;
             this.BtnCancelCollege.Click += new System.EventHandler(this.BtnCancelCollege_Click);
             // 
@@ -102,7 +102,7 @@ namespace Enrollment_System_DBMS
             this.BtnAddCollege.Name = "BtnAddCollege";
             this.BtnAddCollege.Size = new System.Drawing.Size(98, 23);
             this.BtnAddCollege.TabIndex = 5;
-            this.BtnAddCollege.Text = "Add";
+            this.BtnAddCollege.Text = "ADD";
             this.BtnAddCollege.UseVisualStyleBackColor = false;
             this.BtnAddCollege.Click += new System.EventHandler(this.BtnAddCollege_Click);
             // 

@@ -236,6 +236,8 @@ namespace Enrollment_System_DBMS.Student_Controls
                             if (reader.Read())
                             {
                                 CollegeID = Convert.ToInt32(reader["COLL_ID"]);
+                                CbProgram.Items.Clear();
+                                ProgramList();
                             }
                         }
                     }
@@ -345,7 +347,8 @@ namespace Enrollment_System_DBMS.Student_Controls
                     using (var cmd = dbProgram.CreateCommand())
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "SP_PROGRAM";
+                        cmd.CommandText = "SP_SPECIFIC_PROGRAM_FROM_COLLEGE";
+                        cmd.Parameters.AddWithValue("KEY", CollegeID); // USE THE COLL_ID INSTEAD
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
