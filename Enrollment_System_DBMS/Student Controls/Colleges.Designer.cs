@@ -31,12 +31,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.collegeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collegeNumberStudents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collegeYearCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnCollegeUpdate = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BtnDeleteCollege = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.TblCollege = new System.Windows.Forms.DataGridView();
             this.ucStudentRecords = new System.Windows.Forms.Label();
             this.BtnAddCollege = new System.Windows.Forms.Button();
             this.BtnAddProgram = new System.Windows.Forms.Button();
@@ -46,15 +41,13 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.programName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.programNumberStudents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnProgramUpdate = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BtnProgramDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.TblProgram = new System.Windows.Forms.DataGridView();
+            this.lblNoCollege = new System.Windows.Forms.Label();
+            this.lblNoProgram = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.TblCollege)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TblProgram)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -75,61 +68,17 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.textBox1.Size = new System.Drawing.Size(176, 22);
             this.textBox1.TabIndex = 8;
             // 
-            // dataGridView1
+            // TblCollege
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.collegeName,
-            this.collegeNumberStudents,
-            this.collegeYearCreated,
-            this.BtnCollegeUpdate,
-            this.BtnDeleteCollege});
-            this.dataGridView1.Location = new System.Drawing.Point(3, 211);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(372, 262);
-            this.dataGridView1.TabIndex = 7;
-            // 
-            // collegeName
-            // 
-            this.collegeName.FillWeight = 103.2572F;
-            this.collegeName.HeaderText = "Name";
-            this.collegeName.Name = "collegeName";
-            this.collegeName.ReadOnly = true;
-            this.collegeName.Width = 68;
-            // 
-            // collegeNumberStudents
-            // 
-            this.collegeNumberStudents.HeaderText = "Students";
-            this.collegeNumberStudents.Name = "collegeNumberStudents";
-            this.collegeNumberStudents.ReadOnly = true;
-            this.collegeNumberStudents.Width = 67;
-            // 
-            // collegeYearCreated
-            // 
-            this.collegeYearCreated.FillWeight = 96.15555F;
-            this.collegeYearCreated.HeaderText = "Year Created";
-            this.collegeYearCreated.Name = "collegeYearCreated";
-            this.collegeYearCreated.ReadOnly = true;
-            this.collegeYearCreated.Width = 63;
-            // 
-            // BtnCollegeUpdate
-            // 
-            this.BtnCollegeUpdate.FillWeight = 96.88772F;
-            this.BtnCollegeUpdate.HeaderText = "Update";
-            this.BtnCollegeUpdate.Name = "BtnCollegeUpdate";
-            this.BtnCollegeUpdate.ReadOnly = true;
-            this.BtnCollegeUpdate.Width = 64;
-            // 
-            // BtnDeleteCollege
-            // 
-            this.BtnDeleteCollege.FillWeight = 100.5626F;
-            this.BtnDeleteCollege.HeaderText = "Delete";
-            this.BtnDeleteCollege.Name = "BtnDeleteCollege";
-            this.BtnDeleteCollege.ReadOnly = true;
-            this.BtnDeleteCollege.Width = 67;
+            this.TblCollege.AllowUserToAddRows = false;
+            this.TblCollege.AllowUserToDeleteRows = false;
+            this.TblCollege.BackgroundColor = System.Drawing.Color.White;
+            this.TblCollege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TblCollege.Location = new System.Drawing.Point(3, 211);
+            this.TblCollege.Name = "TblCollege";
+            this.TblCollege.ReadOnly = true;
+            this.TblCollege.Size = new System.Drawing.Size(372, 262);
+            this.TblCollege.TabIndex = 7;
             // 
             // ucStudentRecords
             // 
@@ -217,56 +166,47 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.textBox2.Size = new System.Drawing.Size(176, 22);
             this.textBox2.TabIndex = 18;
             // 
-            // dataGridView2
+            // TblProgram
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.programName,
-            this.programNumberStudents,
-            this.BtnProgramUpdate,
-            this.BtnProgramDelete});
-            this.dataGridView2.Location = new System.Drawing.Point(381, 211);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(372, 262);
-            this.dataGridView2.TabIndex = 19;
+            this.TblProgram.AllowUserToAddRows = false;
+            this.TblProgram.AllowUserToDeleteRows = false;
+            this.TblProgram.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.TblProgram.BackgroundColor = System.Drawing.Color.White;
+            this.TblProgram.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TblProgram.Location = new System.Drawing.Point(381, 211);
+            this.TblProgram.Name = "TblProgram";
+            this.TblProgram.ReadOnly = true;
+            this.TblProgram.Size = new System.Drawing.Size(372, 262);
+            this.TblProgram.TabIndex = 19;
             // 
-            // programName
+            // lblNoCollege
             // 
-            this.programName.FillWeight = 103.2572F;
-            this.programName.HeaderText = "Name";
-            this.programName.Name = "programName";
-            this.programName.ReadOnly = true;
+            this.lblNoCollege.AutoSize = true;
+            this.lblNoCollege.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoCollege.Location = new System.Drawing.Point(92, 333);
+            this.lblNoCollege.Name = "lblNoCollege";
+            this.lblNoCollege.Size = new System.Drawing.Size(201, 25);
+            this.lblNoCollege.TabIndex = 21;
+            this.lblNoCollege.Text = "No College Found";
             // 
-            // programNumberStudents
+            // lblNoProgram
             // 
-            this.programNumberStudents.HeaderText = "Students";
-            this.programNumberStudents.Name = "programNumberStudents";
-            this.programNumberStudents.ReadOnly = true;
-            // 
-            // BtnProgramUpdate
-            // 
-            this.BtnProgramUpdate.FillWeight = 96.88772F;
-            this.BtnProgramUpdate.HeaderText = "Update";
-            this.BtnProgramUpdate.Name = "BtnProgramUpdate";
-            this.BtnProgramUpdate.ReadOnly = true;
-            // 
-            // BtnProgramDelete
-            // 
-            this.BtnProgramDelete.FillWeight = 100.5626F;
-            this.BtnProgramDelete.HeaderText = "Delete";
-            this.BtnProgramDelete.Name = "BtnProgramDelete";
-            this.BtnProgramDelete.ReadOnly = true;
+            this.lblNoProgram.AutoSize = true;
+            this.lblNoProgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoProgram.Location = new System.Drawing.Point(465, 333);
+            this.lblNoProgram.Name = "lblNoProgram";
+            this.lblNoProgram.Size = new System.Drawing.Size(209, 25);
+            this.lblNoProgram.TabIndex = 23;
+            this.lblNoProgram.Text = "No Program Found";
             // 
             // Colleges
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.lblNoProgram);
+            this.Controls.Add(this.lblNoCollege);
+            this.Controls.Add(this.TblProgram);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel2);
@@ -275,16 +215,16 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.Controls.Add(this.BtnAddCollege);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.TblCollege);
             this.Controls.Add(this.ucStudentRecords);
             this.Name = "Colleges";
             this.Size = new System.Drawing.Size(760, 476);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TblCollege)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TblProgram)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,7 +234,7 @@ namespace Enrollment_System_DBMS.Student_Controls
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView TblCollege;
         private System.Windows.Forms.Label ucStudentRecords;
         private System.Windows.Forms.Button BtnAddCollege;
         private System.Windows.Forms.Button BtnAddProgram;
@@ -302,17 +242,10 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collegeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collegeNumberStudents;
-        private System.Windows.Forms.DataGridViewTextBoxColumn collegeYearCreated;
-        private System.Windows.Forms.DataGridViewButtonColumn BtnCollegeUpdate;
-        private System.Windows.Forms.DataGridViewButtonColumn BtnDeleteCollege;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn programName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn programNumberStudents;
-        private System.Windows.Forms.DataGridViewButtonColumn BtnProgramUpdate;
-        private System.Windows.Forms.DataGridViewButtonColumn BtnProgramDelete;
+        public System.Windows.Forms.DataGridView TblProgram;
+        public System.Windows.Forms.Label lblNoCollege;
+        public System.Windows.Forms.Label lblNoProgram;
     }
 }

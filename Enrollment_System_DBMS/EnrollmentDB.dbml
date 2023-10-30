@@ -112,12 +112,6 @@
       <Column Name="COLL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_INSERT_PROGRAM" Method="SP_INSERT_PROGRAM">
-    <Parameter Name="PROG_NAME" Parameter="pROG_NAME" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="PROG_CREATED_AT" Parameter="pROG_CREATED_AT" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="PROG_UPDATED_AT" Parameter="pROG_UPDATED_AT" Type="System.DateTime" DbType="Date" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.SP_INSERT_COLLEGE" Method="SP_INSERT_COLLEGE">
     <Parameter Name="COLL_NAME" Parameter="cOLL_NAME" Type="System.String" DbType="NVarChar(500)" />
     <Parameter Name="COLL_CREATED_AT" Parameter="cOLL_CREATED_AT" Type="System.DateTime" DbType="Date" />
@@ -223,6 +217,30 @@
       <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_INSERT_PROGRAM" Method="SP_INSERT_PROGRAM">
+    <Parameter Name="PROG_NAME" Parameter="pROG_NAME" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="PROG_CREATED_AT" Parameter="pROG_CREATED_AT" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PROG_UPDATED_AT" Parameter="pROG_UPDATED_AT" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_DISPLAY_PROGRAM" Method="SP_DISPLAY_PROGRAM">
+    <ElementType Name="SP_DISPLAY_PROGRAMResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[College Belong]" Member="College_Belong" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_DISPLAY_COLLEGE" Method="SP_DISPLAY_COLLEGE">
+    <ElementType Name="SP_DISPLAY_COLLEGEResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

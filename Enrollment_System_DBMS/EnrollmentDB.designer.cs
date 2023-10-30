@@ -173,13 +173,6 @@ namespace Enrollment_System_DBMS
 			return ((ISingleResult<SP_COLLEGE_IDResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_INSERT_PROGRAM")]
-		public int SP_INSERT_PROGRAM([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_NAME", DbType="NVarChar(255)")] string pROG_NAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_CREATED_AT", DbType="Date")] System.Nullable<System.DateTime> pROG_CREATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_UPDATED_AT", DbType="Date")] System.Nullable<System.DateTime> pROG_UPDATED_AT)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pROG_NAME, pROG_CREATED_AT, pROG_UPDATED_AT);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_INSERT_COLLEGE")]
 		public int SP_INSERT_COLLEGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_NAME", DbType="NVarChar(500)")] string cOLL_NAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_CREATED_AT", DbType="Date")] System.Nullable<System.DateTime> cOLL_CREATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_UPDATED_AT", DbType="Date")] System.Nullable<System.DateTime> cOLL_UPDATED_AT)
 		{
@@ -257,6 +250,27 @@ namespace Enrollment_System_DBMS
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
 			return ((ISingleResult<SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_INSERT_PROGRAM")]
+		public int SP_INSERT_PROGRAM([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_NAME", DbType="NVarChar(255)")] string pROG_NAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_CREATED_AT", DbType="Date")] System.Nullable<System.DateTime> pROG_CREATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_UPDATED_AT", DbType="Date")] System.Nullable<System.DateTime> pROG_UPDATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_ID", DbType="Int")] System.Nullable<int> cOLL_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pROG_NAME, pROG_CREATED_AT, pROG_UPDATED_AT, cOLL_ID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_PROGRAM")]
+		public ISingleResult<SP_DISPLAY_PROGRAMResult> SP_DISPLAY_PROGRAM()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_DISPLAY_PROGRAMResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_COLLEGE")]
+		public ISingleResult<SP_DISPLAY_COLLEGEResult> SP_DISPLAY_COLLEGE()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_DISPLAY_COLLEGEResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -2608,6 +2622,184 @@ namespace Enrollment_System_DBMS
 				if ((this._COLL_ID != value))
 				{
 					this._COLL_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_DISPLAY_PROGRAMResult
+	{
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private string _College_Belong;
+		
+		private System.Nullable<System.DateTime> _Created_at;
+		
+		private System.Nullable<System.DateTime> _Updated_at;
+		
+		public SP_DISPLAY_PROGRAMResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[College Belong]", Storage="_College_Belong", DbType="NVarChar(500)")]
+		public string College_Belong
+		{
+			get
+			{
+				return this._College_Belong;
+			}
+			set
+			{
+				if ((this._College_Belong != value))
+				{
+					this._College_Belong = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Created at]", Storage="_Created_at", DbType="Date")]
+		public System.Nullable<System.DateTime> Created_at
+		{
+			get
+			{
+				return this._Created_at;
+			}
+			set
+			{
+				if ((this._Created_at != value))
+				{
+					this._Created_at = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Updated at]", Storage="_Updated_at", DbType="Date")]
+		public System.Nullable<System.DateTime> Updated_at
+		{
+			get
+			{
+				return this._Updated_at;
+			}
+			set
+			{
+				if ((this._Updated_at != value))
+				{
+					this._Updated_at = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_DISPLAY_COLLEGEResult
+	{
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private System.Nullable<System.DateTime> _Created_at;
+		
+		private System.Nullable<System.DateTime> _Updated_at;
+		
+		public SP_DISPLAY_COLLEGEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Created at]", Storage="_Created_at", DbType="Date")]
+		public System.Nullable<System.DateTime> Created_at
+		{
+			get
+			{
+				return this._Created_at;
+			}
+			set
+			{
+				if ((this._Created_at != value))
+				{
+					this._Created_at = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Updated at]", Storage="_Updated_at", DbType="Date")]
+		public System.Nullable<System.DateTime> Updated_at
+		{
+			get
+			{
+				return this._Updated_at;
+			}
+			set
+			{
+				if ((this._Updated_at != value))
+				{
+					this._Updated_at = value;
 				}
 			}
 		}

@@ -35,6 +35,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             TblStudentRecords.DataSource = db.SP_DISPLAY_STUDENT_RECORDS();
             if (TblStudentRecords.Rows.Count == 0)
             {
+                lblNoStudentFound.Text = "No Student Yet";
                 lblNoStudentFound.Visible = true;
                 TblStudentRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }

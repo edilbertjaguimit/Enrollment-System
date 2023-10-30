@@ -84,6 +84,7 @@
     <Compile Include="Student Controls\AddStudent.Designer.cs">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Student Controls\CollegeAndProgram.cs" />
     <Compile Include="Student Controls\Colleges.cs">
       <SubType>UserControl</SubType>
     </Compile>
