@@ -15,6 +15,35 @@ namespace Enrollment_System_DBMS.Student_Controls
         public Subjects()
         {
             InitializeComponent();
+            DisplaySubjects();
+        }
+
+        private void BtnAddSubject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void DisplaySubjects()
+        {
+            try
+            {
+                //TblSubjects.DataSource = db.SP_DISPLAY_PROGRAM();
+                if (TblSubjects.Rows.Count == 0)
+                {
+                    lblNoSubject.Text = "No Subjects Yet";
+                    lblNoSubject.Visible = true;
+                    TblSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+                else
+                {
+                    lblNoSubject.Visible = false;
+                    TblSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

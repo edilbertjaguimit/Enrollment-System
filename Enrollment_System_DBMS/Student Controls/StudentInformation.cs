@@ -28,24 +28,39 @@ namespace Enrollment_System_DBMS.Student_Controls
 
         private void StudentInformation_Load(object sender, EventArgs e)
         {
+
         }
-        
-        public async Task StudentDetails()
+
+        public void StudentDetails()
         {
+            //MessageBox.Show($"{GetStudentID()}");
             try
             {
+                //MessageBox.Show($"{GetStudentID()} Hello");
                 using (var db = new SqlConnection(_conn))
                 {
-                    await db.OpenAsync();
+                //MessageBox.Show($"{GetStudentID()} Hi");
+                    db.Open();
                     using (var cmd = db.CreateCommand())
                     {
+                        //MessageBox.Show($"{GetStudentID()} Musta?");
+
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "SP_DISPLAY_STUDENT_INFORMATION";
                         cmd.Parameters.AddWithValue("KEY", GetStudentID());
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (await reader.ReadAsync())
+                            //MessageBox.Show($"{GetStudentID()} Ok ra");
+                            //MessageBox.Show($"{GetStudentID()} Ni kaon naka?");
+                            //MessageBox.Show($"{GetStudentID()} Wala pa");
+                            //MessageBox.Show($"{GetStudentID()} Kaon na kay kaonon pa tika hehe");
+                            //MessageBox.Show($"{GetStudentID()} Baba uy");
+                            //MessageBox.Show($"{GetStudentID()} HAHAHAHAHA");
+
+
+                            if (reader.Read())
                             {
+
                                 if (reader["STUD_PHOTO"] != DBNull.Value)
                                 {
                                     byte[] imageData = (byte[])reader["STUD_PHOTO"];
@@ -70,7 +85,6 @@ namespace Enrollment_System_DBMS.Student_Controls
                                     this.lblPhoto.SizeMode = PictureBoxSizeMode.Zoom;
                                     lblPhoto.Image = Image.FromFile("C:/Users/Sir/source/repos/Enrollment_System_DBMS/Enrollment_System_DBMS/Images/person.png");
                                 }
-
                                 lblStudentNumber.Text = reader["STUD_NUMBER"].ToString();
                                 lblStudentID.Text = reader["STUD_ID"].ToString();
                                 lblName.Text = reader["Name"].ToString();

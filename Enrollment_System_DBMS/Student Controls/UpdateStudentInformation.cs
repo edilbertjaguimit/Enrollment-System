@@ -23,6 +23,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         private int CollegeID { get; set; }
 
         private int YearLevelID { get; set; }
+        private byte[] currentImage { get; set; }
 
         EnrollmentDBDataContext db = new EnrollmentDBDataContext();
 
@@ -80,6 +81,26 @@ namespace Enrollment_System_DBMS.Student_Controls
                                     catch (Exception ex)
                                     {
                                         MessageBox.Show($"Error reading the photo file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return; // Exit the method to prevent further execution
+                                    }
+                                }
+                                else
+                                {
+                                    if (currentImage != null)
+                                    {
+                                        try
+                                        {
+                                            photoBytes = currentImage;
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show($"An Image Error Occured: {ex}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No photo provided or available.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         return; // Exit the method to prevent further execution
                                     }
                                 }
@@ -215,6 +236,8 @@ namespace Enrollment_System_DBMS.Student_Controls
                             if (reader.Read())
                             {
                                 CollegeID = Convert.ToInt32(reader["COLL_ID"]);
+                                CbProgram.Items.Clear();
+                                ProgramList();
                             }
                         }
                     }
@@ -324,7 +347,8 @@ namespace Enrollment_System_DBMS.Student_Controls
                     using (var cmd = dbProgram.CreateCommand())
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "SP_PROGRAM";
+                        cmd.CommandText = "SP_SPECIFIC_PROGRAM_FROM_COLLEGE";
+                        cmd.Parameters.AddWithValue("KEY", CollegeID); // USE THE COLL_ID INSTEAD
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -361,6 +385,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                                 if (reader["STUD_PHOTO"] != DBNull.Value)
                                 {
                                     byte[] imageData = (byte[])reader["STUD_PHOTO"];
+                                    currentImage = imageData;
 
                                     if (imageData.Length > 2)
                                     {
@@ -428,6 +453,11 @@ namespace Enrollment_System_DBMS.Student_Controls
                 return true;
             }
             return false;
+        }
+
+        private void UpdateStudentInformation_Load(object sender, EventArgs e)
+        {
+            StudentDetails();
         }
     }
 }

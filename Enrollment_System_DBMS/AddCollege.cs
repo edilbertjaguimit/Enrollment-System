@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enrollment_System_DBMS.Student_Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,12 @@ namespace Enrollment_System_DBMS
 {
     public partial class AddCollege : Form
     {
+        EnrollmentDBDataContext db = new EnrollmentDBDataContext();
+
         public AddCollege()
         {
             InitializeComponent();
         }
-        EnrollmentDBDataContext db = new EnrollmentDBDataContext();
         private void BtnCancelCollege_Click(object sender, EventArgs e)
         {
             this.Hide();

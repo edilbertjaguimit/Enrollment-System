@@ -32,7 +32,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.ucStudentRecords = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblNoStudentFound = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BtnDeleteStudent = new System.Windows.Forms.Button();
             this.BtnStudentDetails = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtSearchStudent = new System.Windows.Forms.TextBox();
@@ -55,7 +55,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.lblNoStudentFound);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.BtnDeleteStudent);
             this.panel1.Controls.Add(this.BtnStudentDetails);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.TxtSearchStudent);
@@ -75,16 +75,18 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblNoStudentFound.TabIndex = 22;
             this.lblNoStudentFound.Text = "No Student Found";
             // 
-            // button2
+            // BtnDeleteStudent
             // 
-            this.button2.BackColor = System.Drawing.Color.Gold;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(123, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(114, 33);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = false;
+            this.BtnDeleteStudent.BackColor = System.Drawing.Color.Gold;
+            this.BtnDeleteStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDeleteStudent.ForeColor = System.Drawing.Color.Red;
+            this.BtnDeleteStudent.Location = new System.Drawing.Point(123, 2);
+            this.BtnDeleteStudent.Name = "BtnDeleteStudent";
+            this.BtnDeleteStudent.Size = new System.Drawing.Size(114, 33);
+            this.BtnDeleteStudent.TabIndex = 21;
+            this.BtnDeleteStudent.Text = "Delete";
+            this.BtnDeleteStudent.UseVisualStyleBackColor = false;
+            this.BtnDeleteStudent.Click += new System.EventHandler(this.BtnDeleteStudent_Click);
             // 
             // BtnStudentDetails
             // 
@@ -156,7 +158,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label ucStudentRecords;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblNoStudentFound;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnDeleteStudent;
         private System.Windows.Forms.Button BtnStudentDetails;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtSearchStudent;

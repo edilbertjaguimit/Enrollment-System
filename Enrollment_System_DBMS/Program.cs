@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Enrollment_System_DBMS.Student_Controls;
 namespace Enrollment_System_DBMS
 {
     static class Program
