@@ -38,10 +38,9 @@ namespace Enrollment_System_DBMS
                     MessageBox.Show("Program Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtProgramName.Text = "";
                     CbCollege.SelectedIndex = -1;
-                    //var program = new CollegeAndProgram();
-                    //program.DisplayProgram();
+                    //new CollegeAndProgram();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

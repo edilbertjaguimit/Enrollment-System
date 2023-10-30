@@ -34,17 +34,20 @@ namespace Enrollment_System_DBMS.Student_Controls
         public void DisplayProgram()
         {
             Colleges colleges = new Colleges();
+            colleges.TblProgram.Update();
             colleges.TblProgram.DataSource = db.SP_DISPLAY_PROGRAM();
             if (colleges.TblCollege.Rows.Count == 0)
             {
                 colleges.lblNoProgram.Text = "No Program Yet";
                 colleges.lblNoProgram.Visible = true;
                 colleges.TblProgram.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            MessageBox.Show($"Hi");
             }
             else
             {
                 colleges.lblNoProgram.Visible = false;
                 colleges.TblProgram.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            MessageBox.Show($"Hello");
             }
         }
     }

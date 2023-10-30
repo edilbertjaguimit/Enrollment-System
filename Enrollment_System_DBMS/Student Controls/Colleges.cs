@@ -32,6 +32,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             var addProgram = new AddProgram();
             addProgram.Show();
             DisplayProgram();
+            //new CollegeAndProgram();
         }
 
         public void DisplayCollege()
