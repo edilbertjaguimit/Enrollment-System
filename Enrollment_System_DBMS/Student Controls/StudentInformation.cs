@@ -33,6 +33,8 @@ namespace Enrollment_System_DBMS.Student_Controls
             SemesterList();
             SubjectList();
             SpecificSubjectList();
+            CbStudentAcadYear.SelectedIndex = 2;
+            CbStudentSemester.SelectedIndex = 1;
         }
 
         private void StudentInformation_Load(object sender, EventArgs e)
@@ -211,7 +213,6 @@ namespace Enrollment_System_DBMS.Student_Controls
                         cmd.CommandText = "SP_SEMESTER_ID";
                         cmd.Parameters.AddWithValue("KEY", CbStudentSemester.Text);
                         SemesterID = (int)cmd.ExecuteScalar();
-                        MessageBox.Show($"{SemesterID} {CbStudentSemester.Text}");
                         CbStudentSubject.Items.Clear();
                         SpecificSubjectList();
                     }

@@ -44,7 +44,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbStudentSemester = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.CbStudentSubject = new System.Windows.Forms.ComboBox();
-            this.CbAcademicYear = new System.Windows.Forms.Label();
+            this.lbl = new System.Windows.Forms.Label();
             this.CbStudentAcadYear = new System.Windows.Forms.ComboBox();
             this.TblStudentSubjects = new System.Windows.Forms.DataGridView();
             this.label26 = new System.Windows.Forms.Label();
@@ -116,7 +116,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.button3.BackColor = System.Drawing.Color.Gold;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(278, 393);
+            this.button3.Location = new System.Drawing.Point(141, 393);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(131, 42);
             this.button3.TabIndex = 53;
@@ -142,7 +142,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.button1.BackColor = System.Drawing.Color.Gold;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(141, 393);
+            this.button1.Location = new System.Drawing.Point(278, 393);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 42);
             this.button1.TabIndex = 51;
@@ -212,7 +212,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel4.Controls.Add(this.CbStudentSemester);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.CbStudentSubject);
-            this.panel4.Controls.Add(this.CbAcademicYear);
+            this.panel4.Controls.Add(this.lbl);
             this.panel4.Controls.Add(this.CbStudentAcadYear);
             this.panel4.Location = new System.Drawing.Point(3, 31);
             this.panel4.Name = "panel4";
@@ -261,15 +261,15 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbStudentSubject.TabIndex = 64;
             this.CbStudentSubject.SelectedIndexChanged += new System.EventHandler(this.CbStudentSubject_SelectedIndexChanged);
             // 
-            // CbAcademicYear
+            // lbl
             // 
-            this.CbAcademicYear.AutoSize = true;
-            this.CbAcademicYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbAcademicYear.Location = new System.Drawing.Point(0, 13);
-            this.CbAcademicYear.Name = "CbAcademicYear";
-            this.CbAcademicYear.Size = new System.Drawing.Size(101, 16);
-            this.CbAcademicYear.TabIndex = 63;
-            this.CbAcademicYear.Text = "Academic Year";
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl.Location = new System.Drawing.Point(0, 13);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(101, 16);
+            this.lbl.TabIndex = 63;
+            this.lbl.Text = "Academic Year";
             // 
             // CbStudentAcadYear
             // 
@@ -697,7 +697,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label lblNoSubject;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox CbStudentSubject;
-        private System.Windows.Forms.Label CbAcademicYear;
+        private System.Windows.Forms.Label lbl;
         private System.Windows.Forms.ComboBox CbStudentAcadYear;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TxtSearchSubject;
