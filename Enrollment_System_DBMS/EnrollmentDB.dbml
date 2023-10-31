@@ -352,4 +352,39 @@
       <Column Name="SEM_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_SPECIFIC_SUBJECT_FROM_SEMESTER" Method="SP_SPECIFIC_SUBJECT_FROM_SEMESTER">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult">
+      <Column Name="SUB_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SUB_SECTION_CODE" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="SUB_CODE" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="SUB_DESCRIPTION" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SUB_UNITS" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SEM_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_STUDENT_NUMBER" Method="SP_STUDENT_NUMBER">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="NVarChar(5)" />
+    <ElementType Name="SP_STUDENT_NUMBERResult">
+      <Column Name="STUD_NUMBER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ACADEMIC_YEAR_ID" Method="SP_ACADEMIC_YEAR_ID">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="NVarChar(20)" />
+    <ElementType Name="SP_ACADEMIC_YEAR_IDResult">
+      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEMESTER_ID" Method="SP_SEMESTER_ID">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="NVarChar(55)" />
+    <ElementType Name="SP_SEMESTER_IDResult">
+      <Column Name="SEM_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SUBJECT_ID" Method="SP_SUBJECT_ID">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="SP_SUBJECT_IDResult">
+      <Column Name="SUB_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

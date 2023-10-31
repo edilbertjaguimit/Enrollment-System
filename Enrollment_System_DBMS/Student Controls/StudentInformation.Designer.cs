@@ -122,6 +122,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.button3.TabIndex = 53;
             this.button3.Text = "ADD SUBJECT";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.BtnAddSubjectToStudent_Click);
             // 
             // BtnBackToStudentRecords
             // 

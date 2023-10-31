@@ -379,6 +379,41 @@ namespace Enrollment_System_DBMS
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_SUBJECT_LISTResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SPECIFIC_SUBJECT_FROM_SEMESTER")]
+		public ISingleResult<SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult> SP_SPECIFIC_SUBJECT_FROM_SEMESTER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="Int")] System.Nullable<int> kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_STUDENT_NUMBER")]
+		public ISingleResult<SP_STUDENT_NUMBERResult> SP_STUDENT_NUMBER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(5)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_STUDENT_NUMBERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACADEMIC_YEAR_ID")]
+		public ISingleResult<SP_ACADEMIC_YEAR_IDResult> SP_ACADEMIC_YEAR_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(20)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_ACADEMIC_YEAR_IDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEMESTER_ID")]
+		public ISingleResult<SP_SEMESTER_IDResult> SP_SEMESTER_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(55)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SEMESTER_IDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SUBJECT_ID")]
+		public ISingleResult<SP_SUBJECT_IDResult> SP_SUBJECT_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(255)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SUBJECT_IDResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ACADEMIC_YEAR")]
@@ -4308,6 +4343,226 @@ namespace Enrollment_System_DBMS
 				if ((this._SEM_ID != value))
 				{
 					this._SEM_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult
+	{
+		
+		private int _SUB_ID;
+		
+		private string _SUB_SECTION_CODE;
+		
+		private string _SUB_CODE;
+		
+		private string _SUB_DESCRIPTION;
+		
+		private System.Nullable<double> _SUB_UNITS;
+		
+		private System.Nullable<int> _SEM_ID;
+		
+		public SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
+		public int SUB_ID
+		{
+			get
+			{
+				return this._SUB_ID;
+			}
+			set
+			{
+				if ((this._SUB_ID != value))
+				{
+					this._SUB_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_SECTION_CODE", DbType="NVarChar(55)")]
+		public string SUB_SECTION_CODE
+		{
+			get
+			{
+				return this._SUB_SECTION_CODE;
+			}
+			set
+			{
+				if ((this._SUB_SECTION_CODE != value))
+				{
+					this._SUB_SECTION_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_CODE", DbType="NVarChar(55)")]
+		public string SUB_CODE
+		{
+			get
+			{
+				return this._SUB_CODE;
+			}
+			set
+			{
+				if ((this._SUB_CODE != value))
+				{
+					this._SUB_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_DESCRIPTION", DbType="NVarChar(255)")]
+		public string SUB_DESCRIPTION
+		{
+			get
+			{
+				return this._SUB_DESCRIPTION;
+			}
+			set
+			{
+				if ((this._SUB_DESCRIPTION != value))
+				{
+					this._SUB_DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_UNITS", DbType="Float")]
+		public System.Nullable<double> SUB_UNITS
+		{
+			get
+			{
+				return this._SUB_UNITS;
+			}
+			set
+			{
+				if ((this._SUB_UNITS != value))
+				{
+					this._SUB_UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
+		public System.Nullable<int> SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					this._SEM_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_STUDENT_NUMBERResult
+	{
+		
+		private int _STUD_NUMBER;
+		
+		public SP_STUDENT_NUMBERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUD_NUMBER", DbType="Int NOT NULL")]
+		public int STUD_NUMBER
+		{
+			get
+			{
+				return this._STUD_NUMBER;
+			}
+			set
+			{
+				if ((this._STUD_NUMBER != value))
+				{
+					this._STUD_NUMBER = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ACADEMIC_YEAR_IDResult
+	{
+		
+		private int _ACAD_ID;
+		
+		public SP_ACADEMIC_YEAR_IDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_ID", DbType="Int NOT NULL")]
+		public int ACAD_ID
+		{
+			get
+			{
+				return this._ACAD_ID;
+			}
+			set
+			{
+				if ((this._ACAD_ID != value))
+				{
+					this._ACAD_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEMESTER_IDResult
+	{
+		
+		private int _SEM_ID;
+		
+		public SP_SEMESTER_IDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int NOT NULL")]
+		public int SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					this._SEM_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SUBJECT_IDResult
+	{
+		
+		private int _SUB_ID;
+		
+		public SP_SUBJECT_IDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
+		public int SUB_ID
+		{
+			get
+			{
+				return this._SUB_ID;
+			}
+			set
+			{
+				if ((this._SUB_ID != value))
+				{
+					this._SUB_ID = value;
 				}
 			}
 		}

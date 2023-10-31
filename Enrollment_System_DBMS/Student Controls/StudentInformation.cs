@@ -20,6 +20,11 @@ namespace Enrollment_System_DBMS.Student_Controls
     public partial class StudentInformation : UserControl
     {
         public string _conn = @"Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True";
+
+        private int SemesterID { get; set; }
+        private int SubjectID { get; set; }
+        private int AcademicYearID { get; set; }
+
         public StudentInformation()
         {
             InitializeComponent();
@@ -27,6 +32,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             AcademicYearList();
             SemesterList();
             SubjectList();
+            SpecificSubjectList();
         }
 
         private void StudentInformation_Load(object sender, EventArgs e)
@@ -172,20 +178,73 @@ namespace Enrollment_System_DBMS.Student_Controls
 
         private void CbStudentAcadYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                using (var dbAcadYear = new SqlConnection(_conn))
+                {
+                    dbAcadYear.Open();
+                    using (var cmd = dbAcadYear.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_ACADEMIC_YEAR_ID";
+                        cmd.Parameters.AddWithValue("KEY", CbStudentAcadYear.Text);
+                        AcademicYearID = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CbStudentSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                using (var dbSemester = new SqlConnection(_conn))
+                {
+                    dbSemester.Open();
+                    using (var cmd = dbSemester.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SEMESTER_ID";
+                        cmd.Parameters.AddWithValue("KEY", CbStudentSemester.Text);
+                        SemesterID = (int)cmd.ExecuteScalar();
+                        MessageBox.Show($"{SemesterID} {CbStudentSemester.Text}");
+                        CbStudentSubject.Items.Clear();
+                        SpecificSubjectList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CbStudentSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                using (var dbSubject = new SqlConnection(_conn))
+                {
+                    dbSubject.Open();
+                    using (var cmd = dbSubject.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SUBJECT_LIST";
+                        SubjectID = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        public void AcademicYearList()
+        private void AcademicYearList()
         {
             try
             {
@@ -212,7 +271,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                 MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void SemesterList()
+        private void SemesterList()
         {
             try
             {
@@ -240,7 +299,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
         }
 
-        public void SubjectList()
+        private void SubjectList()
         {
             try
             {
@@ -256,7 +315,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                             while (reader.Read())
                             {
                                 string subName = reader["SUB_DESCRIPTION"].ToString();
-                                CbStudentSemester.Items.Add(subName);
+                                CbStudentSubject.Items.Add(subName);
                             }
                         }
                     }
@@ -266,6 +325,64 @@ namespace Enrollment_System_DBMS.Student_Controls
             {
                 MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void SpecificSubjectList()
+        {
+            try
+            {
+                using (var dbSubject = new SqlConnection(_conn))
+                {
+                    dbSubject.Open();
+                    using (var cmd = dbSubject.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SPECIFIC_SUBJECT_FROM_SEMESTER";
+                        cmd.Parameters.AddWithValue("@KEY", SemesterID);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string subName = reader["SUB_DESCRIPTION"].ToString();
+                                CbStudentSubject.Items.Add(subName);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int StudentNumber()
+        {
+            int studentNumber = 0;
+            try
+            {
+                using (var dbSubject = new SqlConnection(_conn))
+                {
+                    dbSubject.Open();
+                    using (var cmd = dbSubject.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_STUDENT_NUMBER";
+                        cmd.Parameters.AddWithValue("@KEY", GetStudentID());
+                        studentNumber = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return studentNumber;
+        }
+
+        private void BtnAddSubjectToStudent_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"acad: {AcademicYearID} sem: {SemesterID} sub: {SubjectID} stud: {StudentNumber()}");
         }
     }
 }
