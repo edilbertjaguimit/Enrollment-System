@@ -30,15 +30,18 @@ namespace Enrollment_System_DBMS
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertYEAR_LEVEL(YEAR_LEVEL instance);
-    partial void UpdateYEAR_LEVEL(YEAR_LEVEL instance);
-    partial void DeleteYEAR_LEVEL(YEAR_LEVEL instance);
     partial void InsertACADEMIC_YEAR(ACADEMIC_YEAR instance);
     partial void UpdateACADEMIC_YEAR(ACADEMIC_YEAR instance);
     partial void DeleteACADEMIC_YEAR(ACADEMIC_YEAR instance);
+    partial void InsertYEAR_LEVEL(YEAR_LEVEL instance);
+    partial void UpdateYEAR_LEVEL(YEAR_LEVEL instance);
+    partial void DeleteYEAR_LEVEL(YEAR_LEVEL instance);
     partial void InsertCOLLEGE(COLLEGE instance);
     partial void UpdateCOLLEGE(COLLEGE instance);
     partial void DeleteCOLLEGE(COLLEGE instance);
+    partial void InsertENROLLMENT(ENROLLMENT instance);
+    partial void UpdateENROLLMENT(ENROLLMENT instance);
+    partial void DeleteENROLLMENT(ENROLLMENT instance);
     partial void InsertPROGRAM(PROGRAM instance);
     partial void UpdatePROGRAM(PROGRAM instance);
     partial void DeletePROGRAM(PROGRAM instance);
@@ -83,14 +86,6 @@ namespace Enrollment_System_DBMS
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<YEAR_LEVEL> YEAR_LEVELs
-		{
-			get
-			{
-				return this.GetTable<YEAR_LEVEL>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ACADEMIC_YEAR> ACADEMIC_YEARs
 		{
 			get
@@ -99,11 +94,27 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
+		public System.Data.Linq.Table<YEAR_LEVEL> YEAR_LEVELs
+		{
+			get
+			{
+				return this.GetTable<YEAR_LEVEL>();
+			}
+		}
+		
 		public System.Data.Linq.Table<COLLEGE> COLLEGEs
 		{
 			get
 			{
 				return this.GetTable<COLLEGE>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ENROLLMENT> ENROLLMENTs
+		{
+			get
+			{
+				return this.GetTable<ENROLLMENT>();
 			}
 		}
 		
@@ -361,6 +372,127 @@ namespace Enrollment_System_DBMS
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sUB_SECTION_CODE, sUB_CODE, sUB_DESCRIPTION, sUB_UNITS, sEM_ID);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SUBJECT_LIST")]
+		public ISingleResult<SP_SUBJECT_LISTResult> SP_SUBJECT_LIST()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_SUBJECT_LISTResult>)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ACADEMIC_YEAR")]
+	public partial class ACADEMIC_YEAR : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ACAD_ID;
+		
+		private string _ACAD_YEAR;
+		
+		private EntitySet<ENROLLMENT> _ENROLLMENTs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnACAD_IDChanging(int value);
+    partial void OnACAD_IDChanged();
+    partial void OnACAD_YEARChanging(string value);
+    partial void OnACAD_YEARChanged();
+    #endregion
+		
+		public ACADEMIC_YEAR()
+		{
+			this._ENROLLMENTs = new EntitySet<ENROLLMENT>(new Action<ENROLLMENT>(this.attach_ENROLLMENTs), new Action<ENROLLMENT>(this.detach_ENROLLMENTs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ACAD_ID
+		{
+			get
+			{
+				return this._ACAD_ID;
+			}
+			set
+			{
+				if ((this._ACAD_ID != value))
+				{
+					this.OnACAD_IDChanging(value);
+					this.SendPropertyChanging();
+					this._ACAD_ID = value;
+					this.SendPropertyChanged("ACAD_ID");
+					this.OnACAD_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_YEAR", DbType="NVarChar(20)")]
+		public string ACAD_YEAR
+		{
+			get
+			{
+				return this._ACAD_YEAR;
+			}
+			set
+			{
+				if ((this._ACAD_YEAR != value))
+				{
+					this.OnACAD_YEARChanging(value);
+					this.SendPropertyChanging();
+					this._ACAD_YEAR = value;
+					this.SendPropertyChanged("ACAD_YEAR");
+					this.OnACAD_YEARChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ACADEMIC_YEAR_ENROLLMENT", Storage="_ENROLLMENTs", ThisKey="ACAD_ID", OtherKey="ACAD_ID")]
+		public EntitySet<ENROLLMENT> ENROLLMENTs
+		{
+			get
+			{
+				return this._ENROLLMENTs;
+			}
+			set
+			{
+				this._ENROLLMENTs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.ACADEMIC_YEAR = this;
+		}
+		
+		private void detach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.ACADEMIC_YEAR = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.YEAR_LEVEL")]
@@ -474,92 +606,6 @@ namespace Enrollment_System_DBMS
 		{
 			this.SendPropertyChanging();
 			entity.YEAR_LEVEL = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ACADEMIC_YEAR")]
-	public partial class ACADEMIC_YEAR : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ACAD_ID;
-		
-		private string _ACAD_YEAR;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnACAD_IDChanging(int value);
-    partial void OnACAD_IDChanged();
-    partial void OnACAD_YEARChanging(string value);
-    partial void OnACAD_YEARChanged();
-    #endregion
-		
-		public ACADEMIC_YEAR()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ACAD_ID
-		{
-			get
-			{
-				return this._ACAD_ID;
-			}
-			set
-			{
-				if ((this._ACAD_ID != value))
-				{
-					this.OnACAD_IDChanging(value);
-					this.SendPropertyChanging();
-					this._ACAD_ID = value;
-					this.SendPropertyChanged("ACAD_ID");
-					this.OnACAD_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_YEAR", DbType="NVarChar(20)")]
-		public string ACAD_YEAR
-		{
-			get
-			{
-				return this._ACAD_YEAR;
-			}
-			set
-			{
-				if ((this._ACAD_YEAR != value))
-				{
-					this.OnACAD_YEARChanging(value);
-					this.SendPropertyChanging();
-					this._ACAD_YEAR = value;
-					this.SendPropertyChanged("ACAD_YEAR");
-					this.OnACAD_YEARChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -750,6 +796,376 @@ namespace Enrollment_System_DBMS
 		{
 			this.SendPropertyChanging();
 			entity.COLLEGE = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ENROLLMENT")]
+	public partial class ENROLLMENT : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ENROLL_ID;
+		
+		private System.Nullable<System.DateTime> _ENROLL_CREATED_AT;
+		
+		private System.Nullable<System.DateTime> _ENROLL_UPDATED_AT;
+		
+		private System.Nullable<int> _ACAD_ID;
+		
+		private System.Nullable<int> _SUB_ID;
+		
+		private System.Nullable<int> _SEM_ID;
+		
+		private System.Nullable<int> _STUD_NUMBER;
+		
+		private EntityRef<ACADEMIC_YEAR> _ACADEMIC_YEAR;
+		
+		private EntityRef<SEMESTER> _SEMESTER;
+		
+		private EntityRef<STUDENT> _STUDENT;
+		
+		private EntityRef<SUBJECT> _SUBJECT;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnENROLL_IDChanging(int value);
+    partial void OnENROLL_IDChanged();
+    partial void OnENROLL_CREATED_ATChanging(System.Nullable<System.DateTime> value);
+    partial void OnENROLL_CREATED_ATChanged();
+    partial void OnENROLL_UPDATED_ATChanging(System.Nullable<System.DateTime> value);
+    partial void OnENROLL_UPDATED_ATChanged();
+    partial void OnACAD_IDChanging(System.Nullable<int> value);
+    partial void OnACAD_IDChanged();
+    partial void OnSUB_IDChanging(System.Nullable<int> value);
+    partial void OnSUB_IDChanged();
+    partial void OnSEM_IDChanging(System.Nullable<int> value);
+    partial void OnSEM_IDChanged();
+    partial void OnSTUD_NUMBERChanging(System.Nullable<int> value);
+    partial void OnSTUD_NUMBERChanged();
+    #endregion
+		
+		public ENROLLMENT()
+		{
+			this._ACADEMIC_YEAR = default(EntityRef<ACADEMIC_YEAR>);
+			this._SEMESTER = default(EntityRef<SEMESTER>);
+			this._STUDENT = default(EntityRef<STUDENT>);
+			this._SUBJECT = default(EntityRef<SUBJECT>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ENROLL_ID
+		{
+			get
+			{
+				return this._ENROLL_ID;
+			}
+			set
+			{
+				if ((this._ENROLL_ID != value))
+				{
+					this.OnENROLL_IDChanging(value);
+					this.SendPropertyChanging();
+					this._ENROLL_ID = value;
+					this.SendPropertyChanged("ENROLL_ID");
+					this.OnENROLL_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_CREATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> ENROLL_CREATED_AT
+		{
+			get
+			{
+				return this._ENROLL_CREATED_AT;
+			}
+			set
+			{
+				if ((this._ENROLL_CREATED_AT != value))
+				{
+					this.OnENROLL_CREATED_ATChanging(value);
+					this.SendPropertyChanging();
+					this._ENROLL_CREATED_AT = value;
+					this.SendPropertyChanged("ENROLL_CREATED_AT");
+					this.OnENROLL_CREATED_ATChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_UPDATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> ENROLL_UPDATED_AT
+		{
+			get
+			{
+				return this._ENROLL_UPDATED_AT;
+			}
+			set
+			{
+				if ((this._ENROLL_UPDATED_AT != value))
+				{
+					this.OnENROLL_UPDATED_ATChanging(value);
+					this.SendPropertyChanging();
+					this._ENROLL_UPDATED_AT = value;
+					this.SendPropertyChanged("ENROLL_UPDATED_AT");
+					this.OnENROLL_UPDATED_ATChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_ID", DbType="Int")]
+		public System.Nullable<int> ACAD_ID
+		{
+			get
+			{
+				return this._ACAD_ID;
+			}
+			set
+			{
+				if ((this._ACAD_ID != value))
+				{
+					if (this._ACADEMIC_YEAR.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnACAD_IDChanging(value);
+					this.SendPropertyChanging();
+					this._ACAD_ID = value;
+					this.SendPropertyChanged("ACAD_ID");
+					this.OnACAD_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int")]
+		public System.Nullable<int> SUB_ID
+		{
+			get
+			{
+				return this._SUB_ID;
+			}
+			set
+			{
+				if ((this._SUB_ID != value))
+				{
+					if (this._SUBJECT.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSUB_IDChanging(value);
+					this.SendPropertyChanging();
+					this._SUB_ID = value;
+					this.SendPropertyChanged("SUB_ID");
+					this.OnSUB_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
+		public System.Nullable<int> SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					if (this._SEMESTER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSEM_IDChanging(value);
+					this.SendPropertyChanging();
+					this._SEM_ID = value;
+					this.SendPropertyChanged("SEM_ID");
+					this.OnSEM_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUD_NUMBER", DbType="Int")]
+		public System.Nullable<int> STUD_NUMBER
+		{
+			get
+			{
+				return this._STUD_NUMBER;
+			}
+			set
+			{
+				if ((this._STUD_NUMBER != value))
+				{
+					if (this._STUDENT.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSTUD_NUMBERChanging(value);
+					this.SendPropertyChanging();
+					this._STUD_NUMBER = value;
+					this.SendPropertyChanged("STUD_NUMBER");
+					this.OnSTUD_NUMBERChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ACADEMIC_YEAR_ENROLLMENT", Storage="_ACADEMIC_YEAR", ThisKey="ACAD_ID", OtherKey="ACAD_ID", IsForeignKey=true)]
+		public ACADEMIC_YEAR ACADEMIC_YEAR
+		{
+			get
+			{
+				return this._ACADEMIC_YEAR.Entity;
+			}
+			set
+			{
+				ACADEMIC_YEAR previousValue = this._ACADEMIC_YEAR.Entity;
+				if (((previousValue != value) 
+							|| (this._ACADEMIC_YEAR.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ACADEMIC_YEAR.Entity = null;
+						previousValue.ENROLLMENTs.Remove(this);
+					}
+					this._ACADEMIC_YEAR.Entity = value;
+					if ((value != null))
+					{
+						value.ENROLLMENTs.Add(this);
+						this._ACAD_ID = value.ACAD_ID;
+					}
+					else
+					{
+						this._ACAD_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ACADEMIC_YEAR");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_ENROLLMENT", Storage="_SEMESTER", ThisKey="SEM_ID", OtherKey="SEM_ID", IsForeignKey=true)]
+		public SEMESTER SEMESTER
+		{
+			get
+			{
+				return this._SEMESTER.Entity;
+			}
+			set
+			{
+				SEMESTER previousValue = this._SEMESTER.Entity;
+				if (((previousValue != value) 
+							|| (this._SEMESTER.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SEMESTER.Entity = null;
+						previousValue.ENROLLMENTs.Remove(this);
+					}
+					this._SEMESTER.Entity = value;
+					if ((value != null))
+					{
+						value.ENROLLMENTs.Add(this);
+						this._SEM_ID = value.SEM_ID;
+					}
+					else
+					{
+						this._SEM_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SEMESTER");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STUDENT_ENROLLMENT", Storage="_STUDENT", ThisKey="STUD_NUMBER", OtherKey="STUD_NUMBER", IsForeignKey=true)]
+		public STUDENT STUDENT
+		{
+			get
+			{
+				return this._STUDENT.Entity;
+			}
+			set
+			{
+				STUDENT previousValue = this._STUDENT.Entity;
+				if (((previousValue != value) 
+							|| (this._STUDENT.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._STUDENT.Entity = null;
+						previousValue.ENROLLMENTs.Remove(this);
+					}
+					this._STUDENT.Entity = value;
+					if ((value != null))
+					{
+						value.ENROLLMENTs.Add(this);
+						this._STUD_NUMBER = value.STUD_NUMBER;
+					}
+					else
+					{
+						this._STUD_NUMBER = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("STUDENT");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SUBJECT_ENROLLMENT", Storage="_SUBJECT", ThisKey="SUB_ID", OtherKey="SUB_ID", IsForeignKey=true)]
+		public SUBJECT SUBJECT
+		{
+			get
+			{
+				return this._SUBJECT.Entity;
+			}
+			set
+			{
+				SUBJECT previousValue = this._SUBJECT.Entity;
+				if (((previousValue != value) 
+							|| (this._SUBJECT.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SUBJECT.Entity = null;
+						previousValue.ENROLLMENTs.Remove(this);
+					}
+					this._SUBJECT.Entity = value;
+					if ((value != null))
+					{
+						value.ENROLLMENTs.Add(this);
+						this._SUB_ID = value.SUB_ID;
+					}
+					else
+					{
+						this._SUB_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SUBJECT");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -1017,6 +1433,8 @@ namespace Enrollment_System_DBMS
 		
 		private string _SEM_NAME;
 		
+		private EntitySet<ENROLLMENT> _ENROLLMENTs;
+		
 		private EntitySet<SUBJECT> _SUBJECTs;
 		
     #region Extensibility Method Definitions
@@ -1031,6 +1449,7 @@ namespace Enrollment_System_DBMS
 		
 		public SEMESTER()
 		{
+			this._ENROLLMENTs = new EntitySet<ENROLLMENT>(new Action<ENROLLMENT>(this.attach_ENROLLMENTs), new Action<ENROLLMENT>(this.detach_ENROLLMENTs));
 			this._SUBJECTs = new EntitySet<SUBJECT>(new Action<SUBJECT>(this.attach_SUBJECTs), new Action<SUBJECT>(this.detach_SUBJECTs));
 			OnCreated();
 		}
@@ -1075,6 +1494,19 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_ENROLLMENT", Storage="_ENROLLMENTs", ThisKey="SEM_ID", OtherKey="SEM_ID")]
+		public EntitySet<ENROLLMENT> ENROLLMENTs
+		{
+			get
+			{
+				return this._ENROLLMENTs;
+			}
+			set
+			{
+				this._ENROLLMENTs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_SUBJECT", Storage="_SUBJECTs", ThisKey="SEM_ID", OtherKey="SEM_ID")]
 		public EntitySet<SUBJECT> SUBJECTs
 		{
@@ -1106,6 +1538,18 @@ namespace Enrollment_System_DBMS
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.SEMESTER = this;
+		}
+		
+		private void detach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.SEMESTER = null;
 		}
 		
 		private void attach_SUBJECTs(SUBJECT entity)
@@ -1165,6 +1609,8 @@ namespace Enrollment_System_DBMS
 		
 		private System.Nullable<int> _YEAR_ID;
 		
+		private EntitySet<ENROLLMENT> _ENROLLMENTs;
+		
 		private EntityRef<COLLEGE> _COLLEGE;
 		
 		private EntityRef<PROGRAM> _PROGRAM;
@@ -1217,6 +1663,7 @@ namespace Enrollment_System_DBMS
 		
 		public STUDENT()
 		{
+			this._ENROLLMENTs = new EntitySet<ENROLLMENT>(new Action<ENROLLMENT>(this.attach_ENROLLMENTs), new Action<ENROLLMENT>(this.detach_ENROLLMENTs));
 			this._COLLEGE = default(EntityRef<COLLEGE>);
 			this._PROGRAM = default(EntityRef<PROGRAM>);
 			this._YEAR_LEVEL = default(EntityRef<YEAR_LEVEL>);
@@ -1615,6 +2062,19 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STUDENT_ENROLLMENT", Storage="_ENROLLMENTs", ThisKey="STUD_NUMBER", OtherKey="STUD_NUMBER")]
+		public EntitySet<ENROLLMENT> ENROLLMENTs
+		{
+			get
+			{
+				return this._ENROLLMENTs;
+			}
+			set
+			{
+				this._ENROLLMENTs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="COLLEGE_STUDENT", Storage="_COLLEGE", ThisKey="COLL_ID", OtherKey="COLL_ID", IsForeignKey=true)]
 		public COLLEGE COLLEGE
 		{
@@ -1736,6 +2196,18 @@ namespace Enrollment_System_DBMS
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.STUDENT = this;
+		}
+		
+		private void detach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.STUDENT = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SUBJECTS")]
@@ -1755,6 +2227,8 @@ namespace Enrollment_System_DBMS
 		private System.Nullable<double> _SUB_UNITS;
 		
 		private System.Nullable<int> _SEM_ID;
+		
+		private EntitySet<ENROLLMENT> _ENROLLMENTs;
 		
 		private EntityRef<SEMESTER> _SEMESTER;
 		
@@ -1778,6 +2252,7 @@ namespace Enrollment_System_DBMS
 		
 		public SUBJECT()
 		{
+			this._ENROLLMENTs = new EntitySet<ENROLLMENT>(new Action<ENROLLMENT>(this.attach_ENROLLMENTs), new Action<ENROLLMENT>(this.detach_ENROLLMENTs));
 			this._SEMESTER = default(EntityRef<SEMESTER>);
 			OnCreated();
 		}
@@ -1906,6 +2381,19 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SUBJECT_ENROLLMENT", Storage="_ENROLLMENTs", ThisKey="SUB_ID", OtherKey="SUB_ID")]
+		public EntitySet<ENROLLMENT> ENROLLMENTs
+		{
+			get
+			{
+				return this._ENROLLMENTs;
+			}
+			set
+			{
+				this._ENROLLMENTs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_SUBJECT", Storage="_SEMESTER", ThisKey="SEM_ID", OtherKey="SEM_ID", IsForeignKey=true)]
 		public SEMESTER SEMESTER
 		{
@@ -1958,6 +2446,18 @@ namespace Enrollment_System_DBMS
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.SUBJECT = this;
+		}
+		
+		private void detach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.SUBJECT = null;
 		}
 	}
 	
@@ -3692,6 +4192,122 @@ namespace Enrollment_System_DBMS
 				if ((this._YEAR_NAME != value))
 				{
 					this._YEAR_NAME = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SUBJECT_LISTResult
+	{
+		
+		private int _SUB_ID;
+		
+		private string _SUB_SECTION_CODE;
+		
+		private string _SUB_CODE;
+		
+		private string _SUB_DESCRIPTION;
+		
+		private System.Nullable<double> _SUB_UNITS;
+		
+		private System.Nullable<int> _SEM_ID;
+		
+		public SP_SUBJECT_LISTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
+		public int SUB_ID
+		{
+			get
+			{
+				return this._SUB_ID;
+			}
+			set
+			{
+				if ((this._SUB_ID != value))
+				{
+					this._SUB_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_SECTION_CODE", DbType="NVarChar(55)")]
+		public string SUB_SECTION_CODE
+		{
+			get
+			{
+				return this._SUB_SECTION_CODE;
+			}
+			set
+			{
+				if ((this._SUB_SECTION_CODE != value))
+				{
+					this._SUB_SECTION_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_CODE", DbType="NVarChar(55)")]
+		public string SUB_CODE
+		{
+			get
+			{
+				return this._SUB_CODE;
+			}
+			set
+			{
+				if ((this._SUB_CODE != value))
+				{
+					this._SUB_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_DESCRIPTION", DbType="NVarChar(255)")]
+		public string SUB_DESCRIPTION
+		{
+			get
+			{
+				return this._SUB_DESCRIPTION;
+			}
+			set
+			{
+				if ((this._SUB_DESCRIPTION != value))
+				{
+					this._SUB_DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_UNITS", DbType="Float")]
+		public System.Nullable<double> SUB_UNITS
+		{
+			get
+			{
+				return this._SUB_UNITS;
+			}
+			set
+			{
+				if ((this._SUB_UNITS != value))
+				{
+					this._SUB_UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
+		public System.Nullable<int> SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					this._SEM_ID = value;
 				}
 			}
 		}

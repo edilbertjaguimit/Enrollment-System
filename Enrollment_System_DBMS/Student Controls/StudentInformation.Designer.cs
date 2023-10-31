@@ -36,6 +36,16 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.button1 = new System.Windows.Forms.Button();
             this.BtnUpdateStudentInformation = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtSearchSubject = new System.Windows.Forms.TextBox();
+            this.lblNoSubject = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.CbStudentSemester = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CbStudentSubject = new System.Windows.Forms.ComboBox();
+            this.CbAcademicYear = new System.Windows.Forms.Label();
+            this.CbStudentAcadYear = new System.Windows.Forms.ComboBox();
             this.TblStudentSubjects = new System.Windows.Forms.DataGridView();
             this.label26 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -68,22 +78,12 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPhoto = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.CbAcademicYear = new System.Windows.Forms.Label();
-            this.CbStudentAcadYear = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.CbStudentSubject = new System.Windows.Forms.ComboBox();
-            this.lblNoSubject = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TxtSearchSubject = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.CbStudentSemester = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TblStudentSubjects)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblPhoto)).BeginInit();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -175,6 +175,111 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(750, 180);
             this.panel3.TabIndex = 49;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(480, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 16);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Search";
+            // 
+            // TxtSearchSubject
+            // 
+            this.TxtSearchSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSearchSubject.Location = new System.Drawing.Point(537, 7);
+            this.TxtSearchSubject.Name = "TxtSearchSubject";
+            this.TxtSearchSubject.Size = new System.Drawing.Size(208, 22);
+            this.TxtSearchSubject.TabIndex = 17;
+            // 
+            // lblNoSubject
+            // 
+            this.lblNoSubject.AutoSize = true;
+            this.lblNoSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoSubject.Location = new System.Drawing.Point(433, 85);
+            this.lblNoSubject.Name = "lblNoSubject";
+            this.lblNoSubject.Size = new System.Drawing.Size(182, 25);
+            this.lblNoSubject.TabIndex = 6;
+            this.lblNoSubject.Text = "No Subjects Yet";
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.CbStudentSemester);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.CbStudentSubject);
+            this.panel4.Controls.Add(this.CbAcademicYear);
+            this.panel4.Controls.Add(this.CbStudentAcadYear);
+            this.panel4.Location = new System.Drawing.Point(3, 31);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(299, 144);
+            this.panel4.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(127, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 16);
+            this.label8.TabIndex = 67;
+            this.label8.Text = "Semester";
+            // 
+            // CbStudentSemester
+            // 
+            this.CbStudentSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbStudentSemester.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbStudentSemester.FormattingEnabled = true;
+            this.CbStudentSemester.Location = new System.Drawing.Point(130, 40);
+            this.CbStudentSemester.Name = "CbStudentSemester";
+            this.CbStudentSemester.Size = new System.Drawing.Size(162, 23);
+            this.CbStudentSemester.TabIndex = 66;
+            this.CbStudentSemester.SelectedIndexChanged += new System.EventHandler(this.CbStudentSemester_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(0, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 16);
+            this.label3.TabIndex = 65;
+            this.label3.Text = "Subjects";
+            // 
+            // CbStudentSubject
+            // 
+            this.CbStudentSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbStudentSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbStudentSubject.FormattingEnabled = true;
+            this.CbStudentSubject.Location = new System.Drawing.Point(3, 100);
+            this.CbStudentSubject.Name = "CbStudentSubject";
+            this.CbStudentSubject.Size = new System.Drawing.Size(289, 23);
+            this.CbStudentSubject.TabIndex = 64;
+            this.CbStudentSubject.SelectedIndexChanged += new System.EventHandler(this.CbStudentSubject_SelectedIndexChanged);
+            // 
+            // CbAcademicYear
+            // 
+            this.CbAcademicYear.AutoSize = true;
+            this.CbAcademicYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbAcademicYear.Location = new System.Drawing.Point(0, 13);
+            this.CbAcademicYear.Name = "CbAcademicYear";
+            this.CbAcademicYear.Size = new System.Drawing.Size(101, 16);
+            this.CbAcademicYear.TabIndex = 63;
+            this.CbAcademicYear.Text = "Academic Year";
+            // 
+            // CbStudentAcadYear
+            // 
+            this.CbStudentAcadYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbStudentAcadYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbStudentAcadYear.FormattingEnabled = true;
+            this.CbStudentAcadYear.Location = new System.Drawing.Point(3, 40);
+            this.CbStudentAcadYear.Name = "CbStudentAcadYear";
+            this.CbStudentAcadYear.Size = new System.Drawing.Size(121, 23);
+            this.CbStudentAcadYear.TabIndex = 62;
+            this.CbStudentAcadYear.SelectedIndexChanged += new System.EventHandler(this.CbStudentAcadYear_SelectedIndexChanged);
             // 
             // TblStudentSubjects
             // 
@@ -522,108 +627,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblPhoto.TabIndex = 37;
             this.lblPhoto.TabStop = false;
             // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.CbStudentSemester);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.CbStudentSubject);
-            this.panel4.Controls.Add(this.CbAcademicYear);
-            this.panel4.Controls.Add(this.CbStudentAcadYear);
-            this.panel4.Location = new System.Drawing.Point(3, 31);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(299, 144);
-            this.panel4.TabIndex = 5;
-            // 
-            // CbAcademicYear
-            // 
-            this.CbAcademicYear.AutoSize = true;
-            this.CbAcademicYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbAcademicYear.Location = new System.Drawing.Point(0, 13);
-            this.CbAcademicYear.Name = "CbAcademicYear";
-            this.CbAcademicYear.Size = new System.Drawing.Size(101, 16);
-            this.CbAcademicYear.TabIndex = 63;
-            this.CbAcademicYear.Text = "Academic Year";
-            // 
-            // CbStudentAcadYear
-            // 
-            this.CbStudentAcadYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbStudentAcadYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbStudentAcadYear.FormattingEnabled = true;
-            this.CbStudentAcadYear.Location = new System.Drawing.Point(3, 40);
-            this.CbStudentAcadYear.Name = "CbStudentAcadYear";
-            this.CbStudentAcadYear.Size = new System.Drawing.Size(121, 23);
-            this.CbStudentAcadYear.TabIndex = 62;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 16);
-            this.label3.TabIndex = 65;
-            this.label3.Text = "Subjects";
-            // 
-            // CbStudentSubject
-            // 
-            this.CbStudentSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbStudentSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbStudentSubject.FormattingEnabled = true;
-            this.CbStudentSubject.Location = new System.Drawing.Point(3, 100);
-            this.CbStudentSubject.Name = "CbStudentSubject";
-            this.CbStudentSubject.Size = new System.Drawing.Size(289, 23);
-            this.CbStudentSubject.TabIndex = 64;
-            // 
-            // lblNoSubject
-            // 
-            this.lblNoSubject.AutoSize = true;
-            this.lblNoSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoSubject.Location = new System.Drawing.Point(433, 85);
-            this.lblNoSubject.Name = "lblNoSubject";
-            this.lblNoSubject.Size = new System.Drawing.Size(182, 25);
-            this.lblNoSubject.TabIndex = 6;
-            this.lblNoSubject.Text = "No Subjects Yet";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(480, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 16);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Search";
-            // 
-            // TxtSearchSubject
-            // 
-            this.TxtSearchSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSearchSubject.Location = new System.Drawing.Point(537, 7);
-            this.TxtSearchSubject.Name = "TxtSearchSubject";
-            this.TxtSearchSubject.Size = new System.Drawing.Size(208, 22);
-            this.TxtSearchSubject.TabIndex = 17;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(127, 13);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 16);
-            this.label8.TabIndex = 67;
-            this.label8.Text = "Semester";
-            // 
-            // CbStudentSemester
-            // 
-            this.CbStudentSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbStudentSemester.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbStudentSemester.FormattingEnabled = true;
-            this.CbStudentSemester.Location = new System.Drawing.Point(130, 40);
-            this.CbStudentSemester.Name = "CbStudentSemester";
-            this.CbStudentSemester.Size = new System.Drawing.Size(162, 23);
-            this.CbStudentSemester.TabIndex = 66;
-            // 
             // StudentInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,12 +640,12 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TblStudentSubjects)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblPhoto)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -24,6 +24,9 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             InitializeComponent();
             StudentDetails();
+            AcademicYearList();
+            SemesterList();
+            SubjectList();
         }
 
         private void StudentInformation_Load(object sender, EventArgs e)
@@ -164,6 +167,104 @@ namespace Enrollment_System_DBMS.Student_Controls
             else
             {
                 MessageBox.Show("Dashboard not found. Make sure your Dashboard form is open.");
+            }
+        }
+
+        private void CbStudentAcadYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CbStudentSemester_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CbStudentSubject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void AcademicYearList()
+        {
+            try
+            {
+                using (var dbAcadYear = new SqlConnection(_conn))
+                {
+                    dbAcadYear.Open();
+                    using (var cmd = dbAcadYear.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_ACADEMIC_YEAR";
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string acadYear = reader["ACAD_YEAR"].ToString();
+                                CbStudentAcadYear.Items.Add(acadYear);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void SemesterList()
+        {
+            try
+            {
+                using (var dbSemester = new SqlConnection(_conn))
+                {
+                    dbSemester.Open();
+                    using (var cmd = dbSemester.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SEMESTER";
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string semName = reader["SEM_NAME"].ToString();
+                                CbStudentSemester.Items.Add(semName);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void SubjectList()
+        {
+            try
+            {
+                using (var dbSubject = new SqlConnection(_conn))
+                {
+                    dbSubject.Open();
+                    using (var cmd = dbSubject.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SUBJECT_LIST";
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string subName = reader["SUB_DESCRIPTION"].ToString();
+                                CbStudentSemester.Items.Add(subName);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ENROLLMENT_DB" Class="EnrollmentDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True" SettingsObjectName="Enrollment_System_DBMS.Properties.Settings" SettingsPropertyName="ENROLLMENT_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ACADEMIC_YEAR" Member="ACADEMIC_YEARs">
+    <Type Name="ACADEMIC_YEAR">
+      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ACAD_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="ACADEMIC_YEAR_ENROLLMENT" Member="ENROLLMENTs" ThisKey="ACAD_ID" OtherKey="ACAD_ID" Type="ENROLLMENT" />
+    </Type>
+  </Table>
   <Table Name="dbo.YEAR_LEVEL" Member="YEAR_LEVELs">
     <Type Name="YEAR_LEVEL">
       <Column Name="YEAR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="YEAR_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
       <Association Name="YEAR_LEVEL_STUDENT" Member="STUDENTs" ThisKey="YEAR_ID" OtherKey="YEAR_ID" Type="STUDENT" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ACADEMIC_YEAR" Member="ACADEMIC_YEARs">
-    <Type Name="ACADEMIC_YEAR">
-      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ACAD_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.COLLEGE" Member="COLLEGEs">
@@ -21,6 +22,21 @@
       <Column Name="COLL_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="COLLEGE_PROGRAM" Member="PROGRAMs" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="PROGRAM" />
       <Association Name="COLLEGE_STUDENT" Member="STUDENTs" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="STUDENT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ENROLLMENT" Member="ENROLLMENTs">
+    <Type Name="ENROLLMENT">
+      <Column Name="ENROLL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ENROLL_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ENROLL_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SUB_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SEM_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STUD_NUMBER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ACADEMIC_YEAR_ENROLLMENT" Member="ACADEMIC_YEAR" ThisKey="ACAD_ID" OtherKey="ACAD_ID" Type="ACADEMIC_YEAR" IsForeignKey="true" />
+      <Association Name="SEMESTER_ENROLLMENT" Member="SEMESTER" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SEMESTER" IsForeignKey="true" />
+      <Association Name="STUDENT_ENROLLMENT" Member="STUDENT" ThisKey="STUD_NUMBER" OtherKey="STUD_NUMBER" Type="STUDENT" IsForeignKey="true" />
+      <Association Name="SUBJECT_ENROLLMENT" Member="SUBJECT" ThisKey="SUB_ID" OtherKey="SUB_ID" Type="SUBJECT" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ID_STORAGE" Member="ID_STORAGEs">
@@ -43,6 +59,7 @@
     <Type Name="SEMESTER">
       <Column Name="SEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="SEM_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Association Name="SEMESTER_ENROLLMENT" Member="ENROLLMENTs" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="ENROLLMENT" />
       <Association Name="SEMESTER_SUBJECT" Member="SUBJECTs" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SUBJECT" />
     </Type>
   </Table>
@@ -67,6 +84,7 @@
       <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PROG_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="YEAR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="STUDENT_ENROLLMENT" Member="ENROLLMENTs" ThisKey="STUD_NUMBER" OtherKey="STUD_NUMBER" Type="ENROLLMENT" />
       <Association Name="COLLEGE_STUDENT" Member="COLLEGE" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="COLLEGE" IsForeignKey="true" />
       <Association Name="PROGRAM_STUDENT" Member="PROGRAM" ThisKey="PROG_ID" OtherKey="PROG_ID" Type="PROGRAM" IsForeignKey="true" />
       <Association Name="YEAR_LEVEL_STUDENT" Member="YEAR_LEVEL" ThisKey="YEAR_ID" OtherKey="YEAR_ID" Type="YEAR_LEVEL" IsForeignKey="true" />
@@ -80,6 +98,7 @@
       <Column Name="SUB_DESCRIPTION" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="SUB_UNITS" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="SEM_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SUBJECT_ENROLLMENT" Member="ENROLLMENTs" ThisKey="SUB_ID" OtherKey="SUB_ID" Type="ENROLLMENT" />
       <Association Name="SEMESTER_SUBJECT" Member="SEMESTER" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SEMESTER" IsForeignKey="true" />
     </Type>
   </Table>
@@ -322,5 +341,15 @@
     <Parameter Name="SUB_UNITS" Parameter="sUB_UNITS" Type="System.Double" DbType="Float" />
     <Parameter Name="SEM_ID" Parameter="sEM_ID" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SUBJECT_LIST" Method="SP_SUBJECT_LIST">
+    <ElementType Name="SP_SUBJECT_LISTResult">
+      <Column Name="SUB_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SUB_SECTION_CODE" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="SUB_CODE" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="SUB_DESCRIPTION" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SUB_UNITS" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SEM_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>
