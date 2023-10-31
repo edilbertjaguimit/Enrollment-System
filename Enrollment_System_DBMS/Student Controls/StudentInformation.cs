@@ -50,13 +50,6 @@ namespace Enrollment_System_DBMS.Student_Controls
                         cmd.Parameters.AddWithValue("KEY", GetStudentID());
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            //MessageBox.Show($"{GetStudentID()} Ok ra");
-                            //MessageBox.Show($"{GetStudentID()} Ni kaon naka?");
-                            //MessageBox.Show($"{GetStudentID()} Wala pa");
-                            //MessageBox.Show($"{GetStudentID()} Kaon na kay kaonon pa tika hehe");
-                            //MessageBox.Show($"{GetStudentID()} Baba uy");
-                            //MessageBox.Show($"{GetStudentID()} HAHAHAHAHA");
-
 
                             if (reader.Read())
                             {

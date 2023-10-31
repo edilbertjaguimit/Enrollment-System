@@ -1,13 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ENROLLMENT_DB" Class="EnrollmentDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True" SettingsObjectName="Enrollment_System_DBMS.Properties.Settings" SettingsPropertyName="ENROLLMENT_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.YEAR_LEVEL" Member="YEAR_LEVELs">
+    <Type Name="YEAR_LEVEL">
+      <Column Name="YEAR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="YEAR_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Association Name="YEAR_LEVEL_STUDENT" Member="STUDENTs" ThisKey="YEAR_ID" OtherKey="YEAR_ID" Type="STUDENT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACADEMIC_YEAR" Member="ACADEMIC_YEARs">
+    <Type Name="ACADEMIC_YEAR">
+      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ACAD_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.COLLEGE" Member="COLLEGEs">
     <Type Name="COLLEGE">
       <Column Name="COLL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="COLL_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="COLL_NAME" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="COLL_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="COLL_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Association Name="COLLEGE_STUDENT" Member="STUDENTs" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="STUDENT" />
       <Association Name="COLLEGE_PROGRAM" Member="PROGRAMs" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="PROGRAM" />
+      <Association Name="COLLEGE_STUDENT" Member="STUDENTs" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="STUDENT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ID_STORAGE" Member="ID_STORAGEs">
+    <Type Name="ID_STORAGE">
+      <Column Name="ID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PROGRAM" Member="PROGRAMs">
+    <Type Name="PROGRAM">
+      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PROGRAM_STUDENT" Member="STUDENTs" ThisKey="PROG_ID" OtherKey="PROG_ID" Type="STUDENT" />
+      <Association Name="COLLEGE_PROGRAM" Member="COLLEGE" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="COLLEGE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SEMESTER" Member="SEMESTERs">
+    <Type Name="SEMESTER">
+      <Column Name="SEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SEM_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Association Name="SEMESTER_SUBJECT" Member="SUBJECTs" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SUBJECT" />
     </Type>
   </Table>
   <Table Name="dbo.STUDENT" Member="STUDENTs">
@@ -32,44 +68,8 @@
       <Column Name="PROG_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="YEAR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="COLLEGE_STUDENT" Member="COLLEGE" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="COLLEGE" IsForeignKey="true" />
-      <Association Name="YEAR_LEVEL_STUDENT" Member="YEAR_LEVEL" ThisKey="YEAR_ID" OtherKey="YEAR_ID" Type="YEAR_LEVEL" IsForeignKey="true" />
       <Association Name="PROGRAM_STUDENT" Member="PROGRAM" ThisKey="PROG_ID" OtherKey="PROG_ID" Type="PROGRAM" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.YEAR_LEVEL" Member="YEAR_LEVELs">
-    <Type Name="YEAR_LEVEL">
-      <Column Name="YEAR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="YEAR_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
-      <Association Name="YEAR_LEVEL_STUDENT" Member="STUDENTs" ThisKey="YEAR_ID" OtherKey="YEAR_ID" Type="STUDENT" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ID_STORAGE" Member="ID_STORAGEs">
-    <Type Name="ID_STORAGE">
-      <Column Name="ID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PROGRAM" Member="PROGRAMs">
-    <Type Name="PROGRAM">
-      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="PROGRAM_STUDENT" Member="STUDENTs" ThisKey="PROG_ID" OtherKey="PROG_ID" Type="STUDENT" />
-      <Association Name="COLLEGE_PROGRAM" Member="COLLEGE" ThisKey="COLL_ID" OtherKey="COLL_ID" Type="COLLEGE" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ACADEMIC_YEAR" Member="ACADEMIC_YEARs">
-    <Type Name="ACADEMIC_YEAR">
-      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ACAD_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SEMESTER" Member="SEMESTERs">
-    <Type Name="SEMESTER">
-      <Column Name="SEM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SEM_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
-      <Association Name="SEMESTER_SUBJECT" Member="SUBJECTs" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SUBJECT" />
+      <Association Name="YEAR_LEVEL_STUDENT" Member="YEAR_LEVEL" ThisKey="YEAR_ID" OtherKey="YEAR_ID" Type="YEAR_LEVEL" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SUBJECTS" Member="SUBJECTs">
@@ -83,23 +83,16 @@
       <Association Name="SEMESTER_SUBJECT" Member="SEMESTER" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SEMESTER" IsForeignKey="true" />
     </Type>
   </Table>
-  <Function Name="dbo.SP_YEAR_LEVEL" Method="SP_YEAR_LEVEL">
-    <ElementType Name="SP_YEAR_LEVELResult">
-      <Column Name="YEAR_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+  <Function Name="dbo.SP_YEAR_LEVEL_ID" Method="SP_YEAR_LEVEL_ID">
+    <Parameter Name="YEAR_NAME" Parameter="yEAR_NAME" Type="System.String" DbType="NVarChar(55)" />
+    <ElementType Name="SP_YEAR_LEVEL_IDResult">
+      <Column Name="YEAR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_PROGRAM_ID" Method="SP_PROGRAM_ID">
-    <Parameter Name="PROG_NAME" Parameter="pROG_NAME" Type="System.String" DbType="NVarChar(255)" />
-    <ElementType Name="SP_PROGRAM_IDResult">
-      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_PROGRAM" Method="SP_PROGRAM">
-    <ElementType Name="SP_PROGRAMResult">
-      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+  <Function Name="dbo.SP_ACADEMIC_YEAR" Method="SP_ACADEMIC_YEAR">
+    <ElementType Name="SP_ACADEMIC_YEARResult">
+      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ACAD_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.SP_COLLEGE" Method="SP_COLLEGE">
@@ -110,93 +103,47 @@
       <Column Name="COLL_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_INSERT_STUDENT_INFORMATION" Method="SP_INSERT_STUDENT_INFORMATION">
-    <Parameter Name="STUD_PHOTO" Parameter="sTUD_PHOTO" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" />
-    <Parameter Name="STUD_FIRSTNAME" Parameter="sTUD_FIRSTNAME" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_MIDDLENAME" Parameter="sTUD_MIDDLENAME" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_LASTNAME" Parameter="sTUD_LASTNAME" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_AGE" Parameter="sTUD_AGE" Type="System.String" DbType="NVarChar(2)" />
-    <Parameter Name="STUD_BIRTH_DATE" Parameter="sTUD_BIRTH_DATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="STUD_PLACE_OF_BIRTH" Parameter="sTUD_PLACE_OF_BIRTH" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="STUD_ADDRESS" Parameter="sTUD_ADDRESS" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="STUD_EMAIL" Parameter="sTUD_EMAIL" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_MOBILE" Parameter="sTUD_MOBILE" Type="System.String" DbType="NVarChar(13)" />
-    <Parameter Name="STUD_GENDER" Parameter="sTUD_GENDER" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_STATUS" Parameter="sTUD_STATUS" Type="System.String" DbType="NVarChar(20)" />
-    <Parameter Name="STUD_CREATED_AT" Parameter="sTUD_CREATED_AT" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="STUD_UPDATED_AT" Parameter="sTUD_UPDATED_AT" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PROG_ID" Parameter="pROG_ID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="YEAR_ID" Parameter="yEAR_ID" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.SP_COLLEGE_ID" Method="SP_COLLEGE_ID">
     <Parameter Name="COLL_NAME" Parameter="cOLL_NAME" Type="System.String" DbType="NVarChar(500)" />
     <ElementType Name="SP_COLLEGE_IDResult">
       <Column Name="COLL_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_INSERT_COLLEGE" Method="SP_INSERT_COLLEGE">
-    <Parameter Name="COLL_NAME" Parameter="cOLL_NAME" Type="System.String" DbType="NVarChar(500)" />
-    <Parameter Name="COLL_CREATED_AT" Parameter="cOLL_CREATED_AT" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="COLL_UPDATED_AT" Parameter="cOLL_UPDATED_AT" Type="System.DateTime" DbType="Date" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.SP_YEAR_LEVEL_ID" Method="SP_YEAR_LEVEL_ID">
-    <Parameter Name="YEAR_NAME" Parameter="yEAR_NAME" Type="System.String" DbType="NVarChar(55)" />
-    <ElementType Name="SP_YEAR_LEVEL_IDResult">
-      <Column Name="YEAR_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+  <Function Name="dbo.SP_COUNT_ALL_STUDENTS" Method="SP_COUNT_ALL_STUDENTS">
+    <ElementType Name="SP_COUNT_ALL_STUDENTSResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_DISPLAY_STUDENT_RECORDS" Method="SP_DISPLAY_STUDENT_RECORDS">
-    <ElementType Name="SP_DISPLAY_STUDENT_RECORDSResult">
-      <Column Name="Id" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
-      <Column Name="Age" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="[Year level]" Member="Year_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Program" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+  <Function Name="dbo.SP_COUNT_COLLEGES" Method="SP_COUNT_COLLEGES">
+    <ElementType Name="SP_COUNT_COLLEGESResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX" Method="SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX">
-    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
-    <ElementType Name="SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOXResult">
-      <Column Name="Id" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
-      <Column Name="Age" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="[Year level]" Member="Year_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Program" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+  <Function Name="dbo.SP_COUNT_PROGRAMS" Method="SP_COUNT_PROGRAMS">
+    <ElementType Name="SP_COUNT_PROGRAMSResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.SP_ID_STORAGE" Method="SP_ID_STORAGE">
-    <Parameter Name="ID" Parameter="iD" Type="System.String" DbType="NVarChar(20)" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.SP_UPDATE_STUDENT_INFORMATION" Method="SP_UPDATE_STUDENT_INFORMATION">
-    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="NVarChar(MAX)" />
-    <Parameter Name="STUD_PHOTO" Parameter="sTUD_PHOTO" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" />
-    <Parameter Name="STUD_FIRSTNAME" Parameter="sTUD_FIRSTNAME" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_MIDDLENAME" Parameter="sTUD_MIDDLENAME" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_LASTNAME" Parameter="sTUD_LASTNAME" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_AGE" Parameter="sTUD_AGE" Type="System.String" DbType="NVarChar(2)" />
-    <Parameter Name="STUD_BIRTH_DATE" Parameter="sTUD_BIRTH_DATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="STUD_PLACE_OF_BIRTH" Parameter="sTUD_PLACE_OF_BIRTH" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="STUD_ADDRESS" Parameter="sTUD_ADDRESS" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="STUD_EMAIL" Parameter="sTUD_EMAIL" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_MOBILE" Parameter="sTUD_MOBILE" Type="System.String" DbType="NVarChar(13)" />
-    <Parameter Name="STUD_GENDER" Parameter="sTUD_GENDER" Type="System.String" DbType="NVarChar(55)" />
-    <Parameter Name="STUD_UPDATED_AT" Parameter="sTUD_UPDATED_AT" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PROG_ID" Parameter="pROG_ID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="YEAR_ID" Parameter="yEAR_ID" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.SP_DELETE_STUDENT" Method="SP_DELETE_STUDENT">
     <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_DISPLAY_COLLEGE" Method="SP_DISPLAY_COLLEGE">
+    <ElementType Name="SP_DISPLAY_COLLEGEResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_DISPLAY_PROGRAM" Method="SP_DISPLAY_PROGRAM">
+    <ElementType Name="SP_DISPLAY_PROGRAMResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[College Belong]" Member="College_Belong" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
   </Function>
   <Function Name="dbo.SP_DISPLAY_STUDENT_INFORMATION" Method="SP_DISPLAY_STUDENT_INFORMATION">
     <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
@@ -226,22 +173,34 @@
       <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="COLL_ID1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COLL_ID1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COLL_ID2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="COLL_NAME" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="COLL_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="COLL_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_SPECIFIC_PROGRAM_FROM_COLLEGE" Method="SP_SPECIFIC_PROGRAM_FROM_COLLEGE">
-    <Parameter Name="KEY" Parameter="kEY" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult">
-      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+  <Function Name="dbo.SP_DISPLAY_STUDENT_RECORDS" Method="SP_DISPLAY_STUDENT_RECORDS">
+    <ElementType Name="SP_DISPLAY_STUDENT_RECORDSResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[Year level]" Member="Year_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ID_STORAGE" Method="SP_ID_STORAGE">
+    <Parameter Name="ID" Parameter="iD" Type="System.String" DbType="NVarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_INSERT_COLLEGE" Method="SP_INSERT_COLLEGE">
+    <Parameter Name="COLL_NAME" Parameter="cOLL_NAME" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="COLL_CREATED_AT" Parameter="cOLL_CREATED_AT" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="COLL_UPDATED_AT" Parameter="cOLL_UPDATED_AT" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.SP_INSERT_PROGRAM" Method="SP_INSERT_PROGRAM">
     <Parameter Name="PROG_NAME" Parameter="pROG_NAME" Type="System.String" DbType="NVarChar(255)" />
@@ -250,17 +209,44 @@
     <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.SP_DISPLAY_PROGRAM" Method="SP_DISPLAY_PROGRAM">
-    <ElementType Name="SP_DISPLAY_PROGRAMResult">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="[College Belong]" Member="College_Belong" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+  <Function Name="dbo.SP_INSERT_STUDENT_INFORMATION" Method="SP_INSERT_STUDENT_INFORMATION">
+    <Parameter Name="STUD_PHOTO" Parameter="sTUD_PHOTO" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" />
+    <Parameter Name="STUD_FIRSTNAME" Parameter="sTUD_FIRSTNAME" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_MIDDLENAME" Parameter="sTUD_MIDDLENAME" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_LASTNAME" Parameter="sTUD_LASTNAME" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_AGE" Parameter="sTUD_AGE" Type="System.String" DbType="NVarChar(2)" />
+    <Parameter Name="STUD_BIRTH_DATE" Parameter="sTUD_BIRTH_DATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="STUD_PLACE_OF_BIRTH" Parameter="sTUD_PLACE_OF_BIRTH" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="STUD_ADDRESS" Parameter="sTUD_ADDRESS" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="STUD_EMAIL" Parameter="sTUD_EMAIL" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_MOBILE" Parameter="sTUD_MOBILE" Type="System.String" DbType="NVarChar(13)" />
+    <Parameter Name="STUD_GENDER" Parameter="sTUD_GENDER" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_STATUS" Parameter="sTUD_STATUS" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="STUD_CREATED_AT" Parameter="sTUD_CREATED_AT" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="STUD_UPDATED_AT" Parameter="sTUD_UPDATED_AT" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PROG_ID" Parameter="pROG_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="YEAR_ID" Parameter="yEAR_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_PROGRAM" Method="SP_PROGRAM">
+    <ElementType Name="SP_PROGRAMResult">
+      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_DISPLAY_COLLEGE" Method="SP_DISPLAY_COLLEGE">
-    <ElementType Name="SP_DISPLAY_COLLEGEResult">
+  <Function Name="dbo.SP_PROGRAM_ID" Method="SP_PROGRAM_ID">
+    <Parameter Name="PROG_NAME" Parameter="pROG_NAME" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="SP_PROGRAM_IDResult">
+      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEARCH_COLLEGE" Method="SP_SEARCH_COLLEGE">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="SP_SEARCH_COLLEGEResult">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
@@ -277,40 +263,56 @@
       <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_SEARCH_COLLEGE" Method="SP_SEARCH_COLLEGE">
+  <Function Name="dbo.SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX" Method="SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX">
     <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
-    <ElementType Name="SP_SEARCH_COLLEGEResult">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="[Created at]" Member="Created_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="[Updated at]" Member="Updated_at" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_COUNT_PROGRAMS" Method="SP_COUNT_PROGRAMS">
-    <ElementType Name="SP_COUNT_PROGRAMSResult">
-      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_COUNT_ALL_STUDENTS" Method="SP_COUNT_ALL_STUDENTS">
-    <ElementType Name="SP_COUNT_ALL_STUDENTSResult">
-      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_COUNT_COLLEGES" Method="SP_COUNT_COLLEGES">
-    <ElementType Name="SP_COUNT_COLLEGESResult">
-      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_ACADEMIC_YEAR" Method="SP_ACADEMIC_YEAR">
-    <ElementType Name="SP_ACADEMIC_YEARResult">
-      <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ACAD_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    <ElementType Name="SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOXResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[Year level]" Member="Year_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Program" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.SP_SEMESTER" Method="SP_SEMESTER">
     <ElementType Name="SP_SEMESTERResult">
       <Column Name="SEM_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SEM_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SPECIFIC_PROGRAM_FROM_COLLEGE" Method="SP_SPECIFIC_PROGRAM_FROM_COLLEGE">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult">
+      <Column Name="PROG_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_UPDATE_STUDENT_INFORMATION" Method="SP_UPDATE_STUDENT_INFORMATION">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="STUD_PHOTO" Parameter="sTUD_PHOTO" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" />
+    <Parameter Name="STUD_FIRSTNAME" Parameter="sTUD_FIRSTNAME" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_MIDDLENAME" Parameter="sTUD_MIDDLENAME" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_LASTNAME" Parameter="sTUD_LASTNAME" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_AGE" Parameter="sTUD_AGE" Type="System.String" DbType="NVarChar(2)" />
+    <Parameter Name="STUD_BIRTH_DATE" Parameter="sTUD_BIRTH_DATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="STUD_PLACE_OF_BIRTH" Parameter="sTUD_PLACE_OF_BIRTH" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="STUD_ADDRESS" Parameter="sTUD_ADDRESS" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="STUD_EMAIL" Parameter="sTUD_EMAIL" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_MOBILE" Parameter="sTUD_MOBILE" Type="System.String" DbType="NVarChar(13)" />
+    <Parameter Name="STUD_GENDER" Parameter="sTUD_GENDER" Type="System.String" DbType="NVarChar(55)" />
+    <Parameter Name="STUD_UPDATED_AT" Parameter="sTUD_UPDATED_AT" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PROG_ID" Parameter="pROG_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="YEAR_ID" Parameter="yEAR_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_YEAR_LEVEL" Method="SP_YEAR_LEVEL">
+    <ElementType Name="SP_YEAR_LEVELResult">
+      <Column Name="YEAR_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.SP_INSERT_SUBJECT" Method="SP_INSERT_SUBJECT">
