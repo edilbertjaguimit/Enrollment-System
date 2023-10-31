@@ -66,6 +66,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             TblStudentRecords.DataSource = db.SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX(TxtSearchStudent.Text);
             if (TblStudentRecords.Rows.Count == 0)
             {
+                lblNoStudentFound.Text = "No Student Found";
                 lblNoStudentFound.Visible = true;
                 TblStudentRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }

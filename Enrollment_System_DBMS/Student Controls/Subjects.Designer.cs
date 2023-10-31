@@ -49,7 +49,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnDelete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNoSubject = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.TxtSubjectDescription = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -60,7 +59,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.label8 = new System.Windows.Forms.Label();
             this.TxtUnits = new System.Windows.Forms.TextBox();
             this.TxtSectionCode = new System.Windows.Forms.TextBox();
-            this.CbAcademicYear = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TblSubjects)).BeginInit();
@@ -197,7 +195,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.CbAcademicYear);
             this.panel4.Controls.Add(this.TxtSectionCode);
             this.panel4.Controls.Add(this.TxtUnits);
             this.panel4.Controls.Add(this.label8);
@@ -206,7 +203,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.CbSemester);
-            this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.TxtSubjectDescription);
             this.panel4.Location = new System.Drawing.Point(3, 28);
@@ -268,21 +264,11 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblNoSubject.TabIndex = 17;
             this.lblNoSubject.Text = "No Subject Found";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(16, 19);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(101, 16);
-            this.label11.TabIndex = 59;
-            this.label11.Text = "Academic Year";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(16, 78);
+            this.label7.Location = new System.Drawing.Point(15, 19);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 16);
             this.label7.TabIndex = 57;
@@ -291,10 +277,10 @@ namespace Enrollment_System_DBMS.Student_Controls
             // TxtSubjectDescription
             // 
             this.TxtSubjectDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSubjectDescription.Location = new System.Drawing.Point(19, 106);
+            this.TxtSubjectDescription.Location = new System.Drawing.Point(18, 47);
             this.TxtSubjectDescription.Multiline = true;
             this.TxtSubjectDescription.Name = "TxtSubjectDescription";
-            this.TxtSubjectDescription.Size = new System.Drawing.Size(313, 23);
+            this.TxtSubjectDescription.Size = new System.Drawing.Size(313, 81);
             this.TxtSubjectDescription.TabIndex = 56;
             // 
             // label4
@@ -316,6 +302,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbSemester.Name = "CbSemester";
             this.CbSemester.Size = new System.Drawing.Size(162, 23);
             this.CbSemester.TabIndex = 60;
+            this.CbSemester.SelectedIndexChanged += new System.EventHandler(this.CbSemester_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -371,16 +358,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtSectionCode.Size = new System.Drawing.Size(161, 22);
             this.TxtSectionCode.TabIndex = 71;
             // 
-            // CbAcademicYear
-            // 
-            this.CbAcademicYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbAcademicYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbAcademicYear.FormattingEnabled = true;
-            this.CbAcademicYear.Location = new System.Drawing.Point(19, 47);
-            this.CbAcademicYear.Name = "CbAcademicYear";
-            this.CbAcademicYear.Size = new System.Drawing.Size(162, 23);
-            this.CbAcademicYear.TabIndex = 72;
-            // 
             // Subjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,10 +401,8 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.DataGridViewButtonColumn BtnDeleteSubject;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox CbSemester;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox TxtSubjectDescription;
-        private System.Windows.Forms.ComboBox CbAcademicYear;
         private System.Windows.Forms.TextBox TxtSectionCode;
         private System.Windows.Forms.TextBox TxtUnits;
         private System.Windows.Forms.Label label8;

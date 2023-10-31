@@ -20,10 +20,24 @@ namespace Enrollment_System_DBMS.Student_Controls
     public partial class StudentInformation : UserControl
     {
         public string _conn = @"Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True";
+
+        private int SemesterID { get; set; }
+        private int SubjectID { get; set; }
+        private int AcademicYearID { get; set; }
+
+        EnrollmentDBDataContext db = new EnrollmentDBDataContext();
+
         public StudentInformation()
         {
             InitializeComponent();
             StudentDetails();
+            AcademicYearList();
+            SemesterList();
+            SubjectList();
+            SpecificSubjectList();
+            CbStudentAcadYear.SelectedIndex = 2;
+            CbStudentSemester.SelectedIndex = 0;
+            DisplayStudentSubjects();
         }
 
         private void StudentInformation_Load(object sender, EventArgs e)
@@ -50,13 +64,6 @@ namespace Enrollment_System_DBMS.Student_Controls
                         cmd.Parameters.AddWithValue("KEY", GetStudentID());
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            //MessageBox.Show($"{GetStudentID()} Ok ra");
-                            //MessageBox.Show($"{GetStudentID()} Ni kaon naka?");
-                            //MessageBox.Show($"{GetStudentID()} Wala pa");
-                            //MessageBox.Show($"{GetStudentID()} Kaon na kay kaonon pa tika hehe");
-                            //MessageBox.Show($"{GetStudentID()} Baba uy");
-                            //MessageBox.Show($"{GetStudentID()} HAHAHAHAHA");
-
 
                             if (reader.Read())
                             {
@@ -171,6 +178,283 @@ namespace Enrollment_System_DBMS.Student_Controls
             else
             {
                 MessageBox.Show("Dashboard not found. Make sure your Dashboard form is open.");
+            }
+        }
+
+        private void CbStudentAcadYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var dbAcadYear = new SqlConnection(_conn))
+                {
+                    dbAcadYear.Open();
+                    using (var cmd = dbAcadYear.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_ACADEMIC_YEAR_ID";
+                        cmd.Parameters.AddWithValue("KEY", CbStudentAcadYear.Text);
+                        AcademicYearID = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CbStudentSemester_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var dbSemester = new SqlConnection(_conn))
+                {
+                    dbSemester.Open();
+                    using (var cmd = dbSemester.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SEMESTER_ID";
+                        cmd.Parameters.AddWithValue("KEY", CbStudentSemester.Text);
+                        SemesterID = (int)cmd.ExecuteScalar();
+                        CbStudentSubject.Items.Clear();
+                        SpecificSubjectList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CbStudentSubject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var dbSubject = new SqlConnection(_conn))
+                {
+                    dbSubject.Open();
+                    using (var cmd = dbSubject.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SUBJECT_LIST";
+                        SubjectID = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AcademicYearList()
+        {
+            try
+            {
+                using (var dbAcadYear = new SqlConnection(_conn))
+                {
+                    dbAcadYear.Open();
+                    using (var cmd = dbAcadYear.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_ACADEMIC_YEAR";
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string acadYear = reader["ACAD_YEAR"].ToString();
+                                CbStudentAcadYear.Items.Add(acadYear);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void SemesterList()
+        {
+            try
+            {
+                using (var dbSemester = new SqlConnection(_conn))
+                {
+                    dbSemester.Open();
+                    using (var cmd = dbSemester.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SEMESTER";
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string semName = reader["SEM_NAME"].ToString();
+                                CbStudentSemester.Items.Add(semName);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SubjectList()
+        {
+            try
+            {
+                using (var dbSubject = new SqlConnection(_conn))
+                {
+                    dbSubject.Open();
+                    using (var cmd = dbSubject.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SUBJECT_LIST";
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string subName = reader["SUB_DESCRIPTION"].ToString();
+                                CbStudentSubject.Items.Add(subName);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SpecificSubjectList()
+        {
+            try
+            {
+                using (var dbSubject = new SqlConnection(_conn))
+                {
+                    dbSubject.Open();
+                    using (var cmd = dbSubject.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SPECIFIC_SUBJECT_FROM_SEMESTER";
+                        cmd.Parameters.AddWithValue("@KEY", SemesterID);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string subName = reader["SUB_DESCRIPTION"].ToString();
+                                CbStudentSubject.Items.Add(subName);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int StudentNumber()
+        {
+            int studentNumber = 0;
+            try
+            {
+                using (var dbSubject = new SqlConnection(_conn))
+                {
+                    dbSubject.Open();
+                    using (var cmd = dbSubject.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_STUDENT_NUMBER";
+                        cmd.Parameters.AddWithValue("@KEY", GetStudentID());
+                        studentNumber = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return studentNumber;
+        }
+
+        private void BtnAddSubjectToStudent_Click(object sender, EventArgs e)
+        {
+            if (CbStudentAcadYear.SelectedIndex != -1 && CbStudentSemester.SelectedIndex != -1 && CbStudentSubject.SelectedIndex != -1)
+            {
+                try
+                {
+                    db.SP_ENROLL_STUDENT_TO_SUBJECTS(DateTime.Now, DateTime.Now, AcademicYearID, SubjectID, SemesterID, StudentNumber());
+                    MessageBox.Show("Student Successfully Enrolled to a Subject", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    StudentDetails();
+                    DisplayStudentSubjects();
+                    CbStudentAcadYear.SelectedIndex = 2;
+                    CbStudentSemester.SelectedIndex = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Program Field is Empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        public void DisplayStudentSubjects()
+        {
+            try
+            {
+                if (TblStudentSubjects.Rows.Count == 0)
+                {
+                    lblNoSubject.Text = "No Subjects Yet";
+                    lblNoSubject.Visible = true;
+                    TblStudentSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+                else
+                {
+                    lblNoSubject.Visible = false;
+                    TblStudentSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    TblStudentSubjects.Rows.Clear();
+                    //TblStudentSubjects.DataSource = db.SP_DISPLAY_STUDENT_SUBJECTS();
+                    using (var dbStudSub = new SqlConnection(_conn))
+                    {
+                        dbStudSub.Open();
+                        using (var cmd = dbStudSub.CreateCommand())
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = "SP_DISPLAY_STUDENT_SUBJECTS";
+                            cmd.Parameters.AddWithValue("KEY", StudentNumber());
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    int rowIndex = TblStudentSubjects.Rows.Add();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[0].Value = reader["SECTION"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[1].Value = reader["SUBJECT"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[2].Value = reader["DESCRIPTION"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[3].Value = reader["UNITS"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[4].Value = reader["ACADEMIC YEAR"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[5].Value = reader["SEMESTER"].ToString();
+                                    DateTime birthDate = (DateTime)reader["DATE"];
+                                    string formattedDate = birthDate.ToString("MMMM d, yyyy");
+                                    TblStudentSubjects.Rows[rowIndex].Cells[6].Value = formattedDate;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
