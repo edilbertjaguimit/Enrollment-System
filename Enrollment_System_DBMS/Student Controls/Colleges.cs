@@ -215,8 +215,8 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             if(TblCollege.SelectedRows.Count > 0)
             {
-                var addCollege = new AddCollege();
-                addCollege.Show();
+                UpdateCollege updateCollege = new UpdateCollege();
+                updateCollege.Show();
             }
             else
             {
@@ -228,7 +228,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             if (TblCollege.SelectedRows.Count > 0)
             {
-
+                
             }
             else
             {
@@ -241,7 +241,8 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             if (TblProgram.SelectedRows.Count > 0)
             {
-
+                UpdateProgram updateProgram = new UpdateProgram();
+                updateProgram.Show();
             }
             else
             {
