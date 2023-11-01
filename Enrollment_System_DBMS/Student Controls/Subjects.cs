@@ -50,7 +50,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             try
             {
-                //TblSubjects.DataSource = db.SP_DISPLAY_PROGRAM();
+                TblSubjects.DataSource = db.SP_DISPLAY_ALL_SUBJECTS();
                 if (TblSubjects.Rows.Count == 0)
                 {
                     lblNoSubject.Text = "No Subjects Yet";
@@ -178,6 +178,38 @@ namespace Enrollment_System_DBMS.Student_Controls
             {
                 MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void TxtSearchSubject_TextChanged(object sender, EventArgs e)
+        {
+            TblSubjects.DataSource = db.SP_SEARCH_SUBJECT(TxtSearchSubject.Text);
+            if (TblSubjects.Rows.Count == 0)
+            {
+                lblNoSubject.Text = "No Student Found";
+                lblNoSubject.Visible = true;
+                TblSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            else
+            {
+                lblNoSubject.Visible = false;
+                TblSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+        }
+
+        private void TblSubjects_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var studentRecord = TblSubjects.CurrentRow;
+            TblSubjects.CurrentRow.Selected = true;
+            //try
+            //{
+            //    db.SP_ID_STORAGE(studentRecord.Cells[0].Value.ToString());
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"An Error Occured: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //StudentID = studentRecord.Cells[0].Value.ToString();
         }
     }
 }

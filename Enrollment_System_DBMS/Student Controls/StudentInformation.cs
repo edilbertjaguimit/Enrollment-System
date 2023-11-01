@@ -457,5 +457,65 @@ namespace Enrollment_System_DBMS.Student_Controls
                 MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void TblStudentSubjects_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var studentRecord = TblStudentSubjects.CurrentRow;
+            TblStudentSubjects.CurrentRow.Selected = true;
+        }
+
+        private void TxtSearchSubject_TextChanged(object sender, EventArgs e)
+        {
+            SearchStudentSubject(TxtSearchSubject.Text);
+            if (TblStudentSubjects.Rows[0].Cells[0].Value?.ToString() == null)
+            {
+                lblNoSubject.Text = "No Student Found";
+                lblNoSubject.Visible = true;
+                TblStudentSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            else
+            {
+                lblNoSubject.Visible = false;
+                TblStudentSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+        }
+        private void SearchStudentSubject(string searchKey)
+        {
+            try
+            {
+                TblStudentSubjects.Rows.Clear();
+                using (var dbStudSub = new SqlConnection(_conn))
+                {
+                    dbStudSub.Open();
+                    using (var cmd = dbStudSub.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_SEARCH_STUDENT_SUBJECT";
+                        cmd.Parameters.AddWithValue("ID", StudentNumber());
+                        cmd.Parameters.AddWithValue("KEY", searchKey);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int rowIndex = TblStudentSubjects.Rows.Add();
+                                TblStudentSubjects.Rows[rowIndex].Cells[0].Value = reader["SECTION"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[1].Value = reader["SUBJECT"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[2].Value = reader["DESCRIPTION"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[3].Value = reader["UNITS"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[4].Value = reader["ACADEMIC YEAR"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[5].Value = reader["SEMESTER"].ToString();
+                                DateTime birthDate = (DateTime)reader["DATE"];
+                                string formattedDate = birthDate.ToString("MMMM d, yyyy");
+                                TblStudentSubjects.Rows[rowIndex].Cells[6].Value = formattedDate;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

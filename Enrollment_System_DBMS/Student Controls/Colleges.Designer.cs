@@ -33,9 +33,9 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnAddCollege = new System.Windows.Forms.Button();
             this.BtnAddProgram = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -108,16 +108,17 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel3.Size = new System.Drawing.Size(371, 46);
             this.panel3.TabIndex = 24;
             // 
-            // panel4
+            // button2
             // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.button5);
-            this.panel4.Controls.Add(this.BtnAddProgram);
-            this.panel4.Location = new System.Drawing.Point(386, 419);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(371, 46);
-            this.panel4.TabIndex = 25;
+            this.button2.BackColor = System.Drawing.Color.Gold;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Red;
+            this.button2.Location = new System.Drawing.Point(246, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(114, 33);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Delete";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
@@ -130,17 +131,16 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.button1.Text = "Update";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // panel4
             // 
-            this.button2.BackColor = System.Drawing.Color.Gold;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(246, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(114, 33);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = false;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.button4);
+            this.panel4.Controls.Add(this.button5);
+            this.panel4.Controls.Add(this.BtnAddProgram);
+            this.panel4.Location = new System.Drawing.Point(386, 419);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(371, 46);
+            this.panel4.TabIndex = 25;
             // 
             // button4
             // 
@@ -223,12 +223,14 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TblProgram.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.TblProgram.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.TblProgram.BackgroundColor = System.Drawing.Color.White;
+            this.TblProgram.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TblProgram.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TblProgram.Location = new System.Drawing.Point(375, 113);
             this.TblProgram.Name = "TblProgram";
             this.TblProgram.ReadOnly = true;
             this.TblProgram.Size = new System.Drawing.Size(371, 262);
             this.TblProgram.TabIndex = 32;
+            this.TblProgram.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblProgram_CellClick);
             // 
             // TxtSearchCollege
             // 
@@ -337,12 +339,14 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TblCollege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.TblCollege.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.TblCollege.BackgroundColor = System.Drawing.Color.White;
+            this.TblCollege.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TblCollege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TblCollege.Location = new System.Drawing.Point(3, 113);
             this.TblCollege.Name = "TblCollege";
             this.TblCollege.ReadOnly = true;
             this.TblCollege.Size = new System.Drawing.Size(366, 262);
             this.TblCollege.TabIndex = 24;
+            this.TblCollege.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblCollege_CellClick);
             // 
             // Colleges
             // 

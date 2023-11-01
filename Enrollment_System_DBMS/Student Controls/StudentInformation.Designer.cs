@@ -47,6 +47,13 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lbl = new System.Windows.Forms.Label();
             this.CbStudentAcadYear = new System.Windows.Forms.ComboBox();
             this.TblStudentSubjects = new System.Windows.Forms.DataGridView();
+            this.ColSection = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColUnits = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAcademicYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label26 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblStudentNumber = new System.Windows.Forms.Label();
@@ -78,13 +85,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPhoto = new System.Windows.Forms.PictureBox();
-            this.ColSection = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColUnits = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAcademicYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -201,6 +201,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtSearchSubject.Name = "TxtSearchSubject";
             this.TxtSearchSubject.Size = new System.Drawing.Size(208, 22);
             this.TxtSearchSubject.TabIndex = 17;
+            this.TxtSearchSubject.TextChanged += new System.EventHandler(this.TxtSearchSubject_TextChanged);
             // 
             // lblNoSubject
             // 
@@ -294,6 +295,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TblStudentSubjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.TblStudentSubjects.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.TblStudentSubjects.BackgroundColor = System.Drawing.Color.White;
+            this.TblStudentSubjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TblStudentSubjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TblStudentSubjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSection,
@@ -307,6 +309,56 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TblStudentSubjects.Name = "TblStudentSubjects";
             this.TblStudentSubjects.Size = new System.Drawing.Size(437, 144);
             this.TblStudentSubjects.TabIndex = 4;
+            this.TblStudentSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblStudentSubjects_CellClick);
+            // 
+            // ColSection
+            // 
+            this.ColSection.HeaderText = "Section";
+            this.ColSection.Name = "ColSection";
+            this.ColSection.ReadOnly = true;
+            this.ColSection.Width = 68;
+            // 
+            // ColSubject
+            // 
+            this.ColSubject.HeaderText = "Subject";
+            this.ColSubject.Name = "ColSubject";
+            this.ColSubject.ReadOnly = true;
+            this.ColSubject.Width = 68;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.ReadOnly = true;
+            this.ColDescription.Width = 85;
+            // 
+            // ColUnits
+            // 
+            this.ColUnits.HeaderText = "Units";
+            this.ColUnits.Name = "ColUnits";
+            this.ColUnits.ReadOnly = true;
+            this.ColUnits.Width = 56;
+            // 
+            // ColAcademicYear
+            // 
+            this.ColAcademicYear.HeaderText = "Academic_Year";
+            this.ColAcademicYear.Name = "ColAcademicYear";
+            this.ColAcademicYear.ReadOnly = true;
+            this.ColAcademicYear.Width = 107;
+            // 
+            // ColSemester
+            // 
+            this.ColSemester.HeaderText = "Semester";
+            this.ColSemester.Name = "ColSemester";
+            this.ColSemester.ReadOnly = true;
+            this.ColSemester.Width = 76;
+            // 
+            // ColDate
+            // 
+            this.ColDate.HeaderText = "Date";
+            this.ColDate.Name = "ColDate";
+            this.ColDate.ReadOnly = true;
+            this.ColDate.Width = 55;
             // 
             // label26
             // 
@@ -644,55 +696,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.lblPhoto.TabIndex = 37;
             this.lblPhoto.TabStop = false;
-            // 
-            // ColSection
-            // 
-            this.ColSection.HeaderText = "Section";
-            this.ColSection.Name = "ColSection";
-            this.ColSection.ReadOnly = true;
-            this.ColSection.Width = 68;
-            // 
-            // ColSubject
-            // 
-            this.ColSubject.HeaderText = "Subject";
-            this.ColSubject.Name = "ColSubject";
-            this.ColSubject.ReadOnly = true;
-            this.ColSubject.Width = 68;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.ReadOnly = true;
-            this.ColDescription.Width = 85;
-            // 
-            // ColUnits
-            // 
-            this.ColUnits.HeaderText = "Units";
-            this.ColUnits.Name = "ColUnits";
-            this.ColUnits.ReadOnly = true;
-            this.ColUnits.Width = 56;
-            // 
-            // ColAcademicYear
-            // 
-            this.ColAcademicYear.HeaderText = "Academic_Year";
-            this.ColAcademicYear.Name = "ColAcademicYear";
-            this.ColAcademicYear.ReadOnly = true;
-            this.ColAcademicYear.Width = 107;
-            // 
-            // ColSemester
-            // 
-            this.ColSemester.HeaderText = "Semester";
-            this.ColSemester.Name = "ColSemester";
-            this.ColSemester.ReadOnly = true;
-            this.ColSemester.Width = 76;
-            // 
-            // ColDate
-            // 
-            this.ColDate.HeaderText = "Date";
-            this.ColDate.Name = "ColDate";
-            this.ColDate.ReadOnly = true;
-            this.ColDate.Width = 55;
             // 
             // StudentInformation
             // 

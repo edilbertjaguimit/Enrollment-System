@@ -435,6 +435,20 @@ namespace Enrollment_System_DBMS
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_DISPLAY_ALL_SUBJECTSResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_SUBJECT")]
+		public ISingleResult<SP_SEARCH_SUBJECTResult> SP_SEARCH_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SEARCH_SUBJECTResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_STUDENT_SUBJECT")]
+		public ISingleResult<SP_SEARCH_STUDENT_SUBJECTResult> SP_SEARCH_STUDENT_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, kEY);
+			return ((ISingleResult<SP_SEARCH_STUDENT_SUBJECTResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ACADEMIC_YEAR")]
@@ -4834,6 +4848,256 @@ namespace Enrollment_System_DBMS
 				if ((this._NUMBER_OF_ENROLLED != value))
 				{
 					this._NUMBER_OF_ENROLLED = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEARCH_SUBJECTResult
+	{
+		
+		private string _SECTION;
+		
+		private string _SUBJECT;
+		
+		private string _DESCRIPTION;
+		
+		private System.Nullable<double> _UNITS;
+		
+		private string _SEMESTER;
+		
+		private System.Nullable<int> _NUMBER_OF_ENROLLED;
+		
+		public SP_SEARCH_SUBJECTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SECTION", DbType="NVarChar(55)")]
+		public string SECTION
+		{
+			get
+			{
+				return this._SECTION;
+			}
+			set
+			{
+				if ((this._SECTION != value))
+				{
+					this._SECTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUBJECT", DbType="NVarChar(55)")]
+		public string SUBJECT
+		{
+			get
+			{
+				return this._SUBJECT;
+			}
+			set
+			{
+				if ((this._SUBJECT != value))
+				{
+					this._SUBJECT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(255)")]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this._DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITS", DbType="Float")]
+		public System.Nullable<double> UNITS
+		{
+			get
+			{
+				return this._UNITS;
+			}
+			set
+			{
+				if ((this._UNITS != value))
+				{
+					this._UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEMESTER", DbType="NVarChar(55)")]
+		public string SEMESTER
+		{
+			get
+			{
+				return this._SEMESTER;
+			}
+			set
+			{
+				if ((this._SEMESTER != value))
+				{
+					this._SEMESTER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[NUMBER OF ENROLLED]", Storage="_NUMBER_OF_ENROLLED", DbType="Int")]
+		public System.Nullable<int> NUMBER_OF_ENROLLED
+		{
+			get
+			{
+				return this._NUMBER_OF_ENROLLED;
+			}
+			set
+			{
+				if ((this._NUMBER_OF_ENROLLED != value))
+				{
+					this._NUMBER_OF_ENROLLED = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEARCH_STUDENT_SUBJECTResult
+	{
+		
+		private string _SECTION;
+		
+		private string _SUBJECT;
+		
+		private string _DESCRIPTION;
+		
+		private System.Nullable<double> _UNITS;
+		
+		private string _ACADEMIC_YEAR;
+		
+		private string _SEMESTER;
+		
+		private System.Nullable<System.DateTime> _DATE;
+		
+		public SP_SEARCH_STUDENT_SUBJECTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SECTION", DbType="NVarChar(55)")]
+		public string SECTION
+		{
+			get
+			{
+				return this._SECTION;
+			}
+			set
+			{
+				if ((this._SECTION != value))
+				{
+					this._SECTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUBJECT", DbType="NVarChar(55)")]
+		public string SUBJECT
+		{
+			get
+			{
+				return this._SUBJECT;
+			}
+			set
+			{
+				if ((this._SUBJECT != value))
+				{
+					this._SUBJECT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(255)")]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this._DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITS", DbType="Float")]
+		public System.Nullable<double> UNITS
+		{
+			get
+			{
+				return this._UNITS;
+			}
+			set
+			{
+				if ((this._UNITS != value))
+				{
+					this._UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ACADEMIC YEAR]", Storage="_ACADEMIC_YEAR", DbType="NVarChar(20)")]
+		public string ACADEMIC_YEAR
+		{
+			get
+			{
+				return this._ACADEMIC_YEAR;
+			}
+			set
+			{
+				if ((this._ACADEMIC_YEAR != value))
+				{
+					this._ACADEMIC_YEAR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEMESTER", DbType="NVarChar(55)")]
+		public string SEMESTER
+		{
+			get
+			{
+				return this._SEMESTER;
+			}
+			set
+			{
+				if ((this._SEMESTER != value))
+				{
+					this._SEMESTER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE", DbType="Date")]
+		public System.Nullable<System.DateTime> DATE
+		{
+			get
+			{
+				return this._DATE;
+			}
+			set
+			{
+				if ((this._DATE != value))
+				{
+					this._DATE = value;
 				}
 			}
 		}
