@@ -176,5 +176,17 @@ namespace Enrollment_System_DBMS.Student_Controls
                 MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void TblProgram_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var studentRecord = TblProgram.CurrentRow;
+            TblProgram.CurrentRow.Selected = true;
+        }
+
+        private void TblCollege_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var studentRecord = TblCollege.CurrentRow;
+            TblCollege.CurrentRow.Selected = true;
+        }
     }
 }

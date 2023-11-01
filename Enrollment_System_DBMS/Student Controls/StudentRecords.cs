@@ -106,7 +106,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             {
                 try
                 {
-                    var result = MessageBox.Show("Are sure you want to delete?", "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    var result = MessageBox.Show("Are you sure you want to delete?", "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
                         db.SP_DELETE_STUDENT(StudentID);
