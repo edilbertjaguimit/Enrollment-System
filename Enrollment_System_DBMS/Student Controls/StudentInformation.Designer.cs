@@ -33,7 +33,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.BtnBackToStudentRecords = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnUpdateSubject = new System.Windows.Forms.Button();
             this.BtnUpdateStudentInformation = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,13 +47,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lbl = new System.Windows.Forms.Label();
             this.CbStudentAcadYear = new System.Windows.Forms.ComboBox();
             this.TblStudentSubjects = new System.Windows.Forms.DataGridView();
-            this.ColSection = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColUnits = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAcademicYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label26 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblStudentNumber = new System.Windows.Forms.Label();
@@ -85,6 +78,15 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPhoto = new System.Windows.Forms.PictureBox();
+            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSection = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColUnits = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAcademicYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnDeleteSubject = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -107,9 +109,10 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.BtnDeleteSubject);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.BtnBackToStudentRecords);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.BtnUpdateSubject);
             this.panel1.Controls.Add(this.BtnUpdateStudentInformation);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
@@ -144,17 +147,18 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnBackToStudentRecords.UseVisualStyleBackColor = false;
             this.BtnBackToStudentRecords.Click += new System.EventHandler(this.BtnBackToStudentRecords_Click);
             // 
-            // button1
+            // BtnUpdateSubject
             // 
-            this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(278, 393);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 42);
-            this.button1.TabIndex = 51;
-            this.button1.Text = "EDIT SUBJECT";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnUpdateSubject.BackColor = System.Drawing.Color.Gold;
+            this.BtnUpdateSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnUpdateSubject.ForeColor = System.Drawing.Color.Black;
+            this.BtnUpdateSubject.Location = new System.Drawing.Point(278, 393);
+            this.BtnUpdateSubject.Name = "BtnUpdateSubject";
+            this.BtnUpdateSubject.Size = new System.Drawing.Size(156, 42);
+            this.BtnUpdateSubject.TabIndex = 51;
+            this.BtnUpdateSubject.Text = "UPDATE SUBJECT";
+            this.BtnUpdateSubject.UseVisualStyleBackColor = false;
+            this.BtnUpdateSubject.Click += new System.EventHandler(this.BtnUpdateSubject_Click);
             // 
             // BtnUpdateStudentInformation
             // 
@@ -298,6 +302,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TblStudentSubjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TblStudentSubjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TblStudentSubjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColID,
             this.ColSection,
             this.ColSubject,
             this.ColDescription,
@@ -310,55 +315,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TblStudentSubjects.Size = new System.Drawing.Size(437, 144);
             this.TblStudentSubjects.TabIndex = 4;
             this.TblStudentSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblStudentSubjects_CellClick);
-            // 
-            // ColSection
-            // 
-            this.ColSection.HeaderText = "Section";
-            this.ColSection.Name = "ColSection";
-            this.ColSection.ReadOnly = true;
-            this.ColSection.Width = 68;
-            // 
-            // ColSubject
-            // 
-            this.ColSubject.HeaderText = "Subject";
-            this.ColSubject.Name = "ColSubject";
-            this.ColSubject.ReadOnly = true;
-            this.ColSubject.Width = 68;
-            // 
-            // ColDescription
-            // 
-            this.ColDescription.HeaderText = "Description";
-            this.ColDescription.Name = "ColDescription";
-            this.ColDescription.ReadOnly = true;
-            this.ColDescription.Width = 85;
-            // 
-            // ColUnits
-            // 
-            this.ColUnits.HeaderText = "Units";
-            this.ColUnits.Name = "ColUnits";
-            this.ColUnits.ReadOnly = true;
-            this.ColUnits.Width = 56;
-            // 
-            // ColAcademicYear
-            // 
-            this.ColAcademicYear.HeaderText = "Academic_Year";
-            this.ColAcademicYear.Name = "ColAcademicYear";
-            this.ColAcademicYear.ReadOnly = true;
-            this.ColAcademicYear.Width = 107;
-            // 
-            // ColSemester
-            // 
-            this.ColSemester.HeaderText = "Semester";
-            this.ColSemester.Name = "ColSemester";
-            this.ColSemester.ReadOnly = true;
-            this.ColSemester.Width = 76;
-            // 
-            // ColDate
-            // 
-            this.ColDate.HeaderText = "Date";
-            this.ColDate.Name = "ColDate";
-            this.ColDate.ReadOnly = true;
-            this.ColDate.Width = 55;
             // 
             // label26
             // 
@@ -697,6 +653,67 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.lblPhoto.TabIndex = 37;
             this.lblPhoto.TabStop = false;
             // 
+            // ColID
+            // 
+            this.ColID.HeaderText = "ID";
+            this.ColID.Name = "ColID";
+            this.ColID.Width = 43;
+            // 
+            // ColSection
+            // 
+            this.ColSection.HeaderText = "Section";
+            this.ColSection.Name = "ColSection";
+            this.ColSection.Width = 68;
+            // 
+            // ColSubject
+            // 
+            this.ColSubject.HeaderText = "Subject";
+            this.ColSubject.Name = "ColSubject";
+            this.ColSubject.Width = 68;
+            // 
+            // ColDescription
+            // 
+            this.ColDescription.HeaderText = "Description";
+            this.ColDescription.Name = "ColDescription";
+            this.ColDescription.Width = 85;
+            // 
+            // ColUnits
+            // 
+            this.ColUnits.HeaderText = "Units";
+            this.ColUnits.Name = "ColUnits";
+            this.ColUnits.Width = 56;
+            // 
+            // ColAcademicYear
+            // 
+            this.ColAcademicYear.HeaderText = "Academic_Year";
+            this.ColAcademicYear.Name = "ColAcademicYear";
+            this.ColAcademicYear.Width = 107;
+            // 
+            // ColSemester
+            // 
+            this.ColSemester.HeaderText = "Semester";
+            this.ColSemester.Name = "ColSemester";
+            this.ColSemester.Width = 76;
+            // 
+            // ColDate
+            // 
+            this.ColDate.HeaderText = "Date";
+            this.ColDate.Name = "ColDate";
+            this.ColDate.Width = 55;
+            // 
+            // BtnDeleteSubject
+            // 
+            this.BtnDeleteSubject.BackColor = System.Drawing.Color.Gold;
+            this.BtnDeleteSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDeleteSubject.ForeColor = System.Drawing.Color.Red;
+            this.BtnDeleteSubject.Location = new System.Drawing.Point(440, 393);
+            this.BtnDeleteSubject.Name = "BtnDeleteSubject";
+            this.BtnDeleteSubject.Size = new System.Drawing.Size(156, 42);
+            this.BtnDeleteSubject.TabIndex = 54;
+            this.BtnDeleteSubject.Text = "DELETE SUBJECT";
+            this.BtnDeleteSubject.UseVisualStyleBackColor = false;
+            this.BtnDeleteSubject.Click += new System.EventHandler(this.BtnDeleteSubject_Click);
+            // 
             // StudentInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -755,7 +772,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button BtnBackToStudentRecords;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnUpdateSubject;
         private System.Windows.Forms.Button BtnUpdateStudentInformation;
         private System.Windows.Forms.DataGridView TblStudentSubjects;
         private System.Windows.Forms.Label lblStudentID;
@@ -772,6 +789,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.TextBox TxtSearchSubject;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox CbStudentSemester;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSection;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSubject;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDescription;
@@ -779,5 +797,6 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAcademicYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSemester;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
+        private System.Windows.Forms.Button BtnDeleteSubject;
     }
 }

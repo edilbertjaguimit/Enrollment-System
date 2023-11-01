@@ -396,9 +396,24 @@
     <Parameter Name="STUD_NUMBER" Parameter="sTUD_NUMBER" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.SP_SEARCH_STUDENT_SUBJECT" Method="SP_SEARCH_STUDENT_SUBJECT">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="SP_SEARCH_STUDENT_SUBJECTResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SECTION" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="SUBJECT" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="UNITS" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[ACADEMIC YEAR]" Member="ACADEMIC_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SEMESTER" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.SP_DISPLAY_STUDENT_SUBJECTS" Method="SP_DISPLAY_STUDENT_SUBJECTS">
     <Parameter Name="KEY" Parameter="kEY" Type="System.Int32" DbType="Int" />
     <ElementType Name="SP_DISPLAY_STUDENT_SUBJECTSResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SECTION" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
       <Column Name="SUBJECT" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
       <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -429,17 +444,18 @@
       <Column Name="[NUMBER OF ENROLLED]" Member="NUMBER_OF_ENROLLED" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_SEARCH_STUDENT_SUBJECT" Method="SP_SEARCH_STUDENT_SUBJECT">
-    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
-    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="NVarChar(MAX)" />
-    <ElementType Name="SP_SEARCH_STUDENT_SUBJECTResult">
-      <Column Name="SECTION" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
-      <Column Name="SUBJECT" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="UNITS" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="[ACADEMIC YEAR]" Member="ACADEMIC_YEAR" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="SEMESTER" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
-      <Column Name="DATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </ElementType>
+  <Function Name="dbo.SP_DELETE_STUDENT_SUBJECT" Method="SP_DELETE_STUDENT_SUBJECT">
+    <Parameter Name="ENROLL_ID" Parameter="eNROLL_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="STUD_NUMBER" Parameter="sTUD_NUMBER" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_UPDATE_STUDENT_SUBJECT" Method="SP_UPDATE_STUDENT_SUBJECT">
+    <Parameter Name="ENROLL_UPDATED_AT" Parameter="eNROLL_UPDATED_AT" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ACAD_ID" Parameter="aCAD_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SEM_ID" Parameter="sEM_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SUB_ID" Parameter="sUB_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ENROLL_ID" Parameter="eNROLL_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="STUD_NUMBER" Parameter="sTUD_NUMBER" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

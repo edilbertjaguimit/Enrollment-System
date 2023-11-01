@@ -21,6 +21,7 @@ namespace Enrollment_System_DBMS.Student_Controls
     {
         public string _conn = @"Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True";
 
+        private string EnrollID { get; set; }
         private int SemesterID { get; set; }
         private int SubjectID { get; set; }
         private int AcademicYearID { get; set; }
@@ -35,9 +36,8 @@ namespace Enrollment_System_DBMS.Student_Controls
             SemesterList();
             SubjectList();
             SpecificSubjectList();
-            CbStudentAcadYear.SelectedIndex = 2;
-            CbStudentSemester.SelectedIndex = 0;
             DisplayStudentSubjects();
+            CbStudentSemester.SelectedIndex = 0;
         }
 
         private void StudentInformation_Load(object sender, EventArgs e)
@@ -193,7 +193,11 @@ namespace Enrollment_System_DBMS.Student_Controls
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "SP_ACADEMIC_YEAR_ID";
                         cmd.Parameters.AddWithValue("KEY", CbStudentAcadYear.Text);
-                        AcademicYearID = (int)cmd.ExecuteScalar();
+                        object result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            AcademicYearID = (int)result;
+                        }
                     }
                 }
             }
@@ -215,7 +219,11 @@ namespace Enrollment_System_DBMS.Student_Controls
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "SP_SEMESTER_ID";
                         cmd.Parameters.AddWithValue("KEY", CbStudentSemester.Text);
-                        SemesterID = (int)cmd.ExecuteScalar();
+                        var result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            SemesterID = (int)result;
+                        }
                         CbStudentSubject.Items.Clear();
                         SpecificSubjectList();
                     }
@@ -227,6 +235,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
         }
 
+        // Subject combobox
         private void CbStudentSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -237,8 +246,13 @@ namespace Enrollment_System_DBMS.Student_Controls
                     using (var cmd = dbSubject.CreateCommand())
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "SP_SUBJECT_LIST";
-                        SubjectID = (int)cmd.ExecuteScalar();
+                        cmd.CommandText = "SP_SUBJECT_ID";
+                        cmd.Parameters.AddWithValue("KEY", CbStudentSubject.Text);
+                        var result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            SubjectID = (int)result;
+                        }
                     }
                 }
             }
@@ -394,8 +408,9 @@ namespace Enrollment_System_DBMS.Student_Controls
                     MessageBox.Show("Student Successfully Enrolled to a Subject", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     StudentDetails();
                     DisplayStudentSubjects();
-                    CbStudentAcadYear.SelectedIndex = 2;
+                    CbStudentAcadYear.SelectedIndex = -1;
                     CbStudentSemester.SelectedIndex = 0;
+                    CbStudentSubject.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -437,15 +452,16 @@ namespace Enrollment_System_DBMS.Student_Controls
                                 while (reader.Read())
                                 {
                                     int rowIndex = TblStudentSubjects.Rows.Add();
-                                    TblStudentSubjects.Rows[rowIndex].Cells[0].Value = reader["SECTION"].ToString();
-                                    TblStudentSubjects.Rows[rowIndex].Cells[1].Value = reader["SUBJECT"].ToString();
-                                    TblStudentSubjects.Rows[rowIndex].Cells[2].Value = reader["DESCRIPTION"].ToString();
-                                    TblStudentSubjects.Rows[rowIndex].Cells[3].Value = reader["UNITS"].ToString();
-                                    TblStudentSubjects.Rows[rowIndex].Cells[4].Value = reader["ACADEMIC YEAR"].ToString();
-                                    TblStudentSubjects.Rows[rowIndex].Cells[5].Value = reader["SEMESTER"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[0].Value = reader["ID"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[1].Value = reader["SECTION"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[2].Value = reader["SUBJECT"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[3].Value = reader["DESCRIPTION"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[4].Value = reader["UNITS"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[5].Value = reader["ACADEMIC YEAR"].ToString();
+                                    TblStudentSubjects.Rows[rowIndex].Cells[6].Value = reader["SEMESTER"].ToString();
                                     DateTime birthDate = (DateTime)reader["DATE"];
                                     string formattedDate = birthDate.ToString("MMMM d, yyyy");
-                                    TblStudentSubjects.Rows[rowIndex].Cells[6].Value = formattedDate;
+                                    TblStudentSubjects.Rows[rowIndex].Cells[7].Value = formattedDate;
                                 }
                             }
                         }
@@ -462,6 +478,13 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             var studentRecord = TblStudentSubjects.CurrentRow;
             TblStudentSubjects.CurrentRow.Selected = true;
+            if(studentRecord.Cells[1].Value != null && studentRecord.Cells[2].Value != null && studentRecord.Cells[4].Value != null && studentRecord.Cells[5].Value != null)
+            {
+                EnrollID = studentRecord.Cells[0].Value.ToString();
+                CbStudentAcadYear.SelectedItem = studentRecord.Cells[5].Value.ToString();
+                CbStudentSemester.SelectedItem = studentRecord.Cells[6].Value.ToString();
+                CbStudentSubject.SelectedItem = studentRecord.Cells[3].Value.ToString();
+            }
         }
 
         private void TxtSearchSubject_TextChanged(object sender, EventArgs e)
@@ -469,7 +492,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             SearchStudentSubject(TxtSearchSubject.Text);
             if (TblStudentSubjects.Rows[0].Cells[0].Value?.ToString() == null)
             {
-                lblNoSubject.Text = "No Student Found";
+                lblNoSubject.Text = "No Subject Found";
                 lblNoSubject.Visible = true;
                 TblStudentSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
@@ -498,15 +521,16 @@ namespace Enrollment_System_DBMS.Student_Controls
                             while (reader.Read())
                             {
                                 int rowIndex = TblStudentSubjects.Rows.Add();
-                                TblStudentSubjects.Rows[rowIndex].Cells[0].Value = reader["SECTION"].ToString();
-                                TblStudentSubjects.Rows[rowIndex].Cells[1].Value = reader["SUBJECT"].ToString();
-                                TblStudentSubjects.Rows[rowIndex].Cells[2].Value = reader["DESCRIPTION"].ToString();
-                                TblStudentSubjects.Rows[rowIndex].Cells[3].Value = reader["UNITS"].ToString();
-                                TblStudentSubjects.Rows[rowIndex].Cells[4].Value = reader["ACADEMIC YEAR"].ToString();
-                                TblStudentSubjects.Rows[rowIndex].Cells[5].Value = reader["SEMESTER"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[0].Value = reader["ID"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[1].Value = reader["SECTION"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[2].Value = reader["SUBJECT"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[3].Value = reader["DESCRIPTION"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[4].Value = reader["UNITS"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[5].Value = reader["ACADEMIC YEAR"].ToString();
+                                TblStudentSubjects.Rows[rowIndex].Cells[6].Value = reader["SEMESTER"].ToString();
                                 DateTime birthDate = (DateTime)reader["DATE"];
                                 string formattedDate = birthDate.ToString("MMMM d, yyyy");
-                                TblStudentSubjects.Rows[rowIndex].Cells[6].Value = formattedDate;
+                                TblStudentSubjects.Rows[rowIndex].Cells[7].Value = formattedDate;
                             }
                         }
                     }
@@ -515,6 +539,62 @@ namespace Enrollment_System_DBMS.Student_Controls
             catch (Exception ex)
             {
                 MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnUpdateSubject_Click(object sender, EventArgs e)
+        {
+            if (TblStudentSubjects.SelectedRows.Count > 0)
+            {
+                if (CbStudentAcadYear.SelectedIndex != -1 && CbStudentSemester.SelectedIndex != -1 && CbStudentSubject.SelectedIndex != -1)
+                {
+                
+                    try
+                    {
+                        db.SP_UPDATE_STUDENT_SUBJECT(DateTime.Now, AcademicYearID, SemesterID, SubjectID, Convert.ToInt32(EnrollID), StudentNumber());
+                        MessageBox.Show("Student Subject Successfully Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayStudentSubjects();
+                        CbStudentAcadYear.SelectedIndex = 2;
+                        CbStudentSemester.SelectedIndex = 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Program Field is Empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a Subject", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnDeleteSubject_Click(object sender, EventArgs e)
+        {
+            if (TblStudentSubjects.SelectedRows.Count > 0)
+            {
+
+                try
+                {
+                    db.SP_DELETE_STUDENT_SUBJECT(Convert.ToInt32(EnrollID), StudentNumber());
+                    MessageBox.Show("Student Subject Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DisplayStudentSubjects();
+                    CbStudentAcadYear.SelectedIndex = -1;
+                    CbStudentSemester.SelectedIndex = 0;
+                    CbStudentSubject.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a Subject", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

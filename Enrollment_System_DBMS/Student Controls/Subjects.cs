@@ -185,7 +185,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             TblSubjects.DataSource = db.SP_SEARCH_SUBJECT(TxtSearchSubject.Text);
             if (TblSubjects.Rows.Count == 0)
             {
-                lblNoSubject.Text = "No Student Found";
+                lblNoSubject.Text = "No Subject Found";
                 lblNoSubject.Visible = true;
                 TblSubjects.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
