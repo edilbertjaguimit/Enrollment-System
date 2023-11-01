@@ -419,7 +419,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
             else
             {
-                MessageBox.Show("Program Field is Empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Field is Empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

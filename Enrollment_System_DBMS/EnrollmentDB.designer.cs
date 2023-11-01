@@ -158,6 +158,22 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
+		public System.Data.Linq.Table<PROGRAM_ID_STORAGE> PROGRAM_ID_STORAGEs
+		{
+			get
+			{
+				return this.GetTable<PROGRAM_ID_STORAGE>();
+			}
+		}
+		
+		public System.Data.Linq.Table<COLLEGE_ID_STORAGE> COLLEGE_ID_STORAGEs
+		{
+			get
+			{
+				return this.GetTable<COLLEGE_ID_STORAGE>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_YEAR_LEVEL_ID")]
 		public ISingleResult<SP_YEAR_LEVEL_IDResult> SP_YEAR_LEVEL_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="YEAR_NAME", DbType="NVarChar(55)")] string yEAR_NAME)
 		{
@@ -490,6 +506,20 @@ namespace Enrollment_System_DBMS
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
 			return ((ISingleResult<SP_SEARCH_SUBJECT_BY_TEXTBOXResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_COLLEGE_ID_STORAGE")]
+		public int SP_COLLEGE_ID_STORAGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_PROGRAM_ID_STORAGE")]
+		public int SP_PROGRAM_ID_STORAGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -2569,6 +2599,60 @@ namespace Enrollment_System_DBMS
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PROGRAM_ID_STORAGE")]
+	public partial class PROGRAM_ID_STORAGE
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		public PROGRAM_ID_STORAGE()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COLLEGE_ID_STORAGE")]
+	public partial class COLLEGE_ID_STORAGE
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		public COLLEGE_ID_STORAGE()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
 			}
 		}
 	}
