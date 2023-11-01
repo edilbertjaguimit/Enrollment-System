@@ -296,6 +296,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             // TblStudentSubjects
             // 
+            this.TblStudentSubjects.AllowUserToDeleteRows = false;
             this.TblStudentSubjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.TblStudentSubjects.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.TblStudentSubjects.BackgroundColor = System.Drawing.Color.White;
@@ -312,6 +313,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.ColDate});
             this.TblStudentSubjects.Location = new System.Drawing.Point(308, 31);
             this.TblStudentSubjects.Name = "TblStudentSubjects";
+            this.TblStudentSubjects.ReadOnly = true;
             this.TblStudentSubjects.Size = new System.Drawing.Size(437, 144);
             this.TblStudentSubjects.TabIndex = 4;
             this.TblStudentSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblStudentSubjects_CellClick);

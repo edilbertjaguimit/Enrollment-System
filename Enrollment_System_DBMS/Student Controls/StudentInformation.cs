@@ -580,12 +580,16 @@ namespace Enrollment_System_DBMS.Student_Controls
 
                 try
                 {
-                    db.SP_DELETE_STUDENT_SUBJECT(Convert.ToInt32(EnrollID), StudentNumber());
-                    MessageBox.Show("Student Subject Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DisplayStudentSubjects();
-                    CbStudentAcadYear.SelectedIndex = -1;
-                    CbStudentSemester.SelectedIndex = 0;
-                    CbStudentSubject.SelectedIndex = -1;
+                    var result = MessageBox.Show("Are you sure you want to delete?", "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        db.SP_DELETE_STUDENT_SUBJECT(Convert.ToInt32(EnrollID), StudentNumber());
+                        MessageBox.Show("Student Subject Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayStudentSubjects();
+                        CbStudentAcadYear.SelectedIndex = -1;
+                        CbStudentSemester.SelectedIndex = 0;
+                        CbStudentSubject.SelectedIndex = -1;
+                    }
                 }
                 catch (Exception ex)
                 {

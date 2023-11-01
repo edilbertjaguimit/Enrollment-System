@@ -53,21 +53,28 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.ucStudentRecords = new System.Windows.Forms.Label();
             this.TxtSearchSubject = new System.Windows.Forms.TextBox();
             this.TblSubjects = new System.Windows.Forms.DataGridView();
+            this.TblAllSubjectsWithEnrolled = new System.Windows.Forms.DataGridView();
+            this.TxtSearchSubjectWithEnrolled = new System.Windows.Forms.TextBox();
+            this.BtnWithEnrolledSubjects = new System.Windows.Forms.Button();
+            this.BtnAllSubjects = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TblSubjects)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TblAllSubjectsWithEnrolled)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.TxtSearchSubjectWithEnrolled);
             this.panel1.Controls.Add(this.lblNoSubject);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.ucStudentRecords);
             this.panel1.Controls.Add(this.TxtSearchSubject);
+            this.panel1.Controls.Add(this.TblAllSubjectsWithEnrolled);
             this.panel1.Controls.Add(this.TblSubjects);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -129,7 +136,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtSectionCode.Location = new System.Drawing.Point(362, 106);
             this.TxtSectionCode.Name = "TxtSectionCode";
             this.TxtSectionCode.Size = new System.Drawing.Size(161, 22);
-            this.TxtSectionCode.TabIndex = 71;
+            this.TxtSectionCode.TabIndex = 3;
             // 
             // TxtUnits
             // 
@@ -137,7 +144,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtUnits.Location = new System.Drawing.Point(548, 47);
             this.TxtUnits.Name = "TxtUnits";
             this.TxtUnits.Size = new System.Drawing.Size(162, 22);
-            this.TxtUnits.TabIndex = 70;
+            this.TxtUnits.TabIndex = 2;
             // 
             // label8
             // 
@@ -165,7 +172,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtSubjectCode.Location = new System.Drawing.Point(548, 106);
             this.TxtSubjectCode.Name = "TxtSubjectCode";
             this.TxtSubjectCode.Size = new System.Drawing.Size(162, 22);
-            this.TxtSubjectCode.TabIndex = 65;
+            this.TxtSubjectCode.TabIndex = 4;
             // 
             // label6
             // 
@@ -195,7 +202,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.CbSemester.Location = new System.Drawing.Point(361, 47);
             this.CbSemester.Name = "CbSemester";
             this.CbSemester.Size = new System.Drawing.Size(162, 23);
-            this.CbSemester.TabIndex = 60;
+            this.CbSemester.TabIndex = 1;
             this.CbSemester.SelectedIndexChanged += new System.EventHandler(this.CbSemester_SelectedIndexChanged);
             // 
             // label7
@@ -215,11 +222,13 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtSubjectDescription.Multiline = true;
             this.TxtSubjectDescription.Name = "TxtSubjectDescription";
             this.TxtSubjectDescription.Size = new System.Drawing.Size(313, 81);
-            this.TxtSubjectDescription.TabIndex = 56;
+            this.TxtSubjectDescription.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.BtnAllSubjects);
+            this.panel3.Controls.Add(this.BtnWithEnrolledSubjects);
             this.panel3.Controls.Add(this.BtnDelete);
             this.panel3.Controls.Add(this.BtnReset);
             this.panel3.Controls.Add(this.BtnUpdate);
@@ -237,9 +246,10 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnDelete.Location = new System.Drawing.Point(243, 4);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(114, 33);
-            this.BtnDelete.TabIndex = 21;
+            this.BtnDelete.TabIndex = 7;
             this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnReset
             // 
@@ -248,9 +258,10 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnReset.Location = new System.Drawing.Point(363, 4);
             this.BtnReset.Name = "BtnReset";
             this.BtnReset.Size = new System.Drawing.Size(114, 33);
-            this.BtnReset.TabIndex = 20;
+            this.BtnReset.TabIndex = 8;
             this.BtnReset.Text = "Reset";
             this.BtnReset.UseVisualStyleBackColor = false;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // BtnUpdate
             // 
@@ -259,9 +270,10 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnUpdate.Location = new System.Drawing.Point(123, 4);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(114, 33);
-            this.BtnUpdate.TabIndex = 19;
+            this.BtnUpdate.TabIndex = 6;
             this.BtnUpdate.Text = "Update";
             this.BtnUpdate.UseVisualStyleBackColor = false;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // BtnAddSubject
             // 
@@ -270,7 +282,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnAddSubject.Location = new System.Drawing.Point(3, 4);
             this.BtnAddSubject.Name = "BtnAddSubject";
             this.BtnAddSubject.Size = new System.Drawing.Size(114, 33);
-            this.BtnAddSubject.TabIndex = 18;
+            this.BtnAddSubject.TabIndex = 5;
             this.BtnAddSubject.Text = "Add";
             this.BtnAddSubject.UseVisualStyleBackColor = false;
             this.BtnAddSubject.Click += new System.EventHandler(this.BtnAddSubject_Click);
@@ -301,7 +313,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TxtSearchSubject.Location = new System.Drawing.Point(539, 250);
             this.TxtSearchSubject.Name = "TxtSearchSubject";
             this.TxtSearchSubject.Size = new System.Drawing.Size(208, 22);
-            this.TxtSearchSubject.TabIndex = 15;
+            this.TxtSearchSubject.TabIndex = 9;
             this.TxtSearchSubject.TextChanged += new System.EventHandler(this.TxtSearchSubject_TextChanged);
             // 
             // TblSubjects
@@ -315,9 +327,61 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.TblSubjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TblSubjects.Location = new System.Drawing.Point(3, 278);
             this.TblSubjects.Name = "TblSubjects";
+            this.TblSubjects.ReadOnly = true;
             this.TblSubjects.Size = new System.Drawing.Size(744, 190);
             this.TblSubjects.TabIndex = 11;
             this.TblSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblSubjects_CellClick);
+            // 
+            // TblAllSubjectsWithEnrolled
+            // 
+            this.TblAllSubjectsWithEnrolled.AllowUserToAddRows = false;
+            this.TblAllSubjectsWithEnrolled.AllowUserToDeleteRows = false;
+            this.TblAllSubjectsWithEnrolled.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.TblAllSubjectsWithEnrolled.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.TblAllSubjectsWithEnrolled.BackgroundColor = System.Drawing.Color.White;
+            this.TblAllSubjectsWithEnrolled.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TblAllSubjectsWithEnrolled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TblAllSubjectsWithEnrolled.Location = new System.Drawing.Point(3, 278);
+            this.TblAllSubjectsWithEnrolled.Name = "TblAllSubjectsWithEnrolled";
+            this.TblAllSubjectsWithEnrolled.ReadOnly = true;
+            this.TblAllSubjectsWithEnrolled.Size = new System.Drawing.Size(744, 190);
+            this.TblAllSubjectsWithEnrolled.TabIndex = 18;
+            this.TblAllSubjectsWithEnrolled.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblAllSubjectsWithEnrolled_CellClick);
+            // 
+            // TxtSearchSubjectWithEnrolled
+            // 
+            this.TxtSearchSubjectWithEnrolled.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSearchSubjectWithEnrolled.Location = new System.Drawing.Point(539, 250);
+            this.TxtSearchSubjectWithEnrolled.Name = "TxtSearchSubjectWithEnrolled";
+            this.TxtSearchSubjectWithEnrolled.Size = new System.Drawing.Size(208, 22);
+            this.TxtSearchSubjectWithEnrolled.TabIndex = 19;
+            this.TxtSearchSubjectWithEnrolled.TextChanged += new System.EventHandler(this.TxtSearchSubjectWithEnrolled_TextChanged);
+            // 
+            // BtnWithEnrolledSubjects
+            // 
+            this.BtnWithEnrolledSubjects.BackColor = System.Drawing.Color.ForestGreen;
+            this.BtnWithEnrolledSubjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnWithEnrolledSubjects.ForeColor = System.Drawing.Color.White;
+            this.BtnWithEnrolledSubjects.Location = new System.Drawing.Point(650, 4);
+            this.BtnWithEnrolledSubjects.Name = "BtnWithEnrolledSubjects";
+            this.BtnWithEnrolledSubjects.Size = new System.Drawing.Size(79, 33);
+            this.BtnWithEnrolledSubjects.TabIndex = 9;
+            this.BtnWithEnrolledSubjects.Text = "Enrolled";
+            this.BtnWithEnrolledSubjects.UseVisualStyleBackColor = false;
+            this.BtnWithEnrolledSubjects.Click += new System.EventHandler(this.BtnWithEnrolledSubjects_Click);
+            // 
+            // BtnAllSubjects
+            // 
+            this.BtnAllSubjects.BackColor = System.Drawing.Color.ForestGreen;
+            this.BtnAllSubjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAllSubjects.ForeColor = System.Drawing.Color.White;
+            this.BtnAllSubjects.Location = new System.Drawing.Point(544, 3);
+            this.BtnAllSubjects.Name = "BtnAllSubjects";
+            this.BtnAllSubjects.Size = new System.Drawing.Size(100, 33);
+            this.BtnAllSubjects.TabIndex = 10;
+            this.BtnAllSubjects.Text = "All Subjects";
+            this.BtnAllSubjects.UseVisualStyleBackColor = false;
+            this.BtnAllSubjects.Click += new System.EventHandler(this.BtnAllSubjects_Click);
             // 
             // Subjects
             // 
@@ -335,6 +399,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TblSubjects)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TblAllSubjectsWithEnrolled)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -364,5 +429,9 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TxtSubjectCode;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView TblAllSubjectsWithEnrolled;
+        private System.Windows.Forms.TextBox TxtSearchSubjectWithEnrolled;
+        private System.Windows.Forms.Button BtnWithEnrolledSubjects;
+        private System.Windows.Forms.Button BtnAllSubjects;
     }
 }
