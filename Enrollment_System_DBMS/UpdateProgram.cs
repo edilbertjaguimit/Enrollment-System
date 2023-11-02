@@ -33,6 +33,7 @@ namespace Enrollment_System_DBMS
             //Update
         }
 
+        // College Combobox
         private void CbCollege_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
