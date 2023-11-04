@@ -33,11 +33,11 @@ namespace Enrollment_System_DBMS.Student_Controls
             this.BtnAddCollege = new System.Windows.Forms.Button();
             this.BtnAddProgram = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnDeleteCollege = new System.Windows.Forms.Button();
+            this.BtnUpdateCollege = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.BtnDeleteProgram = new System.Windows.Forms.Button();
+            this.BtnUpdateProgram = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnRefreshAll = new System.Windows.Forms.Button();
             this.lblNoProgram = new System.Windows.Forms.Label();
@@ -100,70 +100,74 @@ namespace Enrollment_System_DBMS.Student_Controls
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.BtnDeleteCollege);
+            this.panel3.Controls.Add(this.BtnUpdateCollege);
             this.panel3.Controls.Add(this.BtnAddCollege);
             this.panel3.Location = new System.Drawing.Point(3, 419);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(371, 46);
             this.panel3.TabIndex = 24;
             // 
-            // button2
+            // BtnDeleteCollege
             // 
-            this.button2.BackColor = System.Drawing.Color.Gold;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(246, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(114, 33);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = false;
+            this.BtnDeleteCollege.BackColor = System.Drawing.Color.Gold;
+            this.BtnDeleteCollege.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDeleteCollege.ForeColor = System.Drawing.Color.Red;
+            this.BtnDeleteCollege.Location = new System.Drawing.Point(246, 5);
+            this.BtnDeleteCollege.Name = "BtnDeleteCollege";
+            this.BtnDeleteCollege.Size = new System.Drawing.Size(114, 33);
+            this.BtnDeleteCollege.TabIndex = 13;
+            this.BtnDeleteCollege.Text = "Delete";
+            this.BtnDeleteCollege.UseVisualStyleBackColor = false;
+            this.BtnDeleteCollege.Click += new System.EventHandler(this.BtnDeleteCollege_Click);
             // 
-            // button1
+            // BtnUpdateCollege
             // 
-            this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(126, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 33);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Update";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnUpdateCollege.BackColor = System.Drawing.Color.Gold;
+            this.BtnUpdateCollege.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnUpdateCollege.Location = new System.Drawing.Point(126, 5);
+            this.BtnUpdateCollege.Name = "BtnUpdateCollege";
+            this.BtnUpdateCollege.Size = new System.Drawing.Size(114, 33);
+            this.BtnUpdateCollege.TabIndex = 12;
+            this.BtnUpdateCollege.Text = "Update";
+            this.BtnUpdateCollege.UseVisualStyleBackColor = false;
+            this.BtnUpdateCollege.Click += new System.EventHandler(this.BtnUpdateCollege_Click);
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.button5);
+            this.panel4.Controls.Add(this.BtnDeleteProgram);
+            this.panel4.Controls.Add(this.BtnUpdateProgram);
             this.panel4.Controls.Add(this.BtnAddProgram);
             this.panel4.Location = new System.Drawing.Point(386, 419);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(371, 46);
             this.panel4.TabIndex = 25;
             // 
-            // button4
+            // BtnDeleteProgram
             // 
-            this.button4.BackColor = System.Drawing.Color.Gold;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.Red;
-            this.button4.Location = new System.Drawing.Point(243, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(114, 33);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Delete";
-            this.button4.UseVisualStyleBackColor = false;
+            this.BtnDeleteProgram.BackColor = System.Drawing.Color.Gold;
+            this.BtnDeleteProgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDeleteProgram.ForeColor = System.Drawing.Color.Red;
+            this.BtnDeleteProgram.Location = new System.Drawing.Point(243, 5);
+            this.BtnDeleteProgram.Name = "BtnDeleteProgram";
+            this.BtnDeleteProgram.Size = new System.Drawing.Size(114, 33);
+            this.BtnDeleteProgram.TabIndex = 15;
+            this.BtnDeleteProgram.Text = "Delete";
+            this.BtnDeleteProgram.UseVisualStyleBackColor = false;
+            this.BtnDeleteProgram.Click += new System.EventHandler(this.BtnDeleteProgram_Click);
             // 
-            // button5
+            // BtnUpdateProgram
             // 
-            this.button5.BackColor = System.Drawing.Color.Gold;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(123, 5);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(114, 33);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "Update";
-            this.button5.UseVisualStyleBackColor = false;
+            this.BtnUpdateProgram.BackColor = System.Drawing.Color.Gold;
+            this.BtnUpdateProgram.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnUpdateProgram.Location = new System.Drawing.Point(123, 5);
+            this.BtnUpdateProgram.Name = "BtnUpdateProgram";
+            this.BtnUpdateProgram.Size = new System.Drawing.Size(114, 33);
+            this.BtnUpdateProgram.TabIndex = 14;
+            this.BtnUpdateProgram.Text = "Update";
+            this.BtnUpdateProgram.UseVisualStyleBackColor = false;
+            this.BtnUpdateProgram.Click += new System.EventHandler(this.BtnUpdateProgram_Click);
             // 
             // panel1
             // 
@@ -379,11 +383,11 @@ namespace Enrollment_System_DBMS.Student_Controls
         private System.Windows.Forms.Button BtnAddCollege;
         private System.Windows.Forms.Button BtnAddProgram;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnDeleteCollege;
+        private System.Windows.Forms.Button BtnUpdateCollege;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button BtnDeleteProgram;
+        private System.Windows.Forms.Button BtnUpdateProgram;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BtnRefreshAll;
         public System.Windows.Forms.Label lblNoProgram;

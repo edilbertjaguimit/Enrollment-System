@@ -122,6 +122,18 @@
     <Compile Include="Student Controls\UpdateStudentInformation.Designer.cs">
       <DependentUpon>UpdateStudentInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateCollege.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateCollege.Designer.cs">
+      <DependentUpon>UpdateCollege.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateProgram.Designer.cs">
+      <DependentUpon>UpdateProgram.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddCollege.resx">
       <DependentUpon>AddCollege.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +176,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Student Controls\UpdateStudentInformation.resx">
       <DependentUpon>UpdateStudentInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateCollege.resx">
+      <DependentUpon>UpdateCollege.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateProgram.resx">
+      <DependentUpon>UpdateProgram.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="EnrollmentDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

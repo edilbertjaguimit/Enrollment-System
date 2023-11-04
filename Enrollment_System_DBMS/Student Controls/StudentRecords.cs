@@ -32,7 +32,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         }
         public void DisplayStudentRecords()
         {
-            TblStudentRecords.DataSource = db.SP_DISPLAY_STUDENT_RECORDS();
+            TblStudentRecords.DataSource = db.SP_DISPLAY_STUDENT_RECORDS_LEFT_JOIN();
             if (TblStudentRecords.Rows.Count == 0)
             {
                 lblNoStudentFound.Text = "No Student Yet";
@@ -63,7 +63,7 @@ namespace Enrollment_System_DBMS.Student_Controls
 
         private void TxtSearchStudent_TextChanged(object sender, EventArgs e)
         {
-            TblStudentRecords.DataSource = db.SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX(TxtSearchStudent.Text);
+            TblStudentRecords.DataSource = db.SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX_LEFT_JOIN(TxtSearchStudent.Text);
             if (TblStudentRecords.Rows.Count == 0)
             {
                 lblNoStudentFound.Text = "No Student Found";

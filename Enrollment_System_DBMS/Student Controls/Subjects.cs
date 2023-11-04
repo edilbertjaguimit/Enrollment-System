@@ -205,6 +205,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             TxtSubjectDescription.Text = studentRecord.Cells[3].Value.ToString();
             TxtUnits.Text = studentRecord.Cells[4].Value.ToString();
             CbSemester.SelectedItem = studentRecord.Cells[5].Value.ToString();
+            BtnAddSubject.Enabled = false;
         }
 
         private void BtnReset_Click(object sender, EventArgs e)
@@ -224,6 +225,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                     DisplaySubjects();
                     DisplaySubjectsWithEnrolled();
                     ClearText();
+                    BtnAddSubject.Enabled = true;
                 }
                 catch (Exception ex)
                 {
