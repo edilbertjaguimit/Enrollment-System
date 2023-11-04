@@ -26,7 +26,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             TxtSearchSubject.BringToFront();
             DisplaySubjects();
             AllSubjectsIsEmpty();
-            BtnAddSubject.Enabled = true;
         }
 
         private void BtnAddSubject_Click(object sender, EventArgs e)
@@ -226,6 +225,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                     DisplaySubjects();
                     DisplaySubjectsWithEnrolled();
                     ClearText();
+                    BtnAddSubject.Enabled = true;
                 }
                 catch (Exception ex)
                 {

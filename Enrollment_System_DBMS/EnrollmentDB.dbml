@@ -534,4 +534,12 @@
     <Parameter Name="COLL_UPDATED_AT" Parameter="cOLL_UPDATED_AT" Type="System.DateTime" DbType="Date" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.SP_DELETE_PROGRAM" Method="SP_DELETE_PROGRAM">
+    <Parameter Name="PROG_ID" Parameter="pROG_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_DELETE_COLLEGE" Method="SP_DELETE_COLLEGE">
+    <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

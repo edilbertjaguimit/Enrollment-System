@@ -549,6 +549,20 @@ namespace Enrollment_System_DBMS
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOLL_ID, cOLL_NAME, cOLL_UPDATED_AT);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DELETE_PROGRAM")]
+		public int SP_DELETE_PROGRAM([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_ID", DbType="Int")] System.Nullable<int> pROG_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pROG_ID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DELETE_COLLEGE")]
+		public int SP_DELETE_COLLEGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_ID", DbType="Int")] System.Nullable<int> cOLL_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOLL_ID);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ACADEMIC_YEAR")]

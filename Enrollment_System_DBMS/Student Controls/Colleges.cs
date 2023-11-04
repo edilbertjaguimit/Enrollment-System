@@ -255,7 +255,19 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             if (TblProgram.SelectedRows.Count > 0)
             {
+                var result = MessageBox.Show("Are you sure you want to delete?", "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        MessageBox.Show("Subject Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
+                }
             }
             else
             {
