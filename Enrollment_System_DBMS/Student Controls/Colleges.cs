@@ -195,7 +195,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             }
             MessageBox.Show($"{GetProgramID()}");
         }
-
+        // Table cell clicked
         private void TblCollege_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var studentRecord = TblCollege.CurrentRow;
@@ -228,7 +228,19 @@ namespace Enrollment_System_DBMS.Student_Controls
         {
             if (TblCollege.SelectedRows.Count > 0)
             {
-                
+                var result = MessageBox.Show("Are you sure you want to delete?", "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        db.SP_DELETE_PROGRAM(GetCollegeID());
+                        MessageBox.Show("Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             else
             {
@@ -260,7 +272,8 @@ namespace Enrollment_System_DBMS.Student_Controls
                 {
                     try
                     {
-                        MessageBox.Show("Subject Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        db.SP_DELETE_PROGRAM(GetProgramID());
+                        MessageBox.Show("Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {

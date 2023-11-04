@@ -376,7 +376,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                     using (var cmd = db.CreateCommand())
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "SP_DISPLAY_STUDENT_INFORMATION";
+                        cmd.CommandText = "SP_DISPLAY_STUDENT_INFORMATION_LEFT_JOIN";
                         cmd.Parameters.AddWithValue("KEY", GetStudentID());
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {

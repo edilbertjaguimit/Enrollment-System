@@ -51,16 +51,15 @@ namespace Enrollment_System_DBMS.Student_Controls
             try
             {
                 //MessageBox.Show($"{GetStudentID()} Hello");
-                using (var db = new SqlConnection(_conn))
+                using (var dbStudent = new SqlConnection(_conn))
                 {
-                //MessageBox.Show($"{GetStudentID()} Hi");
-                    db.Open();
-                    using (var cmd = db.CreateCommand())
+                    //MessageBox.Show($"{GetStudentID()} Hi");
+                    dbStudent.Open();
+                    using (var cmd = dbStudent.CreateCommand())
                     {
                         //MessageBox.Show($"{GetStudentID()} Musta?");
-
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "SP_DISPLAY_STUDENT_INFORMATION";
+                        cmd.CommandText = "SP_DISPLAY_STUDENT_INFORMATION_LEFT_JOIN";
                         cmd.Parameters.AddWithValue("KEY", GetStudentID());
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {

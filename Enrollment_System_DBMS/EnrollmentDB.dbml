@@ -542,4 +542,63 @@
     <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.SP_DISPLAY_STUDENT_RECORDS_LEFT_JOIN" Method="SP_DISPLAY_STUDENT_RECORDS_LEFT_JOIN">
+    <ElementType Name="SP_DISPLAY_STUDENT_RECORDS_LEFT_JOINResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[Year level]" Member="Year_level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Program" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_DISPLAY_STUDENT_INFORMATION_LEFT_JOIN" Method="SP_DISPLAY_STUDENT_INFORMATION_LEFT_JOIN">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="SP_DISPLAY_STUDENT_INFORMATION_LEFT_JOINResult">
+      <Column Name="STUD_NUMBER" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_ID" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="STUD_PHOTO" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" />
+      <Column Name="STUD_FIRSTNAME" Type="System.String" DbType="NVarChar(55) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_MIDDLENAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="STUD_LASTNAME" Type="System.String" DbType="NVarChar(55) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_AGE" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_BIRTH_DATE" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_PLACE_OF_BIRTH" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_ADDRESS" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_EMAIL" Type="System.String" DbType="NVarChar(55) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_MOBILE" Type="System.String" DbType="NVarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_GENDER" Type="System.String" DbType="NVarChar(55) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_STATUS" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_CREATED_AT" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="STUD_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="COLL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PROG_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YEAR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YEAR_ID1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YEAR_NAME" Type="System.String" DbType="NVarChar(55)" CanBeNull="true" />
+      <Column Name="PROG_ID1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PROG_NAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PROG_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PROG_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="COLL_ID1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COLL_ID2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COLL_NAME" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="COLL_CREATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="COLL_UPDATED_AT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX_LEFT_JOIN" Method="SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX_LEFT_JOIN">
+    <Parameter Name="KEY" Parameter="kEY" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX_LEFT_JOINResult">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(167) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[Year level]" Member="Year_level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Program" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
