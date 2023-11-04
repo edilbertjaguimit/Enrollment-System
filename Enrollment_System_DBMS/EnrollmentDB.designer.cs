@@ -39,6 +39,9 @@ namespace Enrollment_System_DBMS
     partial void InsertCOLLEGE(COLLEGE instance);
     partial void UpdateCOLLEGE(COLLEGE instance);
     partial void DeleteCOLLEGE(COLLEGE instance);
+    partial void InsertENROLLMENT(ENROLLMENT instance);
+    partial void UpdateENROLLMENT(ENROLLMENT instance);
+    partial void DeleteENROLLMENT(ENROLLMENT instance);
     partial void InsertPROGRAM(PROGRAM instance);
     partial void UpdatePROGRAM(PROGRAM instance);
     partial void DeletePROGRAM(PROGRAM instance);
@@ -51,9 +54,6 @@ namespace Enrollment_System_DBMS
     partial void InsertSUBJECT(SUBJECT instance);
     partial void UpdateSUBJECT(SUBJECT instance);
     partial void DeleteSUBJECT(SUBJECT instance);
-    partial void InsertENROLLMENT(ENROLLMENT instance);
-    partial void UpdateENROLLMENT(ENROLLMENT instance);
-    partial void DeleteENROLLMENT(ENROLLMENT instance);
     #endregion
 		
 		public EnrollmentDBDataContext() : 
@@ -110,6 +110,22 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
+		public System.Data.Linq.Table<COLLEGE_ID_STORAGE> COLLEGE_ID_STORAGEs
+		{
+			get
+			{
+				return this.GetTable<COLLEGE_ID_STORAGE>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ENROLLMENT> ENROLLMENTs
+		{
+			get
+			{
+				return this.GetTable<ENROLLMENT>();
+			}
+		}
+		
 		public System.Data.Linq.Table<ID_STORAGE> ID_STORAGEs
 		{
 			get
@@ -123,6 +139,14 @@ namespace Enrollment_System_DBMS
 			get
 			{
 				return this.GetTable<PROGRAM>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PROGRAM_ID_STORAGE> PROGRAM_ID_STORAGEs
+		{
+			get
+			{
+				return this.GetTable<PROGRAM_ID_STORAGE>();
 			}
 		}
 		
@@ -150,28 +174,11 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
-		public System.Data.Linq.Table<ENROLLMENT> ENROLLMENTs
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACADEMIC_YEAR")]
+		public ISingleResult<SP_ACADEMIC_YEARResult> SP_ACADEMIC_YEAR()
 		{
-			get
-			{
-				return this.GetTable<ENROLLMENT>();
-			}
-		}
-		
-		public System.Data.Linq.Table<PROGRAM_ID_STORAGE> PROGRAM_ID_STORAGEs
-		{
-			get
-			{
-				return this.GetTable<PROGRAM_ID_STORAGE>();
-			}
-		}
-		
-		public System.Data.Linq.Table<COLLEGE_ID_STORAGE> COLLEGE_ID_STORAGEs
-		{
-			get
-			{
-				return this.GetTable<COLLEGE_ID_STORAGE>();
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_ACADEMIC_YEARResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_YEAR_LEVEL_ID")]
@@ -181,11 +188,11 @@ namespace Enrollment_System_DBMS
 			return ((ISingleResult<SP_YEAR_LEVEL_IDResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACADEMIC_YEAR")]
-		public ISingleResult<SP_ACADEMIC_YEARResult> SP_ACADEMIC_YEAR()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACADEMIC_YEAR_ID")]
+		public ISingleResult<SP_ACADEMIC_YEAR_IDResult> SP_ACADEMIC_YEAR_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(20)")] string kEY)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_ACADEMIC_YEARResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_ACADEMIC_YEAR_IDResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_COLLEGE")]
@@ -200,6 +207,13 @@ namespace Enrollment_System_DBMS
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOLL_NAME);
 			return ((ISingleResult<SP_COLLEGE_IDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_COLLEGE_ID_STORAGE")]
+		public int SP_COLLEGE_ID_STORAGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_COUNT_ALL_STUDENTS")]
@@ -230,6 +244,27 @@ namespace Enrollment_System_DBMS
 			return ((int)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DELETE_STUDENT_SUBJECT")]
+		public int SP_DELETE_STUDENT_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ENROLL_ID", DbType="Int")] System.Nullable<int> eNROLL_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="STUD_NUMBER", DbType="Int")] System.Nullable<int> sTUD_NUMBER)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eNROLL_ID, sTUD_NUMBER);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DELETE_SUBJECT")]
+		public int SP_DELETE_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_ID", DbType="Int")] System.Nullable<int> sUB_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sUB_ID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_ALL_SUBJECTS")]
+		public ISingleResult<SP_DISPLAY_ALL_SUBJECTSResult> SP_DISPLAY_ALL_SUBJECTS()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_DISPLAY_ALL_SUBJECTSResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_COLLEGE")]
 		public ISingleResult<SP_DISPLAY_COLLEGEResult> SP_DISPLAY_COLLEGE()
 		{
@@ -256,6 +291,27 @@ namespace Enrollment_System_DBMS
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_DISPLAY_STUDENT_RECORDSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_STUDENT_SUBJECTS")]
+		public ISingleResult<SP_DISPLAY_STUDENT_SUBJECTSResult> SP_DISPLAY_STUDENT_SUBJECTS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="Int")] System.Nullable<int> kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_DISPLAY_STUDENT_SUBJECTSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_SUBJECTS")]
+		public ISingleResult<SP_DISPLAY_SUBJECTSResult> SP_DISPLAY_SUBJECTS()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_DISPLAY_SUBJECTSResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ENROLL_STUDENT_TO_SUBJECTS")]
+		public int SP_ENROLL_STUDENT_TO_SUBJECTS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ENROLL_CREATED_AT", DbType="Date")] System.Nullable<System.DateTime> eNROLL_CREATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ENROLL_UPDATED_AT", DbType="Date")] System.Nullable<System.DateTime> eNROLL_UPDATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ACAD_ID", DbType="Int")] System.Nullable<int> aCAD_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_ID", DbType="Int")] System.Nullable<int> sUB_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SEM_ID", DbType="Int")] System.Nullable<int> sEM_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="STUD_NUMBER", DbType="Int")] System.Nullable<int> sTUD_NUMBER)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eNROLL_CREATED_AT, eNROLL_UPDATED_AT, aCAD_ID, sUB_ID, sEM_ID, sTUD_NUMBER);
+			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ID_STORAGE")]
@@ -303,6 +359,13 @@ namespace Enrollment_System_DBMS
 			return ((int)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_INSERT_SUBJECT")]
+		public int SP_INSERT_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_SECTION_CODE", DbType="NVarChar(55)")] string sUB_SECTION_CODE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_CODE", DbType="NVarChar(55)")] string sUB_CODE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_DESCRIPTION", DbType="NVarChar(255)")] string sUB_DESCRIPTION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_UNITS", DbType="Float")] System.Nullable<double> sUB_UNITS, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SEM_ID", DbType="Int")] System.Nullable<int> sEM_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sUB_SECTION_CODE, sUB_CODE, sUB_DESCRIPTION, sUB_UNITS, sEM_ID);
+			return ((int)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_PROGRAM")]
 		public ISingleResult<SP_PROGRAMResult> SP_PROGRAM()
 		{
@@ -315,6 +378,13 @@ namespace Enrollment_System_DBMS
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pROG_NAME);
 			return ((ISingleResult<SP_PROGRAM_IDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_PROGRAM_ID_STORAGE")]
+		public int SP_PROGRAM_ID_STORAGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_COLLEGE")]
@@ -338,6 +408,27 @@ namespace Enrollment_System_DBMS
 			return ((ISingleResult<SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOXResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_STUDENT_SUBJECT")]
+		public ISingleResult<SP_SEARCH_STUDENT_SUBJECTResult> SP_SEARCH_STUDENT_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, kEY);
+			return ((ISingleResult<SP_SEARCH_STUDENT_SUBJECTResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_SUBJECT")]
+		public ISingleResult<SP_SEARCH_SUBJECTResult> SP_SEARCH_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SEARCH_SUBJECTResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_SUBJECT_BY_TEXTBOX")]
+		public ISingleResult<SP_SEARCH_SUBJECT_BY_TEXTBOXResult> SP_SEARCH_SUBJECT_BY_TEXTBOX([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SEARCH_SUBJECT_BY_TEXTBOXResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEMESTER")]
 		public ISingleResult<SP_SEMESTERResult> SP_SEMESTER()
 		{
@@ -345,11 +436,46 @@ namespace Enrollment_System_DBMS
 			return ((ISingleResult<SP_SEMESTERResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEMESTER_ID")]
+		public ISingleResult<SP_SEMESTER_IDResult> SP_SEMESTER_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(55)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SEMESTER_IDResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SPECIFIC_PROGRAM_FROM_COLLEGE")]
 		public ISingleResult<SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult> SP_SPECIFIC_PROGRAM_FROM_COLLEGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="Int")] System.Nullable<int> kEY)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
 			return ((ISingleResult<SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SPECIFIC_SUBJECT_FROM_SEMESTER")]
+		public ISingleResult<SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult> SP_SPECIFIC_SUBJECT_FROM_SEMESTER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="Int")] System.Nullable<int> kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_STUDENT_NUMBER")]
+		public ISingleResult<SP_STUDENT_NUMBERResult> SP_STUDENT_NUMBER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(5)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_STUDENT_NUMBERResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SUBJECT_ID")]
+		public ISingleResult<SP_SUBJECT_IDResult> SP_SUBJECT_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(255)")] string kEY)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
+			return ((ISingleResult<SP_SUBJECT_IDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SUBJECT_LIST")]
+		public ISingleResult<SP_SUBJECT_LISTResult> SP_SUBJECT_LIST()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_SUBJECT_LISTResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_UPDATE_STUDENT_INFORMATION")]
@@ -375,115 +501,10 @@ namespace Enrollment_System_DBMS
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_YEAR_LEVEL")]
-		public ISingleResult<SP_YEAR_LEVELResult> SP_YEAR_LEVEL()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_YEAR_LEVELResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_INSERT_SUBJECT")]
-		public int SP_INSERT_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_SECTION_CODE", DbType="NVarChar(55)")] string sUB_SECTION_CODE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_CODE", DbType="NVarChar(55)")] string sUB_CODE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_DESCRIPTION", DbType="NVarChar(255)")] string sUB_DESCRIPTION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_UNITS", DbType="Float")] System.Nullable<double> sUB_UNITS, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SEM_ID", DbType="Int")] System.Nullable<int> sEM_ID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sUB_SECTION_CODE, sUB_CODE, sUB_DESCRIPTION, sUB_UNITS, sEM_ID);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SUBJECT_LIST")]
-		public ISingleResult<SP_SUBJECT_LISTResult> SP_SUBJECT_LIST()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_SUBJECT_LISTResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SPECIFIC_SUBJECT_FROM_SEMESTER")]
-		public ISingleResult<SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult> SP_SPECIFIC_SUBJECT_FROM_SEMESTER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="Int")] System.Nullable<int> kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_STUDENT_NUMBER")]
-		public ISingleResult<SP_STUDENT_NUMBERResult> SP_STUDENT_NUMBER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(5)")] string kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_STUDENT_NUMBERResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACADEMIC_YEAR_ID")]
-		public ISingleResult<SP_ACADEMIC_YEAR_IDResult> SP_ACADEMIC_YEAR_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(20)")] string kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_ACADEMIC_YEAR_IDResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEMESTER_ID")]
-		public ISingleResult<SP_SEMESTER_IDResult> SP_SEMESTER_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(55)")] string kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_SEMESTER_IDResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SUBJECT_ID")]
-		public ISingleResult<SP_SUBJECT_IDResult> SP_SUBJECT_ID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(255)")] string kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_SUBJECT_IDResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ENROLL_STUDENT_TO_SUBJECTS")]
-		public int SP_ENROLL_STUDENT_TO_SUBJECTS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ENROLL_CREATED_AT", DbType="Date")] System.Nullable<System.DateTime> eNROLL_CREATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ENROLL_UPDATED_AT", DbType="Date")] System.Nullable<System.DateTime> eNROLL_UPDATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ACAD_ID", DbType="Int")] System.Nullable<int> aCAD_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_ID", DbType="Int")] System.Nullable<int> sUB_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SEM_ID", DbType="Int")] System.Nullable<int> sEM_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="STUD_NUMBER", DbType="Int")] System.Nullable<int> sTUD_NUMBER)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eNROLL_CREATED_AT, eNROLL_UPDATED_AT, aCAD_ID, sUB_ID, sEM_ID, sTUD_NUMBER);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_STUDENT_SUBJECT")]
-		public ISingleResult<SP_SEARCH_STUDENT_SUBJECTResult> SP_SEARCH_STUDENT_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, kEY);
-			return ((ISingleResult<SP_SEARCH_STUDENT_SUBJECTResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_STUDENT_SUBJECTS")]
-		public ISingleResult<SP_DISPLAY_STUDENT_SUBJECTSResult> SP_DISPLAY_STUDENT_SUBJECTS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="Int")] System.Nullable<int> kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_DISPLAY_STUDENT_SUBJECTSResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DELETE_STUDENT_SUBJECT")]
-		public int SP_DELETE_STUDENT_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ENROLL_ID", DbType="Int")] System.Nullable<int> eNROLL_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="STUD_NUMBER", DbType="Int")] System.Nullable<int> sTUD_NUMBER)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eNROLL_ID, sTUD_NUMBER);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_UPDATE_STUDENT_SUBJECT")]
 		public int SP_UPDATE_STUDENT_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ENROLL_UPDATED_AT", DbType="Date")] System.Nullable<System.DateTime> eNROLL_UPDATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ACAD_ID", DbType="Int")] System.Nullable<int> aCAD_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SEM_ID", DbType="Int")] System.Nullable<int> sEM_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_ID", DbType="Int")] System.Nullable<int> sUB_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ENROLL_ID", DbType="Int")] System.Nullable<int> eNROLL_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="STUD_NUMBER", DbType="Int")] System.Nullable<int> sTUD_NUMBER)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), eNROLL_UPDATED_AT, aCAD_ID, sEM_ID, sUB_ID, eNROLL_ID, sTUD_NUMBER);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_SUBJECT")]
-		public ISingleResult<SP_SEARCH_SUBJECTResult> SP_SEARCH_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_SEARCH_SUBJECTResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_ALL_SUBJECTS")]
-		public ISingleResult<SP_DISPLAY_ALL_SUBJECTSResult> SP_DISPLAY_ALL_SUBJECTS()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_DISPLAY_ALL_SUBJECTSResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DELETE_SUBJECT")]
-		public int SP_DELETE_SUBJECT([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SUB_ID", DbType="Int")] System.Nullable<int> sUB_ID)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sUB_ID);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -494,31 +515,38 @@ namespace Enrollment_System_DBMS
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_DISPLAY_SUBJECTS")]
-		public ISingleResult<SP_DISPLAY_SUBJECTSResult> SP_DISPLAY_SUBJECTS()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_YEAR_LEVEL")]
+		public ISingleResult<SP_YEAR_LEVELResult> SP_YEAR_LEVEL()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_DISPLAY_SUBJECTSResult>)(result.ReturnValue));
+			return ((ISingleResult<SP_YEAR_LEVELResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_SEARCH_SUBJECT_BY_TEXTBOX")]
-		public ISingleResult<SP_SEARCH_SUBJECT_BY_TEXTBOXResult> SP_SEARCH_SUBJECT_BY_TEXTBOX([global::System.Data.Linq.Mapping.ParameterAttribute(Name="KEY", DbType="NVarChar(MAX)")] string kEY)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_GET_COLLEGE_ID_STORAGE")]
+		public ISingleResult<SP_GET_COLLEGE_ID_STORAGEResult> SP_GET_COLLEGE_ID_STORAGE()
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
-			return ((ISingleResult<SP_SEARCH_SUBJECT_BY_TEXTBOXResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_GET_COLLEGE_ID_STORAGEResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_COLLEGE_ID_STORAGE")]
-		public int SP_COLLEGE_ID_STORAGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_GET_PROGRAM_ID_STORAGE")]
+		public ISingleResult<SP_GET_PROGRAM_ID_STORAGEResult> SP_GET_PROGRAM_ID_STORAGE()
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_GET_PROGRAM_ID_STORAGEResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_UPDATE_PROGRAM")]
+		public int SP_UPDATE_PROGRAM([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_ID", DbType="Int")] System.Nullable<int> pROG_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_NAME", DbType="NVarChar(255)")] string pROG_NAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_UPDATED_AT", DbType="Date")] System.Nullable<System.DateTime> pROG_UPDATED_AT, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_ID", DbType="Int")] System.Nullable<int> cOLL_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pROG_ID, pROG_NAME, pROG_UPDATED_AT, cOLL_ID);
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_PROGRAM_ID_STORAGE")]
-		public int SP_PROGRAM_ID_STORAGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_UPDATE_COLLEGE")]
+		public int SP_UPDATE_COLLEGE([global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_ID", DbType="Int")] System.Nullable<int> cOLL_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_NAME", DbType="NVarChar(255)")] string cOLL_NAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_UPDATED_AT", DbType="Date")] System.Nullable<System.DateTime> cOLL_UPDATED_AT)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOLL_ID, cOLL_NAME, cOLL_UPDATED_AT);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -941,6 +969,403 @@ namespace Enrollment_System_DBMS
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COLLEGE_ID_STORAGE")]
+	public partial class COLLEGE_ID_STORAGE
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		public COLLEGE_ID_STORAGE()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ENROLLMENT")]
+	public partial class ENROLLMENT : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ENROLL_ID;
+		
+		private System.Nullable<System.DateTime> _ENROLL_CREATED_AT;
+		
+		private System.Nullable<System.DateTime> _ENROLL_UPDATED_AT;
+		
+		private System.Nullable<int> _ACAD_ID;
+		
+		private System.Nullable<int> _SUB_ID;
+		
+		private System.Nullable<int> _SEM_ID;
+		
+		private System.Nullable<int> _STUD_NUMBER;
+		
+		private EntityRef<ACADEMIC_YEAR> _ACADEMIC_YEAR;
+		
+		private EntityRef<SEMESTER> _SEMESTER;
+		
+		private EntityRef<STUDENT> _STUDENT;
+		
+		private EntityRef<SUBJECT> _SUBJECT;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnENROLL_IDChanging(int value);
+    partial void OnENROLL_IDChanged();
+    partial void OnENROLL_CREATED_ATChanging(System.Nullable<System.DateTime> value);
+    partial void OnENROLL_CREATED_ATChanged();
+    partial void OnENROLL_UPDATED_ATChanging(System.Nullable<System.DateTime> value);
+    partial void OnENROLL_UPDATED_ATChanged();
+    partial void OnACAD_IDChanging(System.Nullable<int> value);
+    partial void OnACAD_IDChanged();
+    partial void OnSUB_IDChanging(System.Nullable<int> value);
+    partial void OnSUB_IDChanged();
+    partial void OnSEM_IDChanging(System.Nullable<int> value);
+    partial void OnSEM_IDChanged();
+    partial void OnSTUD_NUMBERChanging(System.Nullable<int> value);
+    partial void OnSTUD_NUMBERChanged();
+    #endregion
+		
+		public ENROLLMENT()
+		{
+			this._ACADEMIC_YEAR = default(EntityRef<ACADEMIC_YEAR>);
+			this._SEMESTER = default(EntityRef<SEMESTER>);
+			this._STUDENT = default(EntityRef<STUDENT>);
+			this._SUBJECT = default(EntityRef<SUBJECT>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ENROLL_ID
+		{
+			get
+			{
+				return this._ENROLL_ID;
+			}
+			set
+			{
+				if ((this._ENROLL_ID != value))
+				{
+					this.OnENROLL_IDChanging(value);
+					this.SendPropertyChanging();
+					this._ENROLL_ID = value;
+					this.SendPropertyChanged("ENROLL_ID");
+					this.OnENROLL_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_CREATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> ENROLL_CREATED_AT
+		{
+			get
+			{
+				return this._ENROLL_CREATED_AT;
+			}
+			set
+			{
+				if ((this._ENROLL_CREATED_AT != value))
+				{
+					this.OnENROLL_CREATED_ATChanging(value);
+					this.SendPropertyChanging();
+					this._ENROLL_CREATED_AT = value;
+					this.SendPropertyChanged("ENROLL_CREATED_AT");
+					this.OnENROLL_CREATED_ATChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_UPDATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> ENROLL_UPDATED_AT
+		{
+			get
+			{
+				return this._ENROLL_UPDATED_AT;
+			}
+			set
+			{
+				if ((this._ENROLL_UPDATED_AT != value))
+				{
+					this.OnENROLL_UPDATED_ATChanging(value);
+					this.SendPropertyChanging();
+					this._ENROLL_UPDATED_AT = value;
+					this.SendPropertyChanged("ENROLL_UPDATED_AT");
+					this.OnENROLL_UPDATED_ATChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_ID", DbType="Int")]
+		public System.Nullable<int> ACAD_ID
+		{
+			get
+			{
+				return this._ACAD_ID;
+			}
+			set
+			{
+				if ((this._ACAD_ID != value))
+				{
+					if (this._ACADEMIC_YEAR.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnACAD_IDChanging(value);
+					this.SendPropertyChanging();
+					this._ACAD_ID = value;
+					this.SendPropertyChanged("ACAD_ID");
+					this.OnACAD_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int")]
+		public System.Nullable<int> SUB_ID
+		{
+			get
+			{
+				return this._SUB_ID;
+			}
+			set
+			{
+				if ((this._SUB_ID != value))
+				{
+					if (this._SUBJECT.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSUB_IDChanging(value);
+					this.SendPropertyChanging();
+					this._SUB_ID = value;
+					this.SendPropertyChanged("SUB_ID");
+					this.OnSUB_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
+		public System.Nullable<int> SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					if (this._SEMESTER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSEM_IDChanging(value);
+					this.SendPropertyChanging();
+					this._SEM_ID = value;
+					this.SendPropertyChanged("SEM_ID");
+					this.OnSEM_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUD_NUMBER", DbType="Int")]
+		public System.Nullable<int> STUD_NUMBER
+		{
+			get
+			{
+				return this._STUD_NUMBER;
+			}
+			set
+			{
+				if ((this._STUD_NUMBER != value))
+				{
+					if (this._STUDENT.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSTUD_NUMBERChanging(value);
+					this.SendPropertyChanging();
+					this._STUD_NUMBER = value;
+					this.SendPropertyChanged("STUD_NUMBER");
+					this.OnSTUD_NUMBERChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ACADEMIC_YEAR_ENROLLMENT", Storage="_ACADEMIC_YEAR", ThisKey="ACAD_ID", OtherKey="ACAD_ID", IsForeignKey=true)]
+		public ACADEMIC_YEAR ACADEMIC_YEAR
+		{
+			get
+			{
+				return this._ACADEMIC_YEAR.Entity;
+			}
+			set
+			{
+				ACADEMIC_YEAR previousValue = this._ACADEMIC_YEAR.Entity;
+				if (((previousValue != value) 
+							|| (this._ACADEMIC_YEAR.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ACADEMIC_YEAR.Entity = null;
+						previousValue.ENROLLMENTs.Remove(this);
+					}
+					this._ACADEMIC_YEAR.Entity = value;
+					if ((value != null))
+					{
+						value.ENROLLMENTs.Add(this);
+						this._ACAD_ID = value.ACAD_ID;
+					}
+					else
+					{
+						this._ACAD_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ACADEMIC_YEAR");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_ENROLLMENT", Storage="_SEMESTER", ThisKey="SEM_ID", OtherKey="SEM_ID", IsForeignKey=true)]
+		public SEMESTER SEMESTER
+		{
+			get
+			{
+				return this._SEMESTER.Entity;
+			}
+			set
+			{
+				SEMESTER previousValue = this._SEMESTER.Entity;
+				if (((previousValue != value) 
+							|| (this._SEMESTER.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SEMESTER.Entity = null;
+						previousValue.ENROLLMENTs.Remove(this);
+					}
+					this._SEMESTER.Entity = value;
+					if ((value != null))
+					{
+						value.ENROLLMENTs.Add(this);
+						this._SEM_ID = value.SEM_ID;
+					}
+					else
+					{
+						this._SEM_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SEMESTER");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STUDENT_ENROLLMENT", Storage="_STUDENT", ThisKey="STUD_NUMBER", OtherKey="STUD_NUMBER", IsForeignKey=true)]
+		public STUDENT STUDENT
+		{
+			get
+			{
+				return this._STUDENT.Entity;
+			}
+			set
+			{
+				STUDENT previousValue = this._STUDENT.Entity;
+				if (((previousValue != value) 
+							|| (this._STUDENT.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._STUDENT.Entity = null;
+						previousValue.ENROLLMENTs.Remove(this);
+					}
+					this._STUDENT.Entity = value;
+					if ((value != null))
+					{
+						value.ENROLLMENTs.Add(this);
+						this._STUD_NUMBER = value.STUD_NUMBER;
+					}
+					else
+					{
+						this._STUD_NUMBER = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("STUDENT");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SUBJECT_ENROLLMENT", Storage="_SUBJECT", ThisKey="SUB_ID", OtherKey="SUB_ID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public SUBJECT SUBJECT
+		{
+			get
+			{
+				return this._SUBJECT.Entity;
+			}
+			set
+			{
+				SUBJECT previousValue = this._SUBJECT.Entity;
+				if (((previousValue != value) 
+							|| (this._SUBJECT.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SUBJECT.Entity = null;
+						previousValue.ENROLLMENTs.Remove(this);
+					}
+					this._SUBJECT.Entity = value;
+					if ((value != null))
+					{
+						value.ENROLLMENTs.Add(this);
+						this._SUB_ID = value.SUB_ID;
+					}
+					else
+					{
+						this._SUB_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SUBJECT");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ID_STORAGE")]
 	public partial class ID_STORAGE
 	{
@@ -1195,6 +1620,33 @@ namespace Enrollment_System_DBMS
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PROGRAM_ID_STORAGE")]
+	public partial class PROGRAM_ID_STORAGE
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		public PROGRAM_ID_STORAGE()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SEMESTER")]
 	public partial class SEMESTER : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1205,9 +1657,9 @@ namespace Enrollment_System_DBMS
 		
 		private string _SEM_NAME;
 		
-		private EntitySet<SUBJECT> _SUBJECTs;
-		
 		private EntitySet<ENROLLMENT> _ENROLLMENTs;
+		
+		private EntitySet<SUBJECT> _SUBJECTs;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1221,8 +1673,8 @@ namespace Enrollment_System_DBMS
 		
 		public SEMESTER()
 		{
-			this._SUBJECTs = new EntitySet<SUBJECT>(new Action<SUBJECT>(this.attach_SUBJECTs), new Action<SUBJECT>(this.detach_SUBJECTs));
 			this._ENROLLMENTs = new EntitySet<ENROLLMENT>(new Action<ENROLLMENT>(this.attach_ENROLLMENTs), new Action<ENROLLMENT>(this.detach_ENROLLMENTs));
+			this._SUBJECTs = new EntitySet<SUBJECT>(new Action<SUBJECT>(this.attach_SUBJECTs), new Action<SUBJECT>(this.detach_SUBJECTs));
 			OnCreated();
 		}
 		
@@ -1266,19 +1718,6 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_SUBJECT", Storage="_SUBJECTs", ThisKey="SEM_ID", OtherKey="SEM_ID")]
-		public EntitySet<SUBJECT> SUBJECTs
-		{
-			get
-			{
-				return this._SUBJECTs;
-			}
-			set
-			{
-				this._SUBJECTs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_ENROLLMENT", Storage="_ENROLLMENTs", ThisKey="SEM_ID", OtherKey="SEM_ID")]
 		public EntitySet<ENROLLMENT> ENROLLMENTs
 		{
@@ -1289,6 +1728,19 @@ namespace Enrollment_System_DBMS
 			set
 			{
 				this._ENROLLMENTs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_SUBJECT", Storage="_SUBJECTs", ThisKey="SEM_ID", OtherKey="SEM_ID")]
+		public EntitySet<SUBJECT> SUBJECTs
+		{
+			get
+			{
+				return this._SUBJECTs;
+			}
+			set
+			{
+				this._SUBJECTs.Assign(value);
 			}
 		}
 		
@@ -1312,18 +1764,6 @@ namespace Enrollment_System_DBMS
 			}
 		}
 		
-		private void attach_SUBJECTs(SUBJECT entity)
-		{
-			this.SendPropertyChanging();
-			entity.SEMESTER = this;
-		}
-		
-		private void detach_SUBJECTs(SUBJECT entity)
-		{
-			this.SendPropertyChanging();
-			entity.SEMESTER = null;
-		}
-		
 		private void attach_ENROLLMENTs(ENROLLMENT entity)
 		{
 			this.SendPropertyChanging();
@@ -1331,6 +1771,18 @@ namespace Enrollment_System_DBMS
 		}
 		
 		private void detach_ENROLLMENTs(ENROLLMENT entity)
+		{
+			this.SendPropertyChanging();
+			entity.SEMESTER = null;
+		}
+		
+		private void attach_SUBJECTs(SUBJECT entity)
+		{
+			this.SendPropertyChanging();
+			entity.SEMESTER = this;
+		}
+		
+		private void detach_SUBJECTs(SUBJECT entity)
 		{
 			this.SendPropertyChanging();
 			entity.SEMESTER = null;
@@ -2233,456 +2685,6 @@ namespace Enrollment_System_DBMS
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ENROLLMENT")]
-	public partial class ENROLLMENT : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ENROLL_ID;
-		
-		private System.Nullable<System.DateTime> _ENROLL_CREATED_AT;
-		
-		private System.Nullable<System.DateTime> _ENROLL_UPDATED_AT;
-		
-		private System.Nullable<int> _ACAD_ID;
-		
-		private System.Nullable<int> _SUB_ID;
-		
-		private System.Nullable<int> _SEM_ID;
-		
-		private System.Nullable<int> _STUD_NUMBER;
-		
-		private EntityRef<ACADEMIC_YEAR> _ACADEMIC_YEAR;
-		
-		private EntityRef<SEMESTER> _SEMESTER;
-		
-		private EntityRef<STUDENT> _STUDENT;
-		
-		private EntityRef<SUBJECT> _SUBJECT;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnENROLL_IDChanging(int value);
-    partial void OnENROLL_IDChanged();
-    partial void OnENROLL_CREATED_ATChanging(System.Nullable<System.DateTime> value);
-    partial void OnENROLL_CREATED_ATChanged();
-    partial void OnENROLL_UPDATED_ATChanging(System.Nullable<System.DateTime> value);
-    partial void OnENROLL_UPDATED_ATChanged();
-    partial void OnACAD_IDChanging(System.Nullable<int> value);
-    partial void OnACAD_IDChanged();
-    partial void OnSUB_IDChanging(System.Nullable<int> value);
-    partial void OnSUB_IDChanged();
-    partial void OnSEM_IDChanging(System.Nullable<int> value);
-    partial void OnSEM_IDChanged();
-    partial void OnSTUD_NUMBERChanging(System.Nullable<int> value);
-    partial void OnSTUD_NUMBERChanged();
-    #endregion
-		
-		public ENROLLMENT()
-		{
-			this._ACADEMIC_YEAR = default(EntityRef<ACADEMIC_YEAR>);
-			this._SEMESTER = default(EntityRef<SEMESTER>);
-			this._STUDENT = default(EntityRef<STUDENT>);
-			this._SUBJECT = default(EntityRef<SUBJECT>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ENROLL_ID
-		{
-			get
-			{
-				return this._ENROLL_ID;
-			}
-			set
-			{
-				if ((this._ENROLL_ID != value))
-				{
-					this.OnENROLL_IDChanging(value);
-					this.SendPropertyChanging();
-					this._ENROLL_ID = value;
-					this.SendPropertyChanged("ENROLL_ID");
-					this.OnENROLL_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_CREATED_AT", DbType="Date")]
-		public System.Nullable<System.DateTime> ENROLL_CREATED_AT
-		{
-			get
-			{
-				return this._ENROLL_CREATED_AT;
-			}
-			set
-			{
-				if ((this._ENROLL_CREATED_AT != value))
-				{
-					this.OnENROLL_CREATED_ATChanging(value);
-					this.SendPropertyChanging();
-					this._ENROLL_CREATED_AT = value;
-					this.SendPropertyChanged("ENROLL_CREATED_AT");
-					this.OnENROLL_CREATED_ATChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENROLL_UPDATED_AT", DbType="Date")]
-		public System.Nullable<System.DateTime> ENROLL_UPDATED_AT
-		{
-			get
-			{
-				return this._ENROLL_UPDATED_AT;
-			}
-			set
-			{
-				if ((this._ENROLL_UPDATED_AT != value))
-				{
-					this.OnENROLL_UPDATED_ATChanging(value);
-					this.SendPropertyChanging();
-					this._ENROLL_UPDATED_AT = value;
-					this.SendPropertyChanged("ENROLL_UPDATED_AT");
-					this.OnENROLL_UPDATED_ATChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_ID", DbType="Int")]
-		public System.Nullable<int> ACAD_ID
-		{
-			get
-			{
-				return this._ACAD_ID;
-			}
-			set
-			{
-				if ((this._ACAD_ID != value))
-				{
-					if (this._ACADEMIC_YEAR.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnACAD_IDChanging(value);
-					this.SendPropertyChanging();
-					this._ACAD_ID = value;
-					this.SendPropertyChanged("ACAD_ID");
-					this.OnACAD_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int")]
-		public System.Nullable<int> SUB_ID
-		{
-			get
-			{
-				return this._SUB_ID;
-			}
-			set
-			{
-				if ((this._SUB_ID != value))
-				{
-					if (this._SUBJECT.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSUB_IDChanging(value);
-					this.SendPropertyChanging();
-					this._SUB_ID = value;
-					this.SendPropertyChanged("SUB_ID");
-					this.OnSUB_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
-		public System.Nullable<int> SEM_ID
-		{
-			get
-			{
-				return this._SEM_ID;
-			}
-			set
-			{
-				if ((this._SEM_ID != value))
-				{
-					if (this._SEMESTER.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSEM_IDChanging(value);
-					this.SendPropertyChanging();
-					this._SEM_ID = value;
-					this.SendPropertyChanged("SEM_ID");
-					this.OnSEM_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUD_NUMBER", DbType="Int")]
-		public System.Nullable<int> STUD_NUMBER
-		{
-			get
-			{
-				return this._STUD_NUMBER;
-			}
-			set
-			{
-				if ((this._STUD_NUMBER != value))
-				{
-					if (this._STUDENT.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSTUD_NUMBERChanging(value);
-					this.SendPropertyChanging();
-					this._STUD_NUMBER = value;
-					this.SendPropertyChanged("STUD_NUMBER");
-					this.OnSTUD_NUMBERChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ACADEMIC_YEAR_ENROLLMENT", Storage="_ACADEMIC_YEAR", ThisKey="ACAD_ID", OtherKey="ACAD_ID", IsForeignKey=true)]
-		public ACADEMIC_YEAR ACADEMIC_YEAR
-		{
-			get
-			{
-				return this._ACADEMIC_YEAR.Entity;
-			}
-			set
-			{
-				ACADEMIC_YEAR previousValue = this._ACADEMIC_YEAR.Entity;
-				if (((previousValue != value) 
-							|| (this._ACADEMIC_YEAR.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ACADEMIC_YEAR.Entity = null;
-						previousValue.ENROLLMENTs.Remove(this);
-					}
-					this._ACADEMIC_YEAR.Entity = value;
-					if ((value != null))
-					{
-						value.ENROLLMENTs.Add(this);
-						this._ACAD_ID = value.ACAD_ID;
-					}
-					else
-					{
-						this._ACAD_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ACADEMIC_YEAR");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SEMESTER_ENROLLMENT", Storage="_SEMESTER", ThisKey="SEM_ID", OtherKey="SEM_ID", IsForeignKey=true)]
-		public SEMESTER SEMESTER
-		{
-			get
-			{
-				return this._SEMESTER.Entity;
-			}
-			set
-			{
-				SEMESTER previousValue = this._SEMESTER.Entity;
-				if (((previousValue != value) 
-							|| (this._SEMESTER.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SEMESTER.Entity = null;
-						previousValue.ENROLLMENTs.Remove(this);
-					}
-					this._SEMESTER.Entity = value;
-					if ((value != null))
-					{
-						value.ENROLLMENTs.Add(this);
-						this._SEM_ID = value.SEM_ID;
-					}
-					else
-					{
-						this._SEM_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SEMESTER");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STUDENT_ENROLLMENT", Storage="_STUDENT", ThisKey="STUD_NUMBER", OtherKey="STUD_NUMBER", IsForeignKey=true)]
-		public STUDENT STUDENT
-		{
-			get
-			{
-				return this._STUDENT.Entity;
-			}
-			set
-			{
-				STUDENT previousValue = this._STUDENT.Entity;
-				if (((previousValue != value) 
-							|| (this._STUDENT.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._STUDENT.Entity = null;
-						previousValue.ENROLLMENTs.Remove(this);
-					}
-					this._STUDENT.Entity = value;
-					if ((value != null))
-					{
-						value.ENROLLMENTs.Add(this);
-						this._STUD_NUMBER = value.STUD_NUMBER;
-					}
-					else
-					{
-						this._STUD_NUMBER = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("STUDENT");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SUBJECT_ENROLLMENT", Storage="_SUBJECT", ThisKey="SUB_ID", OtherKey="SUB_ID", IsForeignKey=true, DeleteRule="CASCADE")]
-		public SUBJECT SUBJECT
-		{
-			get
-			{
-				return this._SUBJECT.Entity;
-			}
-			set
-			{
-				SUBJECT previousValue = this._SUBJECT.Entity;
-				if (((previousValue != value) 
-							|| (this._SUBJECT.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SUBJECT.Entity = null;
-						previousValue.ENROLLMENTs.Remove(this);
-					}
-					this._SUBJECT.Entity = value;
-					if ((value != null))
-					{
-						value.ENROLLMENTs.Add(this);
-						this._SUB_ID = value.SUB_ID;
-					}
-					else
-					{
-						this._SUB_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SUBJECT");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PROGRAM_ID_STORAGE")]
-	public partial class PROGRAM_ID_STORAGE
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		public PROGRAM_ID_STORAGE()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COLLEGE_ID_STORAGE")]
-	public partial class COLLEGE_ID_STORAGE
-	{
-		
-		private System.Nullable<int> _ID;
-		
-		public COLLEGE_ID_STORAGE()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_YEAR_LEVEL_IDResult
-	{
-		
-		private int _YEAR_ID;
-		
-		public SP_YEAR_LEVEL_IDResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YEAR_ID", DbType="Int NOT NULL")]
-		public int YEAR_ID
-		{
-			get
-			{
-				return this._YEAR_ID;
-			}
-			set
-			{
-				if ((this._YEAR_ID != value))
-				{
-					this._YEAR_ID = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_ACADEMIC_YEARResult
 	{
 		
@@ -2722,6 +2724,58 @@ namespace Enrollment_System_DBMS
 				if ((this._ACAD_YEAR != value))
 				{
 					this._ACAD_YEAR = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_YEAR_LEVEL_IDResult
+	{
+		
+		private int _YEAR_ID;
+		
+		public SP_YEAR_LEVEL_IDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YEAR_ID", DbType="Int NOT NULL")]
+		public int YEAR_ID
+		{
+			get
+			{
+				return this._YEAR_ID;
+			}
+			set
+			{
+				if ((this._YEAR_ID != value))
+				{
+					this._YEAR_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ACADEMIC_YEAR_IDResult
+	{
+		
+		private int _ACAD_ID;
+		
+		public SP_ACADEMIC_YEAR_IDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_ID", DbType="Int NOT NULL")]
+		public int ACAD_ID
+		{
+			get
+			{
+				return this._ACAD_ID;
+			}
+			set
+			{
+				if ((this._ACAD_ID != value))
+				{
+					this._ACAD_ID = value;
 				}
 			}
 		}
@@ -2906,6 +2960,140 @@ namespace Enrollment_System_DBMS
 				if ((this._Column1 != value))
 				{
 					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_DISPLAY_ALL_SUBJECTSResult
+	{
+		
+		private int _ID;
+		
+		private string _SECTION;
+		
+		private string _SUBJECT;
+		
+		private string _DESCRIPTION;
+		
+		private System.Nullable<double> _UNITS;
+		
+		private string _SEMESTER;
+		
+		private System.Nullable<int> _NUMBER_OF_ENROLLED;
+		
+		public SP_DISPLAY_ALL_SUBJECTSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SECTION", DbType="NVarChar(55)")]
+		public string SECTION
+		{
+			get
+			{
+				return this._SECTION;
+			}
+			set
+			{
+				if ((this._SECTION != value))
+				{
+					this._SECTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUBJECT", DbType="NVarChar(55)")]
+		public string SUBJECT
+		{
+			get
+			{
+				return this._SUBJECT;
+			}
+			set
+			{
+				if ((this._SUBJECT != value))
+				{
+					this._SUBJECT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(255)")]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this._DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITS", DbType="Float")]
+		public System.Nullable<double> UNITS
+		{
+			get
+			{
+				return this._UNITS;
+			}
+			set
+			{
+				if ((this._UNITS != value))
+				{
+					this._UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEMESTER", DbType="NVarChar(55)")]
+		public string SEMESTER
+		{
+			get
+			{
+				return this._SEMESTER;
+			}
+			set
+			{
+				if ((this._SEMESTER != value))
+				{
+					this._SEMESTER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[NUMBER OF ENROLLED]", Storage="_NUMBER_OF_ENROLLED", DbType="Int")]
+		public System.Nullable<int> NUMBER_OF_ENROLLED
+		{
+			get
+			{
+				return this._NUMBER_OF_ENROLLED;
+			}
+			set
+			{
+				if ((this._NUMBER_OF_ENROLLED != value))
+				{
+					this._NUMBER_OF_ENROLLED = value;
 				}
 			}
 		}
@@ -3789,6 +3977,274 @@ namespace Enrollment_System_DBMS
 		}
 	}
 	
+	public partial class SP_DISPLAY_STUDENT_SUBJECTSResult
+	{
+		
+		private int _ID;
+		
+		private string _SECTION;
+		
+		private string _SUBJECT;
+		
+		private string _DESCRIPTION;
+		
+		private System.Nullable<double> _UNITS;
+		
+		private string _ACADEMIC_YEAR;
+		
+		private string _SEMESTER;
+		
+		private System.Nullable<System.DateTime> _DATE;
+		
+		public SP_DISPLAY_STUDENT_SUBJECTSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SECTION", DbType="NVarChar(55)")]
+		public string SECTION
+		{
+			get
+			{
+				return this._SECTION;
+			}
+			set
+			{
+				if ((this._SECTION != value))
+				{
+					this._SECTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUBJECT", DbType="NVarChar(55)")]
+		public string SUBJECT
+		{
+			get
+			{
+				return this._SUBJECT;
+			}
+			set
+			{
+				if ((this._SUBJECT != value))
+				{
+					this._SUBJECT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(255)")]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this._DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITS", DbType="Float")]
+		public System.Nullable<double> UNITS
+		{
+			get
+			{
+				return this._UNITS;
+			}
+			set
+			{
+				if ((this._UNITS != value))
+				{
+					this._UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ACADEMIC YEAR]", Storage="_ACADEMIC_YEAR", DbType="NVarChar(20)")]
+		public string ACADEMIC_YEAR
+		{
+			get
+			{
+				return this._ACADEMIC_YEAR;
+			}
+			set
+			{
+				if ((this._ACADEMIC_YEAR != value))
+				{
+					this._ACADEMIC_YEAR = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEMESTER", DbType="NVarChar(55)")]
+		public string SEMESTER
+		{
+			get
+			{
+				return this._SEMESTER;
+			}
+			set
+			{
+				if ((this._SEMESTER != value))
+				{
+					this._SEMESTER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE", DbType="Date")]
+		public System.Nullable<System.DateTime> DATE
+		{
+			get
+			{
+				return this._DATE;
+			}
+			set
+			{
+				if ((this._DATE != value))
+				{
+					this._DATE = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_DISPLAY_SUBJECTSResult
+	{
+		
+		private int _ID;
+		
+		private string _SECTION;
+		
+		private string _SUBJECT;
+		
+		private string _DESCRIPTION;
+		
+		private System.Nullable<double> _UNITS;
+		
+		private string _SEMESTER;
+		
+		public SP_DISPLAY_SUBJECTSResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SECTION", DbType="NVarChar(55)")]
+		public string SECTION
+		{
+			get
+			{
+				return this._SECTION;
+			}
+			set
+			{
+				if ((this._SECTION != value))
+				{
+					this._SECTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUBJECT", DbType="NVarChar(55)")]
+		public string SUBJECT
+		{
+			get
+			{
+				return this._SUBJECT;
+			}
+			set
+			{
+				if ((this._SUBJECT != value))
+				{
+					this._SUBJECT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(255)")]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this._DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITS", DbType="Float")]
+		public System.Nullable<double> UNITS
+		{
+			get
+			{
+				return this._UNITS;
+			}
+			set
+			{
+				if ((this._UNITS != value))
+				{
+					this._UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEMESTER", DbType="NVarChar(55)")]
+		public string SEMESTER
+		{
+			get
+			{
+				return this._SEMESTER;
+			}
+			set
+			{
+				if ((this._SEMESTER != value))
+				{
+					this._SEMESTER = value;
+				}
+			}
+		}
+	}
+	
 	public partial class SP_PROGRAMResult
 	{
 		
@@ -4225,510 +4681,6 @@ namespace Enrollment_System_DBMS
 		}
 	}
 	
-	public partial class SP_SEMESTERResult
-	{
-		
-		private int _SEM_ID;
-		
-		private string _SEM_NAME;
-		
-		public SP_SEMESTERResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int NOT NULL")]
-		public int SEM_ID
-		{
-			get
-			{
-				return this._SEM_ID;
-			}
-			set
-			{
-				if ((this._SEM_ID != value))
-				{
-					this._SEM_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_NAME", DbType="NVarChar(55)")]
-		public string SEM_NAME
-		{
-			get
-			{
-				return this._SEM_NAME;
-			}
-			set
-			{
-				if ((this._SEM_NAME != value))
-				{
-					this._SEM_NAME = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult
-	{
-		
-		private int _PROG_ID;
-		
-		private string _PROG_NAME;
-		
-		private System.Nullable<System.DateTime> _PROG_CREATED_AT;
-		
-		private System.Nullable<System.DateTime> _PROG_UPDATED_AT;
-		
-		private System.Nullable<int> _COLL_ID;
-		
-		public SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_ID", DbType="Int NOT NULL")]
-		public int PROG_ID
-		{
-			get
-			{
-				return this._PROG_ID;
-			}
-			set
-			{
-				if ((this._PROG_ID != value))
-				{
-					this._PROG_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_NAME", DbType="NVarChar(255)")]
-		public string PROG_NAME
-		{
-			get
-			{
-				return this._PROG_NAME;
-			}
-			set
-			{
-				if ((this._PROG_NAME != value))
-				{
-					this._PROG_NAME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_CREATED_AT", DbType="Date")]
-		public System.Nullable<System.DateTime> PROG_CREATED_AT
-		{
-			get
-			{
-				return this._PROG_CREATED_AT;
-			}
-			set
-			{
-				if ((this._PROG_CREATED_AT != value))
-				{
-					this._PROG_CREATED_AT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_UPDATED_AT", DbType="Date")]
-		public System.Nullable<System.DateTime> PROG_UPDATED_AT
-		{
-			get
-			{
-				return this._PROG_UPDATED_AT;
-			}
-			set
-			{
-				if ((this._PROG_UPDATED_AT != value))
-				{
-					this._PROG_UPDATED_AT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COLL_ID", DbType="Int")]
-		public System.Nullable<int> COLL_ID
-		{
-			get
-			{
-				return this._COLL_ID;
-			}
-			set
-			{
-				if ((this._COLL_ID != value))
-				{
-					this._COLL_ID = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_YEAR_LEVELResult
-	{
-		
-		private string _YEAR_NAME;
-		
-		public SP_YEAR_LEVELResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YEAR_NAME", DbType="NVarChar(55)")]
-		public string YEAR_NAME
-		{
-			get
-			{
-				return this._YEAR_NAME;
-			}
-			set
-			{
-				if ((this._YEAR_NAME != value))
-				{
-					this._YEAR_NAME = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_SUBJECT_LISTResult
-	{
-		
-		private int _SUB_ID;
-		
-		private string _SUB_SECTION_CODE;
-		
-		private string _SUB_CODE;
-		
-		private string _SUB_DESCRIPTION;
-		
-		private System.Nullable<double> _SUB_UNITS;
-		
-		private System.Nullable<int> _SEM_ID;
-		
-		public SP_SUBJECT_LISTResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
-		public int SUB_ID
-		{
-			get
-			{
-				return this._SUB_ID;
-			}
-			set
-			{
-				if ((this._SUB_ID != value))
-				{
-					this._SUB_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_SECTION_CODE", DbType="NVarChar(55)")]
-		public string SUB_SECTION_CODE
-		{
-			get
-			{
-				return this._SUB_SECTION_CODE;
-			}
-			set
-			{
-				if ((this._SUB_SECTION_CODE != value))
-				{
-					this._SUB_SECTION_CODE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_CODE", DbType="NVarChar(55)")]
-		public string SUB_CODE
-		{
-			get
-			{
-				return this._SUB_CODE;
-			}
-			set
-			{
-				if ((this._SUB_CODE != value))
-				{
-					this._SUB_CODE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_DESCRIPTION", DbType="NVarChar(255)")]
-		public string SUB_DESCRIPTION
-		{
-			get
-			{
-				return this._SUB_DESCRIPTION;
-			}
-			set
-			{
-				if ((this._SUB_DESCRIPTION != value))
-				{
-					this._SUB_DESCRIPTION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_UNITS", DbType="Float")]
-		public System.Nullable<double> SUB_UNITS
-		{
-			get
-			{
-				return this._SUB_UNITS;
-			}
-			set
-			{
-				if ((this._SUB_UNITS != value))
-				{
-					this._SUB_UNITS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
-		public System.Nullable<int> SEM_ID
-		{
-			get
-			{
-				return this._SEM_ID;
-			}
-			set
-			{
-				if ((this._SEM_ID != value))
-				{
-					this._SEM_ID = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult
-	{
-		
-		private int _SUB_ID;
-		
-		private string _SUB_SECTION_CODE;
-		
-		private string _SUB_CODE;
-		
-		private string _SUB_DESCRIPTION;
-		
-		private System.Nullable<double> _SUB_UNITS;
-		
-		private System.Nullable<int> _SEM_ID;
-		
-		public SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
-		public int SUB_ID
-		{
-			get
-			{
-				return this._SUB_ID;
-			}
-			set
-			{
-				if ((this._SUB_ID != value))
-				{
-					this._SUB_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_SECTION_CODE", DbType="NVarChar(55)")]
-		public string SUB_SECTION_CODE
-		{
-			get
-			{
-				return this._SUB_SECTION_CODE;
-			}
-			set
-			{
-				if ((this._SUB_SECTION_CODE != value))
-				{
-					this._SUB_SECTION_CODE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_CODE", DbType="NVarChar(55)")]
-		public string SUB_CODE
-		{
-			get
-			{
-				return this._SUB_CODE;
-			}
-			set
-			{
-				if ((this._SUB_CODE != value))
-				{
-					this._SUB_CODE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_DESCRIPTION", DbType="NVarChar(255)")]
-		public string SUB_DESCRIPTION
-		{
-			get
-			{
-				return this._SUB_DESCRIPTION;
-			}
-			set
-			{
-				if ((this._SUB_DESCRIPTION != value))
-				{
-					this._SUB_DESCRIPTION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_UNITS", DbType="Float")]
-		public System.Nullable<double> SUB_UNITS
-		{
-			get
-			{
-				return this._SUB_UNITS;
-			}
-			set
-			{
-				if ((this._SUB_UNITS != value))
-				{
-					this._SUB_UNITS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
-		public System.Nullable<int> SEM_ID
-		{
-			get
-			{
-				return this._SEM_ID;
-			}
-			set
-			{
-				if ((this._SEM_ID != value))
-				{
-					this._SEM_ID = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_STUDENT_NUMBERResult
-	{
-		
-		private int _STUD_NUMBER;
-		
-		public SP_STUDENT_NUMBERResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUD_NUMBER", DbType="Int NOT NULL")]
-		public int STUD_NUMBER
-		{
-			get
-			{
-				return this._STUD_NUMBER;
-			}
-			set
-			{
-				if ((this._STUD_NUMBER != value))
-				{
-					this._STUD_NUMBER = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_ACADEMIC_YEAR_IDResult
-	{
-		
-		private int _ACAD_ID;
-		
-		public SP_ACADEMIC_YEAR_IDResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAD_ID", DbType="Int NOT NULL")]
-		public int ACAD_ID
-		{
-			get
-			{
-				return this._ACAD_ID;
-			}
-			set
-			{
-				if ((this._ACAD_ID != value))
-				{
-					this._ACAD_ID = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_SEMESTER_IDResult
-	{
-		
-		private int _SEM_ID;
-		
-		public SP_SEMESTER_IDResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int NOT NULL")]
-		public int SEM_ID
-		{
-			get
-			{
-				return this._SEM_ID;
-			}
-			set
-			{
-				if ((this._SEM_ID != value))
-				{
-					this._SEM_ID = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_SUBJECT_IDResult
-	{
-		
-		private int _SUB_ID;
-		
-		public SP_SUBJECT_IDResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
-		public int SUB_ID
-		{
-			get
-			{
-				return this._SUB_ID;
-			}
-			set
-			{
-				if ((this._SUB_ID != value))
-				{
-					this._SUB_ID = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_SEARCH_STUDENT_SUBJECTResult
 	{
 		
@@ -4749,158 +4701,6 @@ namespace Enrollment_System_DBMS
 		private System.Nullable<System.DateTime> _DATE;
 		
 		public SP_SEARCH_STUDENT_SUBJECTResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SECTION", DbType="NVarChar(55)")]
-		public string SECTION
-		{
-			get
-			{
-				return this._SECTION;
-			}
-			set
-			{
-				if ((this._SECTION != value))
-				{
-					this._SECTION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUBJECT", DbType="NVarChar(55)")]
-		public string SUBJECT
-		{
-			get
-			{
-				return this._SUBJECT;
-			}
-			set
-			{
-				if ((this._SUBJECT != value))
-				{
-					this._SUBJECT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(255)")]
-		public string DESCRIPTION
-		{
-			get
-			{
-				return this._DESCRIPTION;
-			}
-			set
-			{
-				if ((this._DESCRIPTION != value))
-				{
-					this._DESCRIPTION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITS", DbType="Float")]
-		public System.Nullable<double> UNITS
-		{
-			get
-			{
-				return this._UNITS;
-			}
-			set
-			{
-				if ((this._UNITS != value))
-				{
-					this._UNITS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[ACADEMIC YEAR]", Storage="_ACADEMIC_YEAR", DbType="NVarChar(20)")]
-		public string ACADEMIC_YEAR
-		{
-			get
-			{
-				return this._ACADEMIC_YEAR;
-			}
-			set
-			{
-				if ((this._ACADEMIC_YEAR != value))
-				{
-					this._ACADEMIC_YEAR = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEMESTER", DbType="NVarChar(55)")]
-		public string SEMESTER
-		{
-			get
-			{
-				return this._SEMESTER;
-			}
-			set
-			{
-				if ((this._SEMESTER != value))
-				{
-					this._SEMESTER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE", DbType="Date")]
-		public System.Nullable<System.DateTime> DATE
-		{
-			get
-			{
-				return this._DATE;
-			}
-			set
-			{
-				if ((this._DATE != value))
-				{
-					this._DATE = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_DISPLAY_STUDENT_SUBJECTSResult
-	{
-		
-		private int _ID;
-		
-		private string _SECTION;
-		
-		private string _SUBJECT;
-		
-		private string _DESCRIPTION;
-		
-		private System.Nullable<double> _UNITS;
-		
-		private string _ACADEMIC_YEAR;
-		
-		private string _SEMESTER;
-		
-		private System.Nullable<System.DateTime> _DATE;
-		
-		public SP_DISPLAY_STUDENT_SUBJECTSResult()
 		{
 		}
 		
@@ -5167,256 +4967,6 @@ namespace Enrollment_System_DBMS
 		}
 	}
 	
-	public partial class SP_DISPLAY_ALL_SUBJECTSResult
-	{
-		
-		private int _ID;
-		
-		private string _SECTION;
-		
-		private string _SUBJECT;
-		
-		private string _DESCRIPTION;
-		
-		private System.Nullable<double> _UNITS;
-		
-		private string _SEMESTER;
-		
-		private System.Nullable<int> _NUMBER_OF_ENROLLED;
-		
-		public SP_DISPLAY_ALL_SUBJECTSResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SECTION", DbType="NVarChar(55)")]
-		public string SECTION
-		{
-			get
-			{
-				return this._SECTION;
-			}
-			set
-			{
-				if ((this._SECTION != value))
-				{
-					this._SECTION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUBJECT", DbType="NVarChar(55)")]
-		public string SUBJECT
-		{
-			get
-			{
-				return this._SUBJECT;
-			}
-			set
-			{
-				if ((this._SUBJECT != value))
-				{
-					this._SUBJECT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(255)")]
-		public string DESCRIPTION
-		{
-			get
-			{
-				return this._DESCRIPTION;
-			}
-			set
-			{
-				if ((this._DESCRIPTION != value))
-				{
-					this._DESCRIPTION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITS", DbType="Float")]
-		public System.Nullable<double> UNITS
-		{
-			get
-			{
-				return this._UNITS;
-			}
-			set
-			{
-				if ((this._UNITS != value))
-				{
-					this._UNITS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEMESTER", DbType="NVarChar(55)")]
-		public string SEMESTER
-		{
-			get
-			{
-				return this._SEMESTER;
-			}
-			set
-			{
-				if ((this._SEMESTER != value))
-				{
-					this._SEMESTER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[NUMBER OF ENROLLED]", Storage="_NUMBER_OF_ENROLLED", DbType="Int")]
-		public System.Nullable<int> NUMBER_OF_ENROLLED
-		{
-			get
-			{
-				return this._NUMBER_OF_ENROLLED;
-			}
-			set
-			{
-				if ((this._NUMBER_OF_ENROLLED != value))
-				{
-					this._NUMBER_OF_ENROLLED = value;
-				}
-			}
-		}
-	}
-	
-	public partial class SP_DISPLAY_SUBJECTSResult
-	{
-		
-		private int _ID;
-		
-		private string _SECTION;
-		
-		private string _SUBJECT;
-		
-		private string _DESCRIPTION;
-		
-		private System.Nullable<double> _UNITS;
-		
-		private string _SEMESTER;
-		
-		public SP_DISPLAY_SUBJECTSResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SECTION", DbType="NVarChar(55)")]
-		public string SECTION
-		{
-			get
-			{
-				return this._SECTION;
-			}
-			set
-			{
-				if ((this._SECTION != value))
-				{
-					this._SECTION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUBJECT", DbType="NVarChar(55)")]
-		public string SUBJECT
-		{
-			get
-			{
-				return this._SUBJECT;
-			}
-			set
-			{
-				if ((this._SUBJECT != value))
-				{
-					this._SUBJECT = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(255)")]
-		public string DESCRIPTION
-		{
-			get
-			{
-				return this._DESCRIPTION;
-			}
-			set
-			{
-				if ((this._DESCRIPTION != value))
-				{
-					this._DESCRIPTION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITS", DbType="Float")]
-		public System.Nullable<double> UNITS
-		{
-			get
-			{
-				return this._UNITS;
-			}
-			set
-			{
-				if ((this._UNITS != value))
-				{
-					this._UNITS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEMESTER", DbType="NVarChar(55)")]
-		public string SEMESTER
-		{
-			get
-			{
-				return this._SEMESTER;
-			}
-			set
-			{
-				if ((this._SEMESTER != value))
-				{
-					this._SEMESTER = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_SEARCH_SUBJECT_BY_TEXTBOXResult
 	{
 		
@@ -5528,6 +5078,536 @@ namespace Enrollment_System_DBMS
 				if ((this._SEMESTER != value))
 				{
 					this._SEMESTER = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEMESTERResult
+	{
+		
+		private int _SEM_ID;
+		
+		private string _SEM_NAME;
+		
+		public SP_SEMESTERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int NOT NULL")]
+		public int SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					this._SEM_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_NAME", DbType="NVarChar(55)")]
+		public string SEM_NAME
+		{
+			get
+			{
+				return this._SEM_NAME;
+			}
+			set
+			{
+				if ((this._SEM_NAME != value))
+				{
+					this._SEM_NAME = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SEMESTER_IDResult
+	{
+		
+		private int _SEM_ID;
+		
+		public SP_SEMESTER_IDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int NOT NULL")]
+		public int SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					this._SEM_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult
+	{
+		
+		private int _PROG_ID;
+		
+		private string _PROG_NAME;
+		
+		private System.Nullable<System.DateTime> _PROG_CREATED_AT;
+		
+		private System.Nullable<System.DateTime> _PROG_UPDATED_AT;
+		
+		private System.Nullable<int> _COLL_ID;
+		
+		public SP_SPECIFIC_PROGRAM_FROM_COLLEGEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_ID", DbType="Int NOT NULL")]
+		public int PROG_ID
+		{
+			get
+			{
+				return this._PROG_ID;
+			}
+			set
+			{
+				if ((this._PROG_ID != value))
+				{
+					this._PROG_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_NAME", DbType="NVarChar(255)")]
+		public string PROG_NAME
+		{
+			get
+			{
+				return this._PROG_NAME;
+			}
+			set
+			{
+				if ((this._PROG_NAME != value))
+				{
+					this._PROG_NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_CREATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> PROG_CREATED_AT
+		{
+			get
+			{
+				return this._PROG_CREATED_AT;
+			}
+			set
+			{
+				if ((this._PROG_CREATED_AT != value))
+				{
+					this._PROG_CREATED_AT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROG_UPDATED_AT", DbType="Date")]
+		public System.Nullable<System.DateTime> PROG_UPDATED_AT
+		{
+			get
+			{
+				return this._PROG_UPDATED_AT;
+			}
+			set
+			{
+				if ((this._PROG_UPDATED_AT != value))
+				{
+					this._PROG_UPDATED_AT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COLL_ID", DbType="Int")]
+		public System.Nullable<int> COLL_ID
+		{
+			get
+			{
+				return this._COLL_ID;
+			}
+			set
+			{
+				if ((this._COLL_ID != value))
+				{
+					this._COLL_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult
+	{
+		
+		private int _SUB_ID;
+		
+		private string _SUB_SECTION_CODE;
+		
+		private string _SUB_CODE;
+		
+		private string _SUB_DESCRIPTION;
+		
+		private System.Nullable<double> _SUB_UNITS;
+		
+		private System.Nullable<int> _SEM_ID;
+		
+		public SP_SPECIFIC_SUBJECT_FROM_SEMESTERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
+		public int SUB_ID
+		{
+			get
+			{
+				return this._SUB_ID;
+			}
+			set
+			{
+				if ((this._SUB_ID != value))
+				{
+					this._SUB_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_SECTION_CODE", DbType="NVarChar(55)")]
+		public string SUB_SECTION_CODE
+		{
+			get
+			{
+				return this._SUB_SECTION_CODE;
+			}
+			set
+			{
+				if ((this._SUB_SECTION_CODE != value))
+				{
+					this._SUB_SECTION_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_CODE", DbType="NVarChar(55)")]
+		public string SUB_CODE
+		{
+			get
+			{
+				return this._SUB_CODE;
+			}
+			set
+			{
+				if ((this._SUB_CODE != value))
+				{
+					this._SUB_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_DESCRIPTION", DbType="NVarChar(255)")]
+		public string SUB_DESCRIPTION
+		{
+			get
+			{
+				return this._SUB_DESCRIPTION;
+			}
+			set
+			{
+				if ((this._SUB_DESCRIPTION != value))
+				{
+					this._SUB_DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_UNITS", DbType="Float")]
+		public System.Nullable<double> SUB_UNITS
+		{
+			get
+			{
+				return this._SUB_UNITS;
+			}
+			set
+			{
+				if ((this._SUB_UNITS != value))
+				{
+					this._SUB_UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
+		public System.Nullable<int> SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					this._SEM_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_STUDENT_NUMBERResult
+	{
+		
+		private int _STUD_NUMBER;
+		
+		public SP_STUDENT_NUMBERResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STUD_NUMBER", DbType="Int NOT NULL")]
+		public int STUD_NUMBER
+		{
+			get
+			{
+				return this._STUD_NUMBER;
+			}
+			set
+			{
+				if ((this._STUD_NUMBER != value))
+				{
+					this._STUD_NUMBER = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SUBJECT_IDResult
+	{
+		
+		private int _SUB_ID;
+		
+		public SP_SUBJECT_IDResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
+		public int SUB_ID
+		{
+			get
+			{
+				return this._SUB_ID;
+			}
+			set
+			{
+				if ((this._SUB_ID != value))
+				{
+					this._SUB_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_SUBJECT_LISTResult
+	{
+		
+		private int _SUB_ID;
+		
+		private string _SUB_SECTION_CODE;
+		
+		private string _SUB_CODE;
+		
+		private string _SUB_DESCRIPTION;
+		
+		private System.Nullable<double> _SUB_UNITS;
+		
+		private System.Nullable<int> _SEM_ID;
+		
+		public SP_SUBJECT_LISTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_ID", DbType="Int NOT NULL")]
+		public int SUB_ID
+		{
+			get
+			{
+				return this._SUB_ID;
+			}
+			set
+			{
+				if ((this._SUB_ID != value))
+				{
+					this._SUB_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_SECTION_CODE", DbType="NVarChar(55)")]
+		public string SUB_SECTION_CODE
+		{
+			get
+			{
+				return this._SUB_SECTION_CODE;
+			}
+			set
+			{
+				if ((this._SUB_SECTION_CODE != value))
+				{
+					this._SUB_SECTION_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_CODE", DbType="NVarChar(55)")]
+		public string SUB_CODE
+		{
+			get
+			{
+				return this._SUB_CODE;
+			}
+			set
+			{
+				if ((this._SUB_CODE != value))
+				{
+					this._SUB_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_DESCRIPTION", DbType="NVarChar(255)")]
+		public string SUB_DESCRIPTION
+		{
+			get
+			{
+				return this._SUB_DESCRIPTION;
+			}
+			set
+			{
+				if ((this._SUB_DESCRIPTION != value))
+				{
+					this._SUB_DESCRIPTION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SUB_UNITS", DbType="Float")]
+		public System.Nullable<double> SUB_UNITS
+		{
+			get
+			{
+				return this._SUB_UNITS;
+			}
+			set
+			{
+				if ((this._SUB_UNITS != value))
+				{
+					this._SUB_UNITS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEM_ID", DbType="Int")]
+		public System.Nullable<int> SEM_ID
+		{
+			get
+			{
+				return this._SEM_ID;
+			}
+			set
+			{
+				if ((this._SEM_ID != value))
+				{
+					this._SEM_ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_YEAR_LEVELResult
+	{
+		
+		private string _YEAR_NAME;
+		
+		public SP_YEAR_LEVELResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YEAR_NAME", DbType="NVarChar(55)")]
+		public string YEAR_NAME
+		{
+			get
+			{
+				return this._YEAR_NAME;
+			}
+			set
+			{
+				if ((this._YEAR_NAME != value))
+				{
+					this._YEAR_NAME = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_GET_COLLEGE_ID_STORAGEResult
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		public SP_GET_COLLEGE_ID_STORAGEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_GET_PROGRAM_ID_STORAGEResult
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		public SP_GET_PROGRAM_ID_STORAGEResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
 				}
 			}
 		}

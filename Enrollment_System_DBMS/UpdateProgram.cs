@@ -30,7 +30,24 @@ namespace Enrollment_System_DBMS
 
         private void BtnUpdateProgram_Click(object sender, EventArgs e)
         {
-            //Update
+            if (txtProgramName.Text != "" && CbCollege.SelectedIndex != -1)
+            {
+                try
+                {
+                    db.SP_UPDATE_PROGRAM(ProgramID(), txtProgramName.Text, DateTime.Now, CollegeID);
+                    MessageBox.Show("Program Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtProgramName.Text = "";
+                    CbCollege.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Program Field is Empty", "Empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         // College Combobox
@@ -90,6 +107,33 @@ namespace Enrollment_System_DBMS
             {
                 MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public int ProgramID()
+        {
+            int id = 0;
+            try
+            {
+                using (var cbProgram = new SqlConnection(_conn))
+                {
+                    cbProgram.Open();
+                    using (var cmd = cbProgram.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "SP_GET_PROGRAM_ID_STORAGE";
+                        var result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            id = (int)result;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return id;
         }
     }
 }
