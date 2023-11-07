@@ -38,6 +38,7 @@ namespace Enrollment_System_DBMS
             this.BtnAddStudent = new System.Windows.Forms.Button();
             this.BtnDashboard = new System.Windows.Forms.Button();
             this.mainContent = new System.Windows.Forms.Panel();
+            this.BtnSettings = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +66,7 @@ namespace Enrollment_System_DBMS
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gold;
+            this.panel2.Controls.Add(this.BtnSettings);
             this.panel2.Controls.Add(this.BtnSubjects);
             this.panel2.Controls.Add(this.BtnColleges);
             this.panel2.Controls.Add(this.BtnStudentRecords);
@@ -144,6 +146,17 @@ namespace Enrollment_System_DBMS
             this.mainContent.Size = new System.Drawing.Size(760, 476);
             this.mainContent.TabIndex = 2;
             // 
+            // BtnSettings
+            // 
+            this.BtnSettings.BackColor = System.Drawing.Color.Gold;
+            this.BtnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSettings.Location = new System.Drawing.Point(0, 428);
+            this.BtnSettings.Name = "BtnSettings";
+            this.BtnSettings.Size = new System.Drawing.Size(200, 48);
+            this.BtnSettings.TabIndex = 5;
+            this.BtnSettings.Text = "Settings";
+            this.BtnSettings.UseVisualStyleBackColor = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,5 +188,6 @@ namespace Enrollment_System_DBMS
         private System.Windows.Forms.Button BtnColleges;
         private System.Windows.Forms.Button BtnSubjects;
         public System.Windows.Forms.Panel mainContent;
+        private System.Windows.Forms.Button BtnSettings;
     }
 }
