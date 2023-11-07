@@ -16,7 +16,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         public string _conn = @"Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True";
         private int CollegeID { get; set; }
         private int ProgramID { get; set; }
-        private string College { get; set; }
+
 
         EnrollmentDBDataContext db = new EnrollmentDBDataContext();
 
@@ -234,7 +234,8 @@ namespace Enrollment_System_DBMS.Student_Controls
                 {
                     try
                     {
-                        db.SP_DELETE_PROGRAM(GetCollegeID());
+                        db.SP_UPDATE_STUDENT_COLLEGE_AND_PROGRAM_WHEN_COLLEGE_IS_DELETED(GetCollegeID());
+                        db.SP_DELETE_COLLEGE(GetCollegeID());
                         MessageBox.Show("Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -273,6 +274,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                 {
                     try
                     {
+                        db.SP_UPDATE_STUDENT_PROGRAM_WHEN_PROGRAM_IS_DELETED(GetProgramID());
                         db.SP_DELETE_PROGRAM(GetProgramID());
                         MessageBox.Show("Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
