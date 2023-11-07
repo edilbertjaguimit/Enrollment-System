@@ -16,6 +16,7 @@ namespace Enrollment_System_DBMS.Student_Controls
         public string _conn = @"Data Source=EDILBERT-CRIST\SQLEXPRESS;Initial Catalog=ENROLLMENT_DB;Integrated Security=True";
         private int CollegeID { get; set; }
         private int ProgramID { get; set; }
+        private string College { get; set; }
 
         EnrollmentDBDataContext db = new EnrollmentDBDataContext();
 
