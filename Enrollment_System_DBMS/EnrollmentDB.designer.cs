@@ -584,6 +584,20 @@ namespace Enrollment_System_DBMS
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), kEY);
 			return ((ISingleResult<SP_SEARCH_STUDENT_RECORDS_BY_TEXTBOX_LEFT_JOINResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_UPDATE_STUDENT_COLLEGE_AND_PROGRAM_WHEN_COLLEGE_IS_DELETED")]
+		public int SP_UPDATE_STUDENT_COLLEGE_AND_PROGRAM_WHEN_COLLEGE_IS_DELETED([global::System.Data.Linq.Mapping.ParameterAttribute(Name="COLL_ID", DbType="Int")] System.Nullable<int> cOLL_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), cOLL_ID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_UPDATE_STUDENT_PROGRAM_WHEN_PROGRAM_IS_DELETED")]
+		public int SP_UPDATE_STUDENT_PROGRAM_WHEN_PROGRAM_IS_DELETED([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_ID", DbType="Int")] System.Nullable<int> pROG_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pROG_ID);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ACADEMIC_YEAR")]

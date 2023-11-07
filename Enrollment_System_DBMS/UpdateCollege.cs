@@ -34,6 +34,7 @@ namespace Enrollment_System_DBMS
                     db.SP_UPDATE_COLLEGE(CollegeID(), txtCollegeName.Text, DateTime.Now);
                     MessageBox.Show("College Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtCollegeName.Text = "";
+                    this.Close();
                 }
                 catch (Exception ex)
                 {

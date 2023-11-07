@@ -601,4 +601,12 @@
       <Column Name="College" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_UPDATE_STUDENT_COLLEGE_AND_PROGRAM_WHEN_COLLEGE_IS_DELETED" Method="SP_UPDATE_STUDENT_COLLEGE_AND_PROGRAM_WHEN_COLLEGE_IS_DELETED">
+    <Parameter Name="COLL_ID" Parameter="cOLL_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_UPDATE_STUDENT_PROGRAM_WHEN_PROGRAM_IS_DELETED" Method="SP_UPDATE_STUDENT_PROGRAM_WHEN_PROGRAM_IS_DELETED">
+    <Parameter Name="PROG_ID" Parameter="pROG_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>
