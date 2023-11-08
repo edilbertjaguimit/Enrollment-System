@@ -21,6 +21,10 @@ namespace Enrollment_System_DBMS.Student_Controls
             CountAllColleges();
             CountAllPrograms();
             CountAllStudents();
+            CountAllSubjects();
+            lblMonth.Text = DateTime.Now.ToString("MMMM d, yyyy");
+            lblTime.Text = DateTime.Now.ToString("HH:mm:hh");
+            timer.Start();
         }
 
         private void HomeDashboard_Load(object sender, EventArgs e)
@@ -39,8 +43,11 @@ namespace Enrollment_System_DBMS.Student_Controls
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "SP_COUNT_COLLEGES";
-                        int count = (int)cmd.ExecuteScalar();
-                        lblNumberOfColleges.Text = count.ToString();
+                        var result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            lblNumberOfColleges.Text = result.ToString();
+                        }
                     }
                 }
             }
@@ -60,8 +67,11 @@ namespace Enrollment_System_DBMS.Student_Controls
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "SP_COUNT_PROGRAMS";
-                        int count = (int)cmd.ExecuteScalar();
-                        lblNumberOfPrograms.Text = count.ToString();
+                        var result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            lblNumberOfPrograms.Text = result.ToString();
+                        }
                     }
                 }
             }
@@ -81,8 +91,11 @@ namespace Enrollment_System_DBMS.Student_Controls
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "SP_COUNT_ALL_STUDENTS";
-                        int count = (int)cmd.ExecuteScalar();
-                        lblNumberOfStudents.Text = count.ToString();
+                        var result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            lblNumberOfStudents.Text = result.ToString();
+                        }
                     }
                 }
             }
@@ -90,6 +103,36 @@ namespace Enrollment_System_DBMS.Student_Controls
             {
                 MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void CountAllSubjects()
+        {
+            try
+            {
+                using (var db1 = new SqlConnection(_conn))
+                {
+                    db1.Open();
+                    using (var cmd = db1.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT COUNT(SUB_ID) FROM SUBJECTS";
+                        var result = cmd.ExecuteScalar();
+                        if(result != DBNull.Value && result != null)
+                        {
+                            lblNumberOfSubjects.Text = result.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An Error Occurred: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }
