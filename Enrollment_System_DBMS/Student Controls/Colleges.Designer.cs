@@ -270,6 +270,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.lblNumberOfPrograms.AutoSize = true;
             this.lblNumberOfPrograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumberOfPrograms.ForeColor = System.Drawing.Color.Green;
             this.lblNumberOfPrograms.Location = new System.Drawing.Point(188, 19);
             this.lblNumberOfPrograms.Name = "lblNumberOfPrograms";
             this.lblNumberOfPrograms.Size = new System.Drawing.Size(25, 25);
@@ -301,6 +302,7 @@ namespace Enrollment_System_DBMS.Student_Controls
             // 
             this.lblNumberOfColleges.AutoSize = true;
             this.lblNumberOfColleges.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumberOfColleges.ForeColor = System.Drawing.Color.Green;
             this.lblNumberOfColleges.Location = new System.Drawing.Point(180, 19);
             this.lblNumberOfColleges.Name = "lblNumberOfColleges";
             this.lblNumberOfColleges.Size = new System.Drawing.Size(25, 25);
