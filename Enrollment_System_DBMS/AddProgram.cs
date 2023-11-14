@@ -61,7 +61,6 @@ namespace Enrollment_System_DBMS
                     using (var cmd = dbCollege.CreateCommand())
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        //cmd.CommandText = "SELECT COLL_ID FROM COLLEGE WHERE COLL_NAME = '"+ CbCollege.Text + "'";
                         cmd.CommandText = "SP_COLLEGE_ID";
                         cmd.Parameters.AddWithValue("COLL_NAME", CbCollege.Text);
                         using (var reader = cmd.ExecuteReader())

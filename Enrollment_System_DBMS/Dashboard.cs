@@ -97,6 +97,11 @@ namespace Enrollment_System_DBMS
             mainContent.Controls.Add(subjects);
         }
 
+        private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         //private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    label2.Text = comboBox1.Text;

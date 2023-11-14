@@ -194,7 +194,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             {
                 MessageBox.Show($"An Error Occured: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            MessageBox.Show($"{GetProgramID()}");
         }
         // Table cell clicked
         private void TblCollege_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -208,7 +207,6 @@ namespace Enrollment_System_DBMS.Student_Controls
             {
                 MessageBox.Show($"An Error Occured: {ex}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            MessageBox.Show($"{GetCollegeID()}");
         }
 
         // College Update
