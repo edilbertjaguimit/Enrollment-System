@@ -484,6 +484,7 @@ namespace Enrollment_System_DBMS.Student_Controls
                 CbStudentSemester.SelectedItem = studentRecord.Cells[6].Value.ToString();
                 CbStudentSubject.SelectedItem = studentRecord.Cells[3].Value.ToString();
             }
+            BtnAddSubjectToStudent.Enabled = false;
         }
 
         private void TxtSearchSubject_TextChanged(object sender, EventArgs e)
@@ -553,8 +554,10 @@ namespace Enrollment_System_DBMS.Student_Controls
                         db.SP_UPDATE_STUDENT_SUBJECT(DateTime.Now, AcademicYearID, SemesterID, SubjectID, Convert.ToInt32(EnrollID), StudentNumber());
                         MessageBox.Show("Student Subject Successfully Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayStudentSubjects();
-                        CbStudentAcadYear.SelectedIndex = 2;
+                        CbStudentAcadYear.SelectedIndex = -1;
                         CbStudentSemester.SelectedIndex = 0;
+                        CbStudentSubject.SelectedIndex = -1;
+                        BtnAddSubjectToStudent.Enabled = true;
                     }
                     catch (Exception ex)
                     {

@@ -30,6 +30,7 @@ namespace Enrollment_System_DBMS
                 {
                     Dashboard dashboard = new Dashboard();
                     dashboard.Show();
+                    this.Hide();
                 }
                 else
                 {
