@@ -24,19 +24,24 @@ namespace Enrollment_System_DBMS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtUsername.Text.Trim() != "" && txtPassword.Text.Trim() != "")
-            {
-                if (txtUsername.Text == "admin" && txtPassword.Text == "admin")
-                {
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show($"Invalid username or password");
-                }
-            }
+
+        }
+
+        private void btnUseText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUseCamera_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegistration_Click(object sender, EventArgs e)
+        {
+            Registration registration = new Registration();
+            registration.Show();
+            this.Hide();
         }
     }
 }
