@@ -131,5 +131,11 @@
         <classShapeMoniker Id="ebaf0c74-92cd-40d3-86a1-10fb7c94ad55" />
       </nodes>
     </associationConnector>
+    <classShape Id="267191a9-6fb4-428d-be1d-6beef9c8c0c8" absoluteBounds="0.875, 1.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/EnrollmentDBDataContext/ADMIN_TBL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="01cc5a52-2dcc-45ad-a74d-8ec5c92d56cc" absoluteBounds="0.89000000000000012, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

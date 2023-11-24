@@ -54,6 +54,9 @@ namespace Enrollment_System_DBMS
     partial void InsertSUBJECT(SUBJECT instance);
     partial void UpdateSUBJECT(SUBJECT instance);
     partial void DeleteSUBJECT(SUBJECT instance);
+    partial void InsertADMIN_TBL(ADMIN_TBL instance);
+    partial void UpdateADMIN_TBL(ADMIN_TBL instance);
+    partial void DeleteADMIN_TBL(ADMIN_TBL instance);
     #endregion
 		
 		public EnrollmentDBDataContext() : 
@@ -171,6 +174,14 @@ namespace Enrollment_System_DBMS
 			get
 			{
 				return this.GetTable<SUBJECT>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ADMIN_TBL> ADMIN_TBLs
+		{
+			get
+			{
+				return this.GetTable<ADMIN_TBL>();
 			}
 		}
 		
@@ -596,6 +607,13 @@ namespace Enrollment_System_DBMS
 		public int SP_UPDATE_STUDENT_PROGRAM_WHEN_PROGRAM_IS_DELETED([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROG_ID", DbType="Int")] System.Nullable<int> pROG_ID)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pROG_ID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ADMIN_REGISTER")]
+		public int SP_ADMIN_REGISTER([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADMIN_USERNAME", DbType="NVarChar(255)")] string aDMIN_USERNAME, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADMIN_PASSWORD", DbType="NVarChar(255)")] string aDMIN_PASSWORD)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), aDMIN_USERNAME, aDMIN_PASSWORD);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -2731,6 +2749,116 @@ namespace Enrollment_System_DBMS
 		{
 			this.SendPropertyChanging();
 			entity.SUBJECT = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ADMIN_TBL")]
+	public partial class ADMIN_TBL : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ADMIN_ID;
+		
+		private string _ADMIN_USERNAME;
+		
+		private string _ADMIN_PASSWORD;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnADMIN_IDChanging(int value);
+    partial void OnADMIN_IDChanged();
+    partial void OnADMIN_USERNAMEChanging(string value);
+    partial void OnADMIN_USERNAMEChanged();
+    partial void OnADMIN_PASSWORDChanging(string value);
+    partial void OnADMIN_PASSWORDChanged();
+    #endregion
+		
+		public ADMIN_TBL()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ADMIN_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ADMIN_ID
+		{
+			get
+			{
+				return this._ADMIN_ID;
+			}
+			set
+			{
+				if ((this._ADMIN_ID != value))
+				{
+					this.OnADMIN_IDChanging(value);
+					this.SendPropertyChanging();
+					this._ADMIN_ID = value;
+					this.SendPropertyChanged("ADMIN_ID");
+					this.OnADMIN_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ADMIN_USERNAME", DbType="NVarChar(255)")]
+		public string ADMIN_USERNAME
+		{
+			get
+			{
+				return this._ADMIN_USERNAME;
+			}
+			set
+			{
+				if ((this._ADMIN_USERNAME != value))
+				{
+					this.OnADMIN_USERNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._ADMIN_USERNAME = value;
+					this.SendPropertyChanged("ADMIN_USERNAME");
+					this.OnADMIN_USERNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ADMIN_PASSWORD", DbType="NVarChar(255)")]
+		public string ADMIN_PASSWORD
+		{
+			get
+			{
+				return this._ADMIN_PASSWORD;
+			}
+			set
+			{
+				if ((this._ADMIN_PASSWORD != value))
+				{
+					this.OnADMIN_PASSWORDChanging(value);
+					this.SendPropertyChanging();
+					this._ADMIN_PASSWORD = value;
+					this.SendPropertyChanged("ADMIN_PASSWORD");
+					this.OnADMIN_PASSWORDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

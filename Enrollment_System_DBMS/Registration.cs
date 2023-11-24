@@ -15,6 +15,7 @@ namespace Enrollment_System_DBMS
     {
         private bool isUseCameraIsClicked = false;
         FaceRec faceRec = new FaceRec();
+        EnrollmentDBDataContext db = new EnrollmentDBDataContext();
         public Registration()
         {
             InitializeComponent();
@@ -26,9 +27,17 @@ namespace Enrollment_System_DBMS
             {
                 if(txtUsername.Text.Trim() != "")
                 {
-                    faceRec.Save_IMAGE(txtUsername.Text.ToUpper());
-                    faceRec.isTrained = true;
-                    MessageBox.Show("Face Register Successfully.");
+                    try
+                    {
+                        faceRec.Save_IMAGE(txtUsername.Text);
+                        faceRec.isTrained = true;
+                        db.SP_ADMIN_REGISTER(txtUsername.Text, null);
+                        MessageBox.Show("Face Register Successfully.");
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show($"Database Error: {ex}");
+                    }
                 }
                 else
                 {
@@ -41,8 +50,16 @@ namespace Enrollment_System_DBMS
                 {
                     if(txtPassword.Text == txtRetypePassword.Text)
                     {
-
-                    }else
+                        try
+                        {
+                            db.SP_ADMIN_REGISTER(txtUsername.Text, txtPassword.Text);
+                            MessageBox.Show("Text Register Successfully.");
+                        }catch(Exception ex)
+                        {
+                            MessageBox.Show($"Database Error: {ex}");
+                        }
+                    }
+                    else
                         MessageBox.Show("Password not matched.");
                 }
                 else
