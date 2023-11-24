@@ -70,11 +70,15 @@ namespace Enrollment_System_DBMS
         private void btnUseText_Click(object sender, EventArgs e)
         {
             isUseCameraIsClicked = false;
+            txtPassword.Enabled = true;
+            txtRetypePassword.Enabled = true;
         }
 
         private void btnUseCamera_Click(object sender, EventArgs e)
         {
             isUseCameraIsClicked = true;
+            txtPassword.Enabled = false;
+            txtRetypePassword.Enabled = false;
             faceRec.openCamera(pbCamera, pbCaptured);
         }
 
