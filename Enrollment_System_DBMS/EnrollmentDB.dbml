@@ -112,6 +112,13 @@
       <Association Name="SEMESTER_SUBJECT" Member="SEMESTER" ThisKey="SEM_ID" OtherKey="SEM_ID" Type="SEMESTER" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ADMIN_TBL" Member="ADMIN_TBLs">
+    <Type Name="ADMIN_TBL">
+      <Column Name="ADMIN_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ADMIN_USERNAME" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ADMIN_PASSWORD" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.SP_ACADEMIC_YEAR" Method="SP_ACADEMIC_YEAR">
     <ElementType Name="SP_ACADEMIC_YEARResult">
       <Column Name="ACAD_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -607,6 +614,11 @@
   </Function>
   <Function Name="dbo.SP_UPDATE_STUDENT_PROGRAM_WHEN_PROGRAM_IS_DELETED" Method="SP_UPDATE_STUDENT_PROGRAM_WHEN_PROGRAM_IS_DELETED">
     <Parameter Name="PROG_ID" Parameter="pROG_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ADMIN_REGISTER" Method="SP_ADMIN_REGISTER">
+    <Parameter Name="ADMIN_USERNAME" Parameter="aDMIN_USERNAME" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="ADMIN_PASSWORD" Parameter="aDMIN_PASSWORD" Type="System.String" DbType="NVarChar(255)" />
     <Return Type="System.Int32" />
   </Function>
 </Database>
